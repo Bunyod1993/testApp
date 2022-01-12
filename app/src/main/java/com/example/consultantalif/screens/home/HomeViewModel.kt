@@ -12,11 +12,11 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val authRepo: AuthRepository): BaseViewModel() {
     fun getApi(){
-        viewModelScope.launch {
-            authRepo.login(this@HomeViewModel).collect{
-                Log.v("tag","hello $it")
-            }
-        }
+//        viewModelScope.launch {
+//            authRepo.login(this@HomeViewModel).collect{
+//                Log.v("tag","hello $it")
+//            }
+//        }
     }
 
 }

@@ -2,6 +2,8 @@ package com.example.consultantalif.utils.base
 
 import android.util.Log
 import com.example.consultantalif.networking.interceptors.InternetUnavailableException
+import com.example.consultantalif.repositories.Resource
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
@@ -24,12 +26,43 @@ abstract class BaseRemoteRepository {
      * override suspend fun loginUser(body: LoginUserBody, emitter: RemoteErrorEmitter): LoginUserResponse?  = safeApiCall( { authApi.loginUser(body)} , emitter)
      * @param emitter is the interface that handles the error messages. The error messages must be displayed on the MainThread, or else they would throw an Exception.
      */
+//    suspend fun <T> safeApiCall(dispatcher: CoroutineDispatcher, apiCall: suspend () -> T): Resource<T> {
+//        return withContext(dispatcher) {
+//            try {
+//                Resource.Success(apiCall.invoke())
+//            } catch (throwable: Throwable) {
+//                when (throwable) {
+//                    is IOException -> Resource.Error(throwable.message?:"")
+//                    is HttpException -> {
+//                        val code = throwable.code()
+//                        val errorResponse = convertErrorBody(throwable)
+//                        Resource.Error(message = errorResponse?:"",code)
+//                    }
+//                    else -> {
+//                        Resource.Empty()
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//    private fun convertErrorBody(throwable: HttpException): String? {
+//        return try {
+//            throwable.response()?.errorBody()?.source()?.let {
+////                val moshiAdapter = Moshi.Builder().build().adapter(ErrorResponse::class.java)
+////                moshiAdapter.fromJson(it)
+//                it.buffer.toString()
+//            }
+//        } catch (exception: Exception) {
+//            null
+//        }
+//    }
     suspend inline fun <T> safeApiCall(emitter: RemoteErrorEmitter, crossinline callFunction: suspend () -> T): T? {
         return try{
-            val myObject = withContext(Dispatchers.IO){ callFunction.invoke() }
+            val myObject = withContext(Dispatchers.Main){ callFunction.invoke() }
             myObject
         }catch (e: Exception){
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.IO){
                 e.printStackTrace()
                 Log.e("BaseRemoteRepo", "Call error: ${e.localizedMessage}", e.cause)
                 when(e){

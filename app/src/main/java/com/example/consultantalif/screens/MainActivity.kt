@@ -26,10 +26,10 @@ class MainActivity : AppCompatActivity() {
         // Set up ActionBar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
-//        viewModel.authToken.observe(this) {
-//            if (it.isNullOrEmpty()){
-//                navController.navigate(R.id.action_global_toLogin)
-//            }
-//        }
+        viewModel.authToken.observe(this) {
+            if (it.isNullOrEmpty()){
+                navController.navigate(R.id.action_global_toLogin)
+            }
+        }
     }
 }
