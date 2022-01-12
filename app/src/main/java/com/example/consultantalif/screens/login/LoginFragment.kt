@@ -1,34 +1,19 @@
 package com.example.consultantalif.screens.login
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+
 import com.example.consultantalif.databinding.LoginFragmentBinding
+import com.example.consultantalif.utils.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment<LoginFragmentBinding,LoginViewModel>() {
 
-    companion object {
-        fun newInstance() = LoginFragment()
+    override fun getViewBinding() = LoginFragmentBinding.inflate(layoutInflater)
+    override fun getViewModelClass() = LoginViewModel::class.java
+
+    override fun observeData() {
+        super.observeData()
     }
 
-    private val viewModel: LoginViewModel by viewModels()
-    private val binding by lazy { LoginFragmentBinding.inflate(LayoutInflater.from(context)) }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding.lifecycleOwner = this
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
 
 }
