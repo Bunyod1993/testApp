@@ -26,52 +26,41 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
 
         viewModel.fieldError.observe(viewLifecycleOwner) {
             if (it.first == InputType.EMAIL) {
+                binding.emailAddress.isErrorEnabled = false
+                binding.emailAddress.error = ""
                 when (it.second) {
-                    InputErrorType.EMPTY -> {
-                        binding.emailAddress.isErrorEnabled = false
-                    }
+                    InputErrorType.EMPTY -> {}
                     InputErrorType.MISMATCH -> {
                         binding.emailAddress.isErrorEnabled = true
                         binding.emailAddress.error = getString(R.string.error_fill_correctly)
                     }
-                    InputErrorType.VALID -> {
-                        binding.emailAddress.isErrorEnabled = false
-                        binding.emailAddress.error = ""
-                    }
-                    else -> {
-                        binding.emailAddress.isErrorEnabled = false
-                        binding.emailAddress.error = ""
-                    }
+                    InputErrorType.VALID -> {}
+                    else -> {}
                 }
             } else {
+                binding.password.isErrorEnabled = false
+                binding.password.error = ""
                 when (it.second) {
-                    InputErrorType.EMPTY -> {
-                        binding.password.isErrorEnabled = false
-                    }
-                    InputErrorType.MISMATCH -> {
-                        binding.password.isErrorEnabled = true
-                        binding.password.error = getString(R.string.error_fill_correctly)
-                    }
+                    InputErrorType.EMPTY -> {}
+                    InputErrorType.MISMATCH -> {}
                     InputErrorType.INVALID -> {
                         binding.password.isErrorEnabled = true
                         binding.password.error = getString(R.string.error_fill_correctly)
                     }
-                    InputErrorType.VALID -> {
-                        binding.password.isErrorEnabled = false
-                        binding.password.error = ""
-                    }
+                    InputErrorType.VALID -> {}
                 }
             }
         }
 
         viewModel.email.observe(viewLifecycleOwner) {
-            binding.emailAddress.isErrorEnabled = false
-            binding.emailAddress.error = ""
+          viewModel.validateLoginFields(InputType.EMAIL)
         }
 
         viewModel.password.observe(viewLifecycleOwner) {
-            binding.password.isErrorEnabled = false
-            binding.password.error = ""
+            viewModel.validateLoginFields(InputType.PASSWORD)
+        }
+        viewModel.isLogin.observe(viewLifecycleOwner) {
+            binding.login.isEnabled = it
         }
 
     }
@@ -80,21 +69,16 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
         super.setUpViews()
         binding.loginModel = viewModel
         binding.login.setOnClickListener {
-            if (viewModel.isLogin.value!!)
-                viewModel.login()
-            else {
-                viewModel.validateLoginFields(InputType.EMAIL)
-                viewModel.validateLoginFields(InputType.PASSWORD)
-            }
+            viewModel.login()
         }
-        binding.emailField.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus)
-                viewModel.validateLoginFields(InputType.EMAIL)
-        }
-        binding.passwordField.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus)
-                viewModel.validateLoginFields(InputType.PASSWORD)
-        }
+//        binding.emailField.setOnFocusChangeListener { _, hasFocus ->
+//            if (!hasFocus)
+//                viewModel.validateLoginFields(InputType.EMAIL)
+//        }
+//        binding.passwordField.setOnFocusChangeListener { _, hasFocus ->
+//            if (!hasFocus)
+//                viewModel.validateLoginFields(InputType.PASSWORD)
+//        }
     }
 
 }

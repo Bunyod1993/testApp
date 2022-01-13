@@ -41,33 +41,48 @@ class LoginViewModel @Inject constructor(private val authRepository: AuthReposit
         val pair: Pair<InputType, InputErrorType>
         if (inputType == InputType.EMAIL) {
             str = email.value ?: ""
-            pair = if (str.matches(Patterns.EMAIL_ADDRESS.toRegex())) {
-                Pair(inputType, InputErrorType.VALID)
-            } else {
-                Pair(inputType, InputErrorType.MISMATCH)
-            }
+            pair =
+                when {
+                    str.isEmpty() -> {
+                        Pair(inputType, InputErrorType.EMPTY)
+                    }
+                    str.matches(Patterns.EMAIL_ADDRESS.toRegex()) -> {
+                        Pair(inputType, InputErrorType.VALID)
+                    }
+                    else -> {
+                        Pair(inputType, InputErrorType.MISMATCH)
+                    }
+                }
 
         } else {
             str = password.value ?: ""
-            pair = if (str.length > 4) {
-                Pair(inputType, InputErrorType.VALID)
-            } else {
-                Pair(inputType, InputErrorType.INVALID)
+            pair = when {
+                str.isEmpty() -> {
+                    Pair(inputType, InputErrorType.EMPTY)
+                }
+                str.length > 4 -> {
+                    Pair(inputType, InputErrorType.VALID)
+                }
+                else -> {
+                    Pair(inputType, InputErrorType.INVALID)
+                }
             }
         }
         alterField(pair)
         fieldError.postValue(pair)
         enableButton()
     }
-//    to be continued
-    private fun enableButton(){
-        val validFields=setOfFields.filter { it.second==InputErrorType.VALID }
-        isLogin.postValue(validFields.size==setOfFields.size )
+
+    //    to be continued
+    private fun enableButton() {
+        val validFields = setOfFields.filter { it.second == InputErrorType.VALID }
+        isLogin.postValue(validFields.size == setOfFields.size)
     }
-    private fun alterField(pair:Pair<InputType,InputErrorType>){
-       val field = setOfFields.find { pair.first==it.first }
-       val index = setOfFields.indexOf(field)
-       if (index>-1) setOfFields.removeAt(index)
-       setOfFields.add(pair)
+
+    private fun alterField(pair: Pair<InputType, InputErrorType>) {
+        val field = setOfFields.find { pair.first == it.first }
+        val index = setOfFields.indexOf(field)
+        if (index > -1) setOfFields.removeAt(index)
+        setOfFields.add(pair)
     }
 }
