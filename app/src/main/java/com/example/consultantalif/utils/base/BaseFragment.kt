@@ -1,6 +1,7 @@
 package com.example.consultantalif.utils.base
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,7 +51,9 @@ abstract class BaseFragment<VBinding:ViewBinding,VM:BaseViewModel>:Fragment() {
 
     open fun observeData() {
         viewModel.mutableErrorType.observe(viewLifecycleOwner,  {
-            if (it==ErrorType.NETWORK) Navigation.findNavController(requireView()).navigate(R.id.action_global_toLogin)
+
+                Log.v("tag","$it")
+
         })
     }
 }

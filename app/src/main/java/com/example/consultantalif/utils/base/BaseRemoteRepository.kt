@@ -2,8 +2,6 @@ package com.example.consultantalif.utils.base
 
 import android.util.Log
 import com.example.consultantalif.networking.interceptors.InternetUnavailableException
-import com.example.consultantalif.repositories.Resource
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
