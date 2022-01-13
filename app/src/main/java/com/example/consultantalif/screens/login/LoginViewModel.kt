@@ -26,7 +26,6 @@ class LoginViewModel @Inject constructor(private val authRepository: AuthReposit
     private val setOfFields by lazy { authRepository.getFields() }
     fun login() {
         viewModelScope.launch(Dispatchers.IO) {
-
             val paramObject = JSONObject()
             paramObject.put(InputType.EMAIL.fieldType, email)
             paramObject.put(InputType.PASSWORD.fieldType, password)
@@ -34,7 +33,6 @@ class LoginViewModel @Inject constructor(private val authRepository: AuthReposit
                 .collect {
                     token.postValue(it)
                 }
-
         }
     }
 

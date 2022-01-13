@@ -1,20 +1,16 @@
 package com.example.consultantalif.repositories.auth
 
 import android.content.SharedPreferences
-import android.util.Log
 import com.example.consultantalif.repositories.Resource
 import com.example.consultantalif.utils.Constants
 import com.example.consultantalif.utils.base.BaseRemoteRepository
 import com.example.consultantalif.utils.base.RemoteErrorEmitter
 import com.example.consultantalif.utils.enums.InputErrorType
 import com.example.consultantalif.utils.enums.InputType
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
-import org.json.JSONObject
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(

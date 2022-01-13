@@ -5,7 +5,6 @@ import com.example.consultantalif.utils.base.RemoteErrorEmitter
 import com.example.consultantalif.utils.enums.InputErrorType
 import com.example.consultantalif.utils.enums.InputType
 import kotlinx.coroutines.flow.Flow
-import org.json.JSONObject
 
 interface AuthRepository {
     suspend fun login(emitter: RemoteErrorEmitter, jsonString :String): Flow<Resource<String>>
