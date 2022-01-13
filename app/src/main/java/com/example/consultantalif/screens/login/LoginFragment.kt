@@ -1,6 +1,7 @@
 package com.example.consultantalif.screens.login
 
 
+import android.util.Log
 import androidx.navigation.Navigation
 import com.example.consultantalif.R
 import com.example.consultantalif.databinding.LoginFragmentBinding
@@ -18,6 +19,7 @@ class LoginFragment : BaseFragment<LoginFragmentBinding,LoginViewModel>() {
         super.observeData()
         viewModel.login()
         viewModel.token.observe(viewLifecycleOwner){
+            Log.v("tag",it.data?:"")
 //            if (it is Resource.Success)
 //                Navigation.findNavController(requireView()).navigate(R.id.action_loginToHome)
         }
