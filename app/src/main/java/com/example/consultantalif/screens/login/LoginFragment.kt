@@ -4,7 +4,6 @@ package com.example.consultantalif.screens.login
 import androidx.navigation.Navigation
 import com.example.consultantalif.R
 import com.example.consultantalif.databinding.LoginFragmentBinding
-import com.example.consultantalif.repositories.Resource
 import com.example.consultantalif.utils.base.BaseFragment
 import com.example.consultantalif.utils.enums.InputErrorType
 import com.example.consultantalif.utils.enums.InputType
@@ -26,20 +25,20 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
 
         viewModel.fieldError.observe(viewLifecycleOwner) {
             if (it.first == InputType.EMAIL) {
-                binding.emailAddress.isErrorEnabled = false
-                binding.emailAddress.error = ""
+
                 when (it.second) {
                     InputErrorType.EMPTY -> {}
                     InputErrorType.MISMATCH -> {
                         binding.emailAddress.isErrorEnabled = true
                         binding.emailAddress.error = getString(R.string.error_fill_correctly)
                     }
-                    InputErrorType.VALID -> {}
+                    InputErrorType.VALID -> {
+                        binding.emailAddress.isErrorEnabled = false
+                        binding.emailAddress.error = ""
+                    }
                     else -> {}
                 }
             } else {
-                binding.password.isErrorEnabled = false
-                binding.password.error = ""
                 when (it.second) {
                     InputErrorType.EMPTY -> {}
                     InputErrorType.MISMATCH -> {}
@@ -47,7 +46,10 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
                         binding.password.isErrorEnabled = true
                         binding.password.error = getString(R.string.error_fill_correctly)
                     }
-                    InputErrorType.VALID -> {}
+                    InputErrorType.VALID -> {
+                        binding.password.isErrorEnabled = false
+                        binding.password.error = ""
+                    }
                 }
             }
         }

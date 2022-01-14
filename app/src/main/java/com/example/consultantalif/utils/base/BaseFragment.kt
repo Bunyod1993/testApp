@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.viewbinding.ViewBinding
 import com.example.consultantalif.R
+import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseFragment<VBinding:ViewBinding,VM:BaseViewModel>:Fragment() {
     open var useSharedViewModel: Boolean = false
@@ -55,5 +56,8 @@ abstract class BaseFragment<VBinding:ViewBinding,VM:BaseViewModel>:Fragment() {
                 Log.v("tag","$it")
 
         })
+        viewModel.mutableErrorMessage.observe(viewLifecycleOwner,){
+            Snackbar.make(requireContext(),requireView(),it,2000).show()
+        }
     }
 }

@@ -1,13 +1,10 @@
 package com.example.consultantalif.utils.base
 
-import android.util.Log
 import com.example.consultantalif.networking.interceptors.InternetUnavailableException
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.HttpException
-import java.io.IOException
 import java.net.SocketTimeoutException
 
 abstract class BaseRemoteRepository {
@@ -55,30 +52,29 @@ abstract class BaseRemoteRepository {
 //            null
 //        }
 //    }
-    suspend inline fun <T> safeApiCall(emitter: RemoteErrorEmitter, crossinline callFunction: suspend () -> T): T? {
-        return try{
-            val myObject = withContext(Dispatchers.Main){ callFunction.invoke() }
-            myObject
-        }catch (e: Exception){
-            withContext(Dispatchers.IO){
-                e.printStackTrace()
-                Log.e("BaseRemoteRepo", "Call error: ${e.localizedMessage}", e.cause)
-                when(e){
-                    is HttpException -> {
-                        if(e.code() == 401) emitter.onError(ErrorType.SESSION_EXPIRED)
-                        else {
-                            val body = e.response()?.errorBody()
-                            emitter.onError(getErrorMessage(body))
-                        }
-                    }
-                    is SocketTimeoutException -> emitter.onError(ErrorType.TIMEOUT)
-                    is IOException -> emitter.onError(ErrorType.NETWORK)
-                    else -> emitter.onError(ErrorType.UNKNOWN)
-                }
-            }
-            null
-        }
-    }
+//    suspend inline fun <T> safeApiCall(emitter: RemoteErrorEmitter, crossinline callFunction: suspend () -> T): T? {
+//        return try{
+//            val myObject = withContext(Dispatchers.Main){ callFunction.invoke() }
+//            myObject
+//        }catch (e: Exception){
+//            withContext(Dispatchers.IO){
+//                e.printStackTrace()
+//                when(e){
+//                    is HttpException -> {
+//                        if(e.code() == 401) emitter.onError(ErrorType.SESSION_EXPIRED)
+//                        else {
+//                            val body = e.response()?.errorBody()
+//                            emitter.onError(getErrorMessage(body))
+//                        }
+//                    }
+//                    is SocketTimeoutException -> emitter.onError(ErrorType.TIMEOUT)
+//                    is IOException -> emitter.onError(ErrorType.NETWORK)
+//                    else -> emitter.onError(ErrorType.UNKNOWN)
+//                }
+//            }
+//            null
+//        }
+//    }
 
     /**
      * Function that executes the given function in whichever thread is given. Be aware, this is not friendly with Dispatchers.IO,
@@ -93,12 +89,14 @@ abstract class BaseRemoteRepository {
             myObject
         }catch (e: Exception){
             e.printStackTrace()
-            Log.e("BaseRemoteRepo", "Call error: ${e.localizedMessage}", e.cause)
             when(e){
                 is HttpException -> {
-                    if(e.code() == 401) emitter.onError(ErrorType.SESSION_EXPIRED)
+                    val body = e.response()?.errorBody()
+                    if(e.code() == 401) {
+//                        emitter.onError(ErrorType.SESSION_EXPIRED)
+                        emitter.onError(getErrorMessage(body))
+                    }
                     else {
-                        val body = e.response()?.errorBody()
                         emitter.onError(getErrorMessage(body))
                     }
                 }

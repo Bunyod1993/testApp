@@ -26,12 +26,12 @@ class AuthRepositoryImpl @Inject constructor(
             safeApiCallNoContext(emitter) {
                 emit(Resource.Loading())
                 val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
-                val resp = api.login(body = requestBody).body()
-                if (resp?.code == 200) {
+                val resp = api.login(body = requestBody)
+                if (resp.code == 200) {
                     emit(Resource.Success(resp.data ?: ""))
                     prefs.edit().putString(Constants.AUTH_TOKEN, resp.data).apply()
                 } else {
-                    emit(Resource.Error(resp?.message ?: "", resp?.code ?: -1))
+                    emit(Resource.Error(resp.message, resp.code))
                 }
             }
         }
