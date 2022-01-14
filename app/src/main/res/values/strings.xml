@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ConsultantAlif</string>
+    <string name="welcome_txt">Добро пожаловать\nв Алиф Консалтинг</string>
+    <string name="email">Почьта</string>
+    <string name="password">Пароль</string>
+    <string name="login">ВХОД</string>
+    <string name="loginBtnTxt">ВОЙТИ</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="error.fill.correctly">Пожалуйста, заполните поле корректно</string>
+    <string name="error.empty">Пожалуйста, заполните поле</string>
+</resources>
