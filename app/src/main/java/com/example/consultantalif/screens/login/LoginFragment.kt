@@ -20,7 +20,7 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
         super.observeData()
 
         viewModel.token.observe(viewLifecycleOwner) {
-            if (it is Resource.Success)
+            if (!it.isNullOrEmpty())
                 Navigation.findNavController(requireView()).navigate(R.id.action_loginToHome)
         }
 

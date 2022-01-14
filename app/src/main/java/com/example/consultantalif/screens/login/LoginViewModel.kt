@@ -1,10 +1,11 @@
 package com.example.consultantalif.screens.login
 
+import android.content.SharedPreferences
 import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.consultantalif.repositories.Resource
 import com.example.consultantalif.repositories.auth.AuthRepository
+import com.example.consultantalif.utils.Constants.AUTH_TOKEN
 import com.example.consultantalif.utils.base.BaseViewModel
 import com.example.consultantalif.utils.enums.InputErrorType
 import com.example.consultantalif.utils.enums.InputType
@@ -16,22 +17,25 @@ import org.json.JSONObject
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val authRepository: AuthRepository) :
+class LoginViewModel @Inject constructor(private val prefs:SharedPreferences,private val authRepository: AuthRepository) :
     BaseViewModel() {
-    val token = MutableLiveData<Resource<String>>()
+    val token = MutableLiveData<String>()
     val email = MutableLiveData("")
     val password = MutableLiveData("")
     val isLogin = MutableLiveData(false)
     val fieldError = MutableLiveData(Pair(InputType.NONE, InputErrorType.EMPTY))
     private val setOfFields by lazy { authRepository.getFields() }
+    init {
+        token.postValue(prefs.getString(AUTH_TOKEN,""))
+    }
     fun login() {
         viewModelScope.launch(Dispatchers.IO) {
             val paramObject = JSONObject()
-            paramObject.put(InputType.EMAIL.fieldType, email)
-            paramObject.put(InputType.PASSWORD.fieldType, password)
+            paramObject.put(InputType.EMAIL.fieldType, email.value)
+            paramObject.put(InputType.PASSWORD.fieldType, password.value)
             authRepository.login(this@LoginViewModel, paramObject.toString())
                 .collect {
-                    token.postValue(it)
+                    token.postValue(it.data?:"")
                 }
         }
     }
