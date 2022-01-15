@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.consultantalif.repositories.auth.AuthRepository
 import com.example.consultantalif.utils.Constants.AUTH_TOKEN
 import com.example.consultantalif.utils.base.BaseViewModel
+import com.example.consultantalif.utils.base.ScreenState
 import com.example.consultantalif.utils.enums.InputErrorType
 import com.example.consultantalif.utils.enums.InputType
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,8 +34,10 @@ class LoginViewModel @Inject constructor(private val prefs:SharedPreferences,pri
             val paramObject = JSONObject()
             paramObject.put(InputType.EMAIL.fieldType, email.value)
             paramObject.put(InputType.PASSWORD.fieldType, password.value)
+            mutableScreenState.postValue(ScreenState.LOADING)
             authRepository.login(this@LoginViewModel, paramObject.toString())
                 .collect {
+                    mutableScreenState.postValue(ScreenState.RENDER)
                     token.postValue(it.data?:"")
                 }
         }
