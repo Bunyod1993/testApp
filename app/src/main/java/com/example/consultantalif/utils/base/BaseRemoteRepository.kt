@@ -6,6 +6,7 @@ import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 abstract class BaseRemoteRepository {
 
@@ -99,7 +100,9 @@ abstract class BaseRemoteRepository {
                     else {
                         emitter.onError(getErrorMessage(body))
                     }
+                    emitter.onError(ErrorType.UNKNOWN)
                 }
+                is UnknownHostException -> emitter.onError(ErrorType.HOST_EXCEPTION)
                 is SocketTimeoutException -> emitter.onError(ErrorType.TIMEOUT)
                 is InternetUnavailableException -> emitter.onError(ErrorType.NETWORK)
                 else -> emitter.onError(ErrorType.UNKNOWN)

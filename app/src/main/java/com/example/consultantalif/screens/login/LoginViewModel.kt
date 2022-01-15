@@ -18,7 +18,7 @@ import org.json.JSONObject
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val prefs:SharedPreferences,private val authRepository: AuthRepository) :
+class LoginViewModel @Inject constructor(prefs:SharedPreferences,private val authRepository: AuthRepository) :
     BaseViewModel() {
     val token = MutableLiveData<String>()
     val email = MutableLiveData("")

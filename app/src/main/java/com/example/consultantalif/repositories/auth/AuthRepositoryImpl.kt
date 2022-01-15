@@ -24,7 +24,6 @@ class AuthRepositoryImpl @Inject constructor(
     ): Flow<Resource<String>> {
         return flow {
             safeApiCallNoContext(emitter) {
-                emit(Resource.Loading())
                 val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
                 val resp = api.login(body = requestBody)
                 if (resp.code == 200) {

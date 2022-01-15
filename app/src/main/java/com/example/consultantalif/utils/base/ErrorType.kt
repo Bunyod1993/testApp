@@ -6,6 +6,7 @@ package com.example.consultantalif.utils.base
 enum class ErrorType {
     NETWORK,
     TIMEOUT,
+    HOST_EXCEPTION,
     SESSION_EXPIRED,
     UNKNOWN
 }

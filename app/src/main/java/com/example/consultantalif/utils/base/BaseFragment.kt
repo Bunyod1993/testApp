@@ -52,23 +52,30 @@ abstract class BaseFragment<VBinding:ViewBinding,VM:BaseViewModel>:Fragment() {
     open fun observeView() {}
 
     open fun observeData() {
+
         val progressBarHolder=requireActivity().findViewById<FrameLayout>(R.id.progressBarHolder)
+
         viewModel.mutableErrorType.observe(viewLifecycleOwner,  {
+            progressBarHolder.invisible()
             when(it){
-                ErrorType.UNKNOWN,ErrorType.NETWORK,ErrorType.SESSION_EXPIRED,ErrorType.TIMEOUT ->{
+                ErrorType.UNKNOWN,ErrorType.NETWORK,ErrorType.SESSION_EXPIRED,
+                ErrorType.TIMEOUT, ErrorType.HOST_EXCEPTION ->{
                     Snackbar.make(requireContext(),requireView(),it.name,2000).show()
-                    progressBarHolder.invisible()
                 }
-                else->{}
+                else->{
+
+                }
             }
         })
+
         viewModel.mutableErrorMessage.observe(viewLifecycleOwner,){
-            progressBarHolder.invisible()
             Snackbar.make(requireContext(),requireView(),it,2000).show()
         }
+
         viewModel.mutableScreenState.observe(viewLifecycleOwner,){
             if (it==ScreenState.LOADING) progressBarHolder.visible()
             else progressBarHolder.invisible()
         }
+
     }
 }
