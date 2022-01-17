@@ -62,6 +62,10 @@ abstract class BaseFragment<VBinding:ViewBinding,VM:BaseViewModel>:Fragment() {
                 ErrorType.TIMEOUT, ErrorType.HOST_EXCEPTION ->{
                     Snackbar.make(requireContext(),requireView(),it.name,2000).show()
                 }
+                ErrorType.BAD_REQUEST->{
+                    Snackbar.make(requireContext(),requireView(),
+                        viewModel.mutableErrorMessage.value?:"", 2000).show()
+                }
                 else->{
 
                 }

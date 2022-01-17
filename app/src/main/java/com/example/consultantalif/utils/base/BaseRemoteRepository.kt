@@ -100,7 +100,7 @@ abstract class BaseRemoteRepository {
                     else {
                         emitter.onError(getErrorMessage(body))
                     }
-                    emitter.onError(ErrorType.UNKNOWN)
+                    emitter.onError(ErrorType.BAD_REQUEST)
                 }
                 is UnknownHostException -> emitter.onError(ErrorType.HOST_EXCEPTION)
                 is SocketTimeoutException -> emitter.onError(ErrorType.TIMEOUT)

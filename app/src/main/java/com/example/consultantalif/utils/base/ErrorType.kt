@@ -8,5 +8,6 @@ enum class ErrorType {
     TIMEOUT,
     HOST_EXCEPTION,
     SESSION_EXPIRED,
-    UNKNOWN
+    UNKNOWN,
+    BAD_REQUEST
 }
