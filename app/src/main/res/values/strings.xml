@@ -5,7 +5,6 @@
     <string name="email.placeholder">example@gmail.com</string>
     <string name="phone">Номер клиента</string>
     <string name="phone.placeholder">+992 88 111 22 31</string>
-
     <string name="otp">Код</string>
     <string name="otp.placeholder">Ввести Код</string>
     <string name="password">Пароль</string>
@@ -17,4 +16,18 @@
     <string name="forgot.password">Забыли пароль?</string>
     <string name="error.fill.correctly">Пожалуйста, заполните поле корректно</string>
     <string name="error.empty">Пожалуйста, заполните поле</string>
+
+    <string name="iden.step1.text">Сфотографируйте лицевую сторону паспорта с фотографией</string>
+    <string name="iden.step2.text">Сфотографируйте страницу с пропиской в паспорте</string>
+    <string name="iden.step3.text">Сделайте селфи с лицевой стороной паспорта и загрузите </string>
+    <string name="iden.show.example">Показать пример</string>
+    <string name="iden.button.send">Отправить заявку</string>
+    <string name="access">Разрешить</string>
+    <string name="no.thanks">Нет, спасибо</string>
+    <string name="make.photo">Сделать фото</string>
+    <string name="take.photo">Выбрать изображение</string>
+    <string name="select.from.gallery">Выбрать из галереи</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
 </resources>

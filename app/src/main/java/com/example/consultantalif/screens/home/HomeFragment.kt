@@ -4,6 +4,7 @@ package com.example.consultantalif.screens.home
 import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
 import androidx.core.content.res.ResourcesCompat
+import androidx.navigation.Navigation
 import com.example.consultantalif.R
 import com.example.consultantalif.databinding.HomeFragmentBinding
 import com.example.consultantalif.utils.base.BaseFragment
@@ -18,8 +19,10 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
 
     override fun observeData() {
         super.observeData()
+
         val endIcon: Drawable? = ResourcesCompat.getDrawable(context!!.resources,
                                 R.drawable.ic_refresh, null)
+
         timer = object : CountDownTimer(3000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
 
@@ -38,8 +41,10 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
 //        could be done dynamic placeholder
 //        binding.otpFieldLayout.placeholderText=""
         binding.sendOtp.setOnClickListener {
-            startTimer()
+//            startTimer()
+            Navigation.findNavController(it).navigate(R.id.action_homeToScanPassport)
         }
+
         binding.otpFieldLayout.setEndIconOnClickListener {
             startTimer()
         }
