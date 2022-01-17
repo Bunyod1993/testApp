@@ -1,6 +1,7 @@
 package com.example.consultantalif.screens.home
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.consultantalif.repositories.auth.AuthRepository
 import com.example.consultantalif.utils.base.BaseViewModel
@@ -11,6 +12,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val authRepo: AuthRepository): BaseViewModel() {
+    val phone=MutableLiveData("")
+    val otp=MutableLiveData("")
     fun getApi(){
 //        viewModelScope.launch {
 //            authRepo.login(this@HomeViewModel).collect{
