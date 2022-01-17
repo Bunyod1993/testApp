@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1048074343158",
+    "project_id": "alif-consultant",
+    "storage_bucket": "alif-consultant.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048074343158:android:4313b3234131a0a1d592d7",
+        "android_client_info": {
+          "package_name": "com.example.consultantalif"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1048074343158-25ts2o1i79rpjdf888bt627tjln1k63l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpoS1M1ktCIf1zKMmjQQzV1X3hGCNzeeA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1048074343158-25ts2o1i79rpjdf888bt627tjln1k63l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
