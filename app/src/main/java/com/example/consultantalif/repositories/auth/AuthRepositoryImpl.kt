@@ -27,8 +27,8 @@ class AuthRepositoryImpl @Inject constructor(
                 val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
                 val resp = api.login(body = requestBody)
                 if (resp.code == 200) {
-                    emit(Resource.Success(resp.data ?: ""))
-                    prefs.edit().putString(Constants.AUTH_TOKEN, resp.data).apply()
+                    emit(Resource.Success(resp.data?.token?: ""))
+                    prefs.edit().putString(Constants.AUTH_TOKEN, resp.data?.token).apply()
                 } else {
                     emit(Resource.Error(resp.message, resp.code))
                 }
