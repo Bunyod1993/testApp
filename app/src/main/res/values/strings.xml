@@ -20,6 +20,7 @@
     <string name="iden.step1.text">Сфотографируйте лицевую сторону паспорта с фотографией</string>
     <string name="iden.step2.text">Сфотографируйте страницу с пропиской в паспорте</string>
     <string name="iden.step3.text">Сделайте селфи с лицевой стороной паспорта и загрузите </string>
+    <string name="iden.send.doc">Отправка документов</string>
     <string name="iden.show.example">Показать пример</string>
     <string name="iden.button.send">Отправить заявку</string>
     <string name="access">Разрешить</string>
@@ -30,4 +31,20 @@
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="three">3</string>
+    <string name="reg.back.press.title">Хотите вернуться назад?</string>
+    <string name="order_cour_need_permission">Для использования этого сервиса требуется разрешение</string>
+    <string name="map_need_permission">Ранее вы отклонили разрешение. Чтобы включить перейдите в настройки приложения на вашем устройстве.</string>
+    <string name="ok">Понятно</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="cancel">Отмена</string>
+    <string name="save">Сохранить</string>
+    <string name="delete">Удалить</string>
+    <string name="copy">Скопировать</string>
+    <string name="copied">Скопировано</string>
+    <string name="send">Отправить</string>
+    <string name="rename">Переименовать</string>
+    <string name="settings">Настройки</string>
+    <string name="verify.client">Подтвердить клиента</string>
+
 </resources>

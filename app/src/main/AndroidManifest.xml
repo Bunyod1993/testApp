@@ -9,16 +9,17 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission
             android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-            android:installLocation="auto" />
+            android:installLocation="internalOnly" />
     <uses-permission
             android:name="android.permission.READ_EXTERNAL_STORAGE"
-            android:installLocation="auto" />
+            android:installLocation="internalOnly" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" /> <!-- Features -->
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
     <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
     <uses-feature android:name="android.hardware.fingerprint" android:required="false" />
+
     <uses-sdk tools:overrideLibrary="com.sanojpunchihewa.updatemanager,
                                     androidx.camera.camera2,androidx.camera.view,
                                     androidx.camera.lifecycle,androidx.camera.core" />

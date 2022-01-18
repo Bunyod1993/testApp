@@ -15,38 +15,37 @@
             android:orientation="vertical"
             android:background="#ffff">
 
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--                android:id="@+id/toolbar"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="?attr/actionBarSize"-->
-<!--                android:background="#ffff"-->
-<!--                app:navigationIcon="@drawable/ic_back">-->
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="#ffff"
+                android:layout_marginTop="20dp"
+                app:navigationIcon="@drawable/ic_back"
+                app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/iden.send.doc"
+                    android:layout_marginEnd="15dp"
+                    style="@style/headlineBlackRegular16"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    tools:ignore="HardcodedText" />
 
-<!--            <TextView-->
-<!--                    android:id="@+id/toolbar_title"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/iden.send.doc"-->
-<!--                    android:layout_marginEnd="@dimen/padding_15"-->
-<!--                    style="@style/subtitle16"-->
-<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
-<!--                    tools:ignore="HardcodedText"-->
-<!--                    android:layout_marginRight="@dimen/padding_15" />-->
-
-<!--        </androidx.appcompat.widget.Toolbar>-->
+        </androidx.appcompat.widget.Toolbar>
 
 
         <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="120dp">
+                    android:layout_height="wrap_content">
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/body"
                         android:layout_width="match_parent"

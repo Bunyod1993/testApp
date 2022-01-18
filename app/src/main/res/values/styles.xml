@@ -29,6 +29,13 @@
         <item name="android:textColor">@color/alifGreen</item>
         <item name="lineHeight">28.13sp</item>
     </style>
+    <style name="headlineGreenBold14">
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/alifGreen</item>
+        <item name="lineHeight">28.13sp</item>
+    </style>
     <style name="headlineGreenRegular24">
         <item name="android:textSize">24sp</item>
         <item name="fontFamily">@font/roboto_regular</item>
