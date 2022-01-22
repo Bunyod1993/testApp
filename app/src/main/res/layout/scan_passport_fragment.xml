@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="scanPassportModel"
-                type="com.example.consultantalif.screens.scanPassport.ScanPassportViewModel" />
+                type="com.example.patient.screens.scanPassport.ScanPassportViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main"
