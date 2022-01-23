@@ -9,7 +9,7 @@
     <string name="otp.placeholder">Ввести Код</string>
     <string name="password">Пароль</string>
     <string name="password.placeholder">Ввести пароль</string>
-    <string name="login">ВХОД</string>
+    <string name="login">Войти</string>
     <string name="login.btn.txt">ВОЙТИ</string>
     <string name="send.otp">Отправить код</string>
     <string name="approve.otp">Потвердить код</string>

@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.ConsultantAlif" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/alifGreen</item>
+        <item name="colorPrimary">@color/btnBack</item>
         <item name="colorPrimaryDark">@color/lightGrey</item>
-        <item name="colorAccent">@color/alifGreen</item>
+        <item name="colorAccent">@color/btnBack</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:fontFamily">@font/roboto_regular</item>

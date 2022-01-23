@@ -75,7 +75,7 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/next"
-                    android:enabled="true"
+                    android:background="@drawable/btn_back"
                     app:layout_constraintTop_toBottomOf="@+id/subText"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

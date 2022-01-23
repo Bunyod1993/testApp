@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/btn_back.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/drawable/button_disabled.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/drawable/button_enabled.xml" value="0.35208333333333336" />
+        <entry key="app/src/main/res/drawable/button_pressed.xml" value="0.2861111111111111" />
         <entry key="app/src/main/res/drawable/conslutant_alif.xml" value="0.21851851851851853" />
         <entry key="app/src/main/res/drawable/default_pager_dot.xml" value="0.165" />
         <entry key="app/src/main/res/drawable/dialog_background.xml" value="0.1625" />
