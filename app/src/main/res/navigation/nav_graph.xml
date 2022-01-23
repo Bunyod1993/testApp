@@ -11,9 +11,6 @@
             android:id="@+id/homeFragment"
             android:name="com.example.patient.screens.home.HomeFragment"
             tools:layout="@layout/home_fragment">
-        <action
-                android:id="@+id/action_homeToScanPassport"
-                app:destination="@id/scanPassportFragment"/>
     </fragment>
 
     <fragment
@@ -23,12 +20,6 @@
         <action
                 android:id="@+id/action_loginToHome"
                 app:destination="@id/homeFragment"/>
-    </fragment>
-
-    <fragment
-            android:id="@+id/scanPassportFragment"
-            android:name="com.example.patient.screens.scanPassport.ScanPassportFragment"
-            tools:layout="@layout/scan_passport_fragment">
     </fragment>
 
 </navigation>
