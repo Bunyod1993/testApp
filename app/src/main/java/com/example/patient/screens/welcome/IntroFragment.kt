@@ -1,7 +1,7 @@
 package com.example.patient.screens.welcome
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +10,7 @@ import android.widget.Button
 import androidx.viewpager2.widget.ViewPager2
 import com.example.patient.R
 import com.example.patient.adapters.WelcomePagerAdapter
+import com.example.patient.screens.MainActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -45,7 +46,6 @@ class IntroFragment : Fragment() {
 
         val btn = view.findViewById<Button>(R.id.next)
         btn.setOnClickListener {
-            Log.v("tag", "item  $currentItem")
             currentItem = pagerTabLayout.selectedTabPosition
             when (currentItem) {
                 0 -> {
@@ -55,11 +55,11 @@ class IntroFragment : Fragment() {
                     digitalPager.setCurrentItem(2, true)
                 }
                 2 -> {
-
+                    val homeIntent = Intent(requireContext(), MainActivity::class.java)
+                    requireContext().startActivity(homeIntent)
+                    requireActivity().finish()
                 }
             }
         }
     }
-
-    companion object {}
 }
