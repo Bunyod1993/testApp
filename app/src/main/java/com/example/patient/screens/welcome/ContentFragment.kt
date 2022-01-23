@@ -1,5 +1,6 @@
 package com.example.patient.screens.welcome
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -27,16 +28,17 @@ class ContentFragment : Fragment() {
 
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun changeContent(page: Int) {
         when (page) {
             1 -> {
-                img.setBackgroundColor(resources.getColor(R.color.black_overlay))
+                img.background=resources.getDrawable(R.drawable.two)
             }
             2 -> {
-                img.setBackgroundColor(resources.getColor(R.color.greenPale))
+                img.background=resources.getDrawable(R.drawable.three)
             }
             else -> {
-                img.setBackgroundColor(resources.getColor(R.color.blue))
+                img.background=resources.getDrawable(R.drawable.one)
             }
         }
     }
