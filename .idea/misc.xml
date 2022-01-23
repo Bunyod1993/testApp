@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/btn_back.xml" value="0.35208333333333336" />
+        <entry key="app/src/main/res/drawable/button_disabled.xml" value="0.35208333333333336" />
+        <entry key="app/src/main/res/drawable/button_enabled.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/drawable/conslutant_alif.xml" value="0.21851851851851853" />
+        <entry key="app/src/main/res/drawable/default_pager_dot.xml" value="0.3138888888888889" />
         <entry key="app/src/main/res/drawable/dialog_background.xml" value="0.1625" />
         <entry key="app/src/main/res/drawable/dialog_background_inset.xml" value="0.1625" />
         <entry key="app/src/main/res/drawable/ic_back.xml" value="0.1625" />
@@ -11,11 +15,15 @@
         <entry key="app/src/main/res/drawable/ic_refresh.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/drawable/online_identification_button_background.xml" value="0.2740740740740741" />
         <entry key="app/src/main/res/drawable/progressbar_background.xml" value="0.2740740740740741" />
+        <entry key="app/src/main/res/drawable/selected_pager_dot.xml" value="0.3138888888888889" />
+        <entry key="app/src/main/res/drawable/tab_pager_selector.xml" value="0.3452502553626149" />
         <entry key="app/src/main/res/layout/activity_fullscreen.xml" value="0.1606962663975782" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17028985507246377" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_welcom2.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_welcom2.xml" value="0.18806219337099161" />
         <entry key="app/src/main/res/layout/confirm_alert.xml" value="0.1421875" />
+        <entry key="app/src/main/res/layout/fragment_content.xml" value="0.2296195652173913" />
+        <entry key="app/src/main/res/layout/fragment_intro.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.20471014492753623" />
         <entry key="app/src/main/res/layout/home_fragment.xml" value="0.1765625" />
         <entry key="app/src/main/res/layout/login_fragment.xml" value="0.12534784595876483" />

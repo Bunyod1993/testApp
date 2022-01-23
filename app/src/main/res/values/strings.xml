@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">ConsultantAlif</string>
-    <string name="welcome_txt">Добро пожаловать\nв Алиф Консалтинг</string>
+    <string name="app_name">Patient</string>
+    <string name="welcome_txt">Добро пожаловать</string>
     <string name="email">Логин</string>
     <string name="email.placeholder">example@gmail.com</string>
     <string name="phone">Номер клиента</string>
@@ -46,5 +46,8 @@
     <string name="rename">Переименовать</string>
     <string name="settings">Настройки</string>
     <string name="verify.client">Подтвердить клиента</string>
-
+    <string name="next">Далее</string>
+    <string name="forward">Продолжить</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

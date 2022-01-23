@@ -42,7 +42,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
 //        binding.otpFieldLayout.placeholderText=""
         binding.sendOtp.setOnClickListener {
 //            startTimer()
-            Navigation.findNavController(it).navigate(R.id.action_homeToScanPassport)
+//            Navigation.findNavController(it).navigate(R.id.action_homeToScanPassport)
         }
 
         binding.otpFieldLayout.setEndIconOnClickListener {

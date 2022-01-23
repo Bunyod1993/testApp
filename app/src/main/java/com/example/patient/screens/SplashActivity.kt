@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.example.patient.R
+import com.example.patient.screens.welcome.WelcomeActivity
 import kotlinx.coroutines.delay
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -13,7 +14,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        val homeIntent = Intent(this, MainActivity::class.java)
+        val homeIntent = Intent(this, WelcomeActivity::class.java)
 //        viewModel.authToken.observe(this){
 //            if (!it.isNullOrEmpty()){
 //
