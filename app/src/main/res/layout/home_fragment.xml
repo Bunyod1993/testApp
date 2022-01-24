@@ -11,85 +11,228 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20dp">
+            android:padding="20dp"
+            android:background="#E5E5E5">
 
+        <ImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:background="@drawable/ic_logo"
+                android:layout_marginTop="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/first"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/logoTextWrapper"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                app:layout_constraintLeft_toRightOf="@+id/logo"
+                app:layout_constraintRight_toRightOf="parent"
+               app:layout_constraintTop_toTopOf="@+id/logo"
+                app:layout_constraintBottom_toBottomOf="@+id/logo">
             <TextView
-                    android:id="@+id/toolbar_title"
+                    android:id="@+id/mainText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/verify.client"
-                    style="@style/headlineGreenRegular24"
+                    style="@style/headlineBlackRegular16"
+                    android:text="Центр здоровья"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/wrapper"
-                    android:layout_marginBottom="30dp"
-                    tools:ignore="HardcodedText" />
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/wrapper"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.35">
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/phoneFieldLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/phone"
-                app:endIconMode="clear_text"
-                app:placeholderText="@string/phone.placeholder"
-                app:placeholderTextAppearance="@style/digitRegularPlaceholder18"
-                app:hintTextAppearance="@style/inputLabelRegular16"
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/outlinedTextField">
-
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/phoneField"
-                    style="@style/digitRegular18"
-                    android:layout_width="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                    android:id="@+id/subText"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="phone"
-                    android:text="@={homeModel.phone}"
-                    android:maxLength="20"/>
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginTop="5dp"
+                    android:text="Файзобод"
+                    style="@style/headlineBlackRegular13"
+                    app:layout_constraintTop_toBottomOf="@+id/mainText"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/otpFieldLayout"
+        <androidx.cardview.widget.CardView
+                android:id="@+id/first"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/otp"
-                app:placeholderText="@string/otp.placeholder"
-                app:placeholderTextAppearance="@style/digitRegularPlaceholder18"
-                app:hintTextAppearance="@style/inputLabelRegular16"
-                android:layout_marginTop="15dp"
-                app:endIconMode="custom"
-                app:layout_constraintTop_toBottomOf="@+id/phoneFieldLayout"
-                style="@style/outlinedTextField">
-
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/otpField"
-                    style="@style/digitRegular18"
+                android:layout_height="96dp"
+                android:elevation="4dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="5dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/logo">
+            <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:text="@={homeModel.otp}"
-                    android:maxLength="6"/>
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
+                <ImageView
+                        android:id="@+id/addIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:background="@drawable/ic_add_patient"/>
+                <TextView
+                        android:id="@+id/addText"
+                        android:layout_width="0dp"
+                        android:padding="10dp"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textStart"
+                        style="@style/headlineBlackRegular16"
+                        android:text="Постановка беременной на учет (1-й дородовый визит)"
+                        app:layout_constraintLeft_toRightOf="@+id/addIcon"
+                        app:layout_constraintRight_toLeftOf="@+id/arrowIcon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <ImageView
+                        android:id="@+id/arrowIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:background="@drawable/ic_chevron_right_3"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-        <Button
-                android:id="@+id/sendOtp"
-                style="@style/outlinedBtn"
+        <androidx.cardview.widget.CardView
+                android:id="@+id/second"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="@string/send.otp"
+                android:layout_height="96dp"
+                android:elevation="4dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="5dp"
                 android:layout_marginTop="15dp"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/first" >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
+                <ImageView
+                        android:id="@+id/searchIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:background="@drawable/ic_search"/>
+                <TextView
+                        android:id="@+id/searchText"
+                        android:layout_width="0dp"
+                        android:padding="10dp"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textStart"
+                        style="@style/headlineBlackRegular16"
+                        android:text="Ввод данных повторных пациентов"
+                        app:layout_constraintLeft_toRightOf="@+id/searchIcon"
+                        app:layout_constraintRight_toLeftOf="@+id/arrowSearchIcon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                        android:id="@+id/arrowSearchIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:background="@drawable/ic_chevron_right_3"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/third"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:elevation="4dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="5dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/second" >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
+                <ImageView
+                        android:id="@+id/syncIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:background="@drawable/ic_search"/>
+                <TextView
+                        android:id="@+id/syncText"
+                        android:layout_width="0dp"
+                        android:padding="10dp"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textStart"
+                        style="@style/headlineBlackRegular16"
+                        android:text="Синхронизация"
+                        app:layout_constraintLeft_toRightOf="@+id/syncIcon"
+                        app:layout_constraintRight_toLeftOf="@+id/arrowSyncIcon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                        android:id="@+id/arrowSyncIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:background="@drawable/ic_chevron_right_3"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/fouth"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:elevation="4dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="5dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/third" >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
+                <ImageView
+                        android:id="@+id/helpIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:background="@drawable/ic_search"/>
+                <TextView
+                        android:id="@+id/helpText"
+                        android:layout_width="0dp"
+                        android:padding="10dp"
+                        style="@style/headlineBlackRegular16"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textStart"
+                        android:text="Помощь"
+                        app:layout_constraintLeft_toRightOf="@+id/helpIcon"
+                        app:layout_constraintRight_toLeftOf="@+id/arrowHelpIcon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                        android:id="@+id/arrowHelpIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:background="@drawable/ic_chevron_right_3"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
