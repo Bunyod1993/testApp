@@ -1,6 +1,7 @@
 package com.example.patient.repositories.auth
 
 import android.content.SharedPreferences
+import com.example.patient.database.TestDao
 import com.example.patient.repositories.Resource
 import com.example.patient.utils.Constants
 import com.example.patient.utils.base.BaseRemoteRepository
@@ -15,7 +16,8 @@ import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val api: AuthApi,
-    private val prefs: SharedPreferences
+    private val prefs: SharedPreferences,
+    private val testDao: TestDao
 ) : AuthRepository,
     BaseRemoteRepository() {
     override suspend fun login(

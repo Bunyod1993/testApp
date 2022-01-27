@@ -18,12 +18,13 @@ abstract class PatientDatabase : RoomDatabase() {
 @Dao
 interface TestDao{
     @Query("SELECT * FROM test")
-    suspend fun getTest(): Flow<Test>
+    fun getTest(): Flow<Test>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTest(vararg test: Test)
 }
 @Entity(tableName = "test")
-data class Test(
+data class Test (
     @PrimaryKey(autoGenerate = true)
     val id:Int,
-    val test:String)
+    val test:String
+    )
