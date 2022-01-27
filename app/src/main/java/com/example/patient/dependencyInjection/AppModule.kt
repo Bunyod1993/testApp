@@ -11,6 +11,7 @@ import com.example.patient.networking.interceptors.LiveNetworkMonitor
 import com.example.patient.networking.UrlProvider
 import com.example.patient.repositories.auth.AuthApi
 import com.example.patient.utils.Constants.AUTH_TOKEN
+import com.example.patient.utils.Constants.PREF_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -105,7 +106,7 @@ object AppModule {
     @Provides
     fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences =
         context.getSharedPreferences(
-            AUTH_TOKEN, Context.MODE_PRIVATE
+            PREF_NAME, Context.MODE_PRIVATE
         )
 
 }
