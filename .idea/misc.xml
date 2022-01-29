@@ -34,6 +34,7 @@
         <entry key="app/src/main/res/layout/login_fragment.xml" value="0.12534784595876483" />
         <entry key="app/src/main/res/layout/scan_fragment.xml" value="0.1265625" />
         <entry key="app/src/main/res/layout/scan_passport_fragment.xml" value="0.1644021739130435" />
+        <entry key="app/src/main/res/menu/bottom_nav.xml" value="0.13385416666666666" />
       </map>
     </option>
   </component>
