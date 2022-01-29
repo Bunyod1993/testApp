@@ -62,7 +62,8 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
             viewModel.validateLoginFields(InputType.PASSWORD)
         }
         viewModel.isLogin.observe(viewLifecycleOwner) {
-            binding.login.isEnabled = it
+//            binding.login.isEnabled = it
+            binding.login.isEnabled=true
         }
 
     }
@@ -71,7 +72,9 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
         super.setUpViews()
         binding.loginModel = viewModel
         binding.login.setOnClickListener {
-            viewModel.login()
+            Navigation.findNavController(requireView()).navigate(R.id.action_loginToHome)
+
+//            viewModel.login()
         }
 //        binding.emailField.setOnFocusChangeListener { _, hasFocus ->
 //            if (!hasFocus)
