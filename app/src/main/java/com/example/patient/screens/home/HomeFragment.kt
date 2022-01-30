@@ -28,6 +28,9 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
         binding.third.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homeToLocalPatientsFragment)
         }
+        binding.fouth.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeToLocalInfoFragment)
+        }
     }
 
 }

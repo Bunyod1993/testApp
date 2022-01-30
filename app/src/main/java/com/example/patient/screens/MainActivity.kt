@@ -43,7 +43,8 @@ class MainActivity : AppCompatActivity() {
         }
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when(destination.id){
-                R.id.homeFragment,R.id.loginFragment,R.id.localPatientsFragment -> {
+                R.id.homeFragment,R.id.loginFragment,R.id.localPatientsFragment,
+                R.id.infoFragment -> {
                     binding.bottomNavigation.invisible()
                 }
                 else->{
