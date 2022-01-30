@@ -54,4 +54,6 @@
     <string name="bottom.help">Помощь</string>
     <string name="bottom.register">Регистрация</string>
     <string name="bottom.info">Контакты</string>
+    <string name="sync.title">Синхронизация</string>
+    <string name="sync.info">Для синхронизации доступно:</string>
 </resources>

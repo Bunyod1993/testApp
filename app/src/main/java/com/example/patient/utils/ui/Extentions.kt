@@ -18,7 +18,8 @@ fun View.applyKeyboardInset() {
         val status = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
 
         view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-            updateMargins(top=status)
+//            updateMargins(top=status)
+            updatePadding(top=status)
         }
 
         if (view is ViewGroup) {

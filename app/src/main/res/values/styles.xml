@@ -82,6 +82,15 @@
         <item name="lineHeight">17.73sp</item>
     </style>
 
+    <style name="blackRegular24">
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="fontWeight">600</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="lineHeight">30sp</item>
+    </style>
+
     <style name="greyRegular13">
         <item name="android:textSize">13sp</item>
         <item name="fontFamily">@font/roboto_regular</item>
@@ -100,6 +109,15 @@
         <item name="lineHeight">21.83sp</item>
     </style>
 
+    <style name="blueRegular24">
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="fontWeight">700</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="lineHeight">30sp</item>
+    </style>
+
 
     <style name="inputLabelRegular16">
         <item name="android:textSize">16sp</item>
@@ -108,6 +126,7 @@
         <item name="android:textColor">@color/lightGrey</item>
         <item name="lineHeight">18.23sp</item>
     </style>
+
     <style name="headlineBlackBold16">
         <item name="android:textSize">16sp</item>
         <item name="fontFamily">@font/roboto_bold</item>
@@ -115,6 +134,7 @@
         <item name="android:textColor">@color/black</item>
         <item name="lineHeight">18.23sp</item>
     </style>
+
     <style name="headlineBlackRegular24">
         <item name="android:textSize">24sp</item>
         <item name="fontFamily">@font/roboto_regular</item>
