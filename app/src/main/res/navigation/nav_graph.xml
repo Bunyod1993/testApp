@@ -33,7 +33,7 @@
 
     <fragment
             android:id="@+id/infoFragment"
-            android:name="com.example.patient.screens.info.infoFragment"
+            android:name="com.example.patient.screens.info.InfoFragment"
             tools:layout="@layout/info_fragment">
     </fragment>
     <fragment

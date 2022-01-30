@@ -13,14 +13,12 @@ fun View.invisible(){
 }
 fun View.applyKeyboardInset() {
     ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
-        val posBottom = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
-        val pos = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
-//        val status = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
+//        val posBottom = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
+//        val pos = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
+        val status = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
 
         view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-            if (posBottom>0)
-                updateMargins(bottom = posBottom)
-            else updateMargins(bottom = posBottom+pos)
+            updateMargins(top=status)
         }
 
         if (view is ViewGroup) {
