@@ -11,6 +11,9 @@
             android:id="@+id/homeFragment"
             android:name="com.example.patient.screens.home.HomeFragment"
             tools:layout="@layout/home_fragment">
+        <action
+                android:id="@+id/action_homeToRegister"
+                app:destination="@id/registerFragment"/>
     </fragment>
 
     <fragment

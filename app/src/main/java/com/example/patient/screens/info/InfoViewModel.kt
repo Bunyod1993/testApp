@@ -1,7 +1,7 @@
 package com.example.patient.screens.info
 
-import androidx.lifecycle.ViewModel
+import com.example.patient.utils.base.BaseViewModel
 
-class InfoViewModel : ViewModel() {
+class InfoViewModel : BaseViewModel() {
     // TODO: Implement the ViewModel
 }

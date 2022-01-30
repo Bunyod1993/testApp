@@ -2,6 +2,8 @@ package com.example.patient.screens.home
 
 
 import android.os.CountDownTimer
+import androidx.navigation.Navigation
+import com.example.patient.R
 import com.example.patient.databinding.HomeFragmentBinding
 import com.example.patient.utils.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +22,9 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
 
     override fun setUpViews() {
         super.setUpViews()
-
+        binding.first.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeToRegister)
+        }
     }
 
 }
