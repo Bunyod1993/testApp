@@ -1,13 +1,19 @@
 package com.example.patient.screens.login
 
 
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.patient.R
 import com.example.patient.databinding.LoginFragmentBinding
 import com.example.patient.utils.base.BaseFragment
 import com.example.patient.utils.enums.InputErrorType
 import com.example.patient.utils.enums.InputType
+import com.example.patient.utils.ui.textChanges
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
@@ -54,16 +60,31 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
             }
         }
 
+        binding.emailField.textChanges().debounce(500).onEach {
+            it?.let {
+                viewModel.validateLoginFields(InputType.EMAIL)
+            }
+        }.launchIn(lifecycleScope)
+
+        binding.passwordField.textChanges().debounce(500).onEach {
+            it?.let {
+                viewModel.validateLoginFields(InputType.PASSWORD)
+            }
+        }.launchIn(lifecycleScope)
+
         viewModel.email.observe(viewLifecycleOwner) {
-          viewModel.validateLoginFields(InputType.EMAIL)
+            binding.emailAddress.isErrorEnabled = false
+            binding.emailAddress.error = ""
         }
 
         viewModel.password.observe(viewLifecycleOwner) {
-            viewModel.validateLoginFields(InputType.PASSWORD)
+            binding.password.isErrorEnabled = false
+            binding.password.error = ""
         }
+
         viewModel.isLogin.observe(viewLifecycleOwner) {
 //            binding.login.isEnabled = it
-            binding.login.isEnabled=true
+            binding.login.isEnabled = true
         }
 
     }

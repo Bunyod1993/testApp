@@ -100,7 +100,6 @@
                     android:layout_height="60dp"
                     android:text="@string/login.btn.txt"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/btn_back"
                     android:enabled="true"
                     app:layout_constraintTop_toBottomOf="@+id/forgotPassword" />
 
