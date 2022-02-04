@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/btn_back.xml" value="0.35208333333333336" />
+        <entry key="app/src/main/res/drawable/button.xml" value="0.1595" />
         <entry key="app/src/main/res/drawable/button_disabled.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/drawable/button_enabled.xml" value="0.35208333333333336" />
+        <entry key="app/src/main/res/drawable/button_focused.xml" value="0.1595" />
         <entry key="app/src/main/res/drawable/button_pressed.xml" value="0.2861111111111111" />
         <entry key="app/src/main/res/drawable/conslutant_alif.xml" value="0.21851851851851853" />
         <entry key="app/src/main/res/drawable/default_pager_dot.xml" value="0.165" />
@@ -32,7 +34,7 @@
         <entry key="app/src/main/res/layout/activity_welcome.xml" value="0.14130434782608695" />
         <entry key="app/src/main/res/layout/confirm_alert.xml" value="0.1421875" />
         <entry key="app/src/main/res/layout/fragment_content.xml" value="0.2296195652173913" />
-        <entry key="app/src/main/res/layout/fragment_intro.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_intro.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.20471014492753623" />
         <entry key="app/src/main/res/layout/home_fragment.xml" value="0.1765625" />
         <entry key="app/src/main/res/layout/info_fragment.xml" value="0.23614092567998327" />

@@ -56,4 +56,5 @@
     <string name="bottom.info">Контакты</string>
     <string name="sync.title">Синхронизация</string>
     <string name="sync.info">Для синхронизации доступно:</string>
+    <string name="skip">Пропустить</string>
 </resources>
