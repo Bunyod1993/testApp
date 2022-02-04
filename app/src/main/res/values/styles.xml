@@ -277,6 +277,7 @@
 
     <style name="stateEnabledButton" parent="Widget.MaterialComponents.Button">
         <item name="android:background">@drawable/button</item>
+        <item name="backgroundTint">@null</item>
         <item name="android:fontFamily">@font/roboto_bold</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">18sp</item>
