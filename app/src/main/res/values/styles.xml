@@ -123,16 +123,35 @@
         <item name="lineHeight">30sp</item>
     </style>
 
+
     <style name="greyRegular13">
         <item name="android:textSize">13sp</item>
         <item name="fontFamily">@font/roboto_regular</item>
         <item name="android:textStyle">normal</item>
         <item name="fontWeight">600</item>
         <item name="android:textColor">@color/lightGrey</item>
-        <item name="lineHeight">17.73sp</item>
+        <item name="lineHeight">21sp</item>
+    </style>
+
+    <style name="greyRegular16">
+        <item name="android:textSize">13sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="fontWeight">600</item>
+        <item name="android:textColor">@color/lightGrey</item>
+        <item name="lineHeight">21sp</item>
     </style>
 
     <style name="blueRegular16">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="fontWeight">600</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="lineHeight">21.83sp</item>
+    </style>
+
+    <style name="blueRegular13">
         <item name="android:textSize">16sp</item>
         <item name="fontFamily">@font/roboto_regular</item>
         <item name="android:textStyle">normal</item>
@@ -207,6 +226,7 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/black</item>
         <item name="lineHeight">18sp</item>
+        <item name="backgroundTint">@null</item>
     </style>
     <style name="digitRegularPlaceholder18">
         <item name="android:textSize">18sp</item>
@@ -235,6 +255,7 @@
         <item name="errorTextColor">@color/redWarning</item>
         <item name="endIconTint">@color/input_border</item>
         <item name="boxStrokeColor">@color/input_border</item>
+        <item name="backgroundTint">@null</item>
         <item name="lineHeight">15.13sp</item>
     </style>
     <!-- Online identification -->

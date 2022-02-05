@@ -41,6 +41,8 @@
         <entry key="app/src/main/res/layout/info_fragment.xml" value="0.23614092567998327" />
         <entry key="app/src/main/res/layout/local_patients_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/login_fragment.xml" value="0.12534784595876483" />
+        <entry key="app/src/main/res/layout/patient_empty.xml" value="0.2164855072463768" />
+        <entry key="app/src/main/res/layout/patient_list_item.xml" value="0.251582247969033" />
         <entry key="app/src/main/res/layout/register_fragment.xml" value="0.14270833333333333" />
         <entry key="app/src/main/res/layout/scan_fragment.xml" value="0.1265625" />
         <entry key="app/src/main/res/layout/scan_passport_fragment.xml" value="0.1644021739130435" />

@@ -10,11 +10,14 @@ import com.example.patient.utils.enums.InputErrorType
 import com.example.patient.utils.enums.InputType
 import com.example.patient.utils.ui.textChanges
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@ExperimentalCoroutinesApi
+@FlowPreview
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
 

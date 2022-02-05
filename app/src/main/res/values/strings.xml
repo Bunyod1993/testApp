@@ -57,4 +57,5 @@
     <string name="sync.title">Синхронизация</string>
     <string name="sync.info">Для синхронизации доступно:</string>
     <string name="skip">Пропустить</string>
+    <string name="filter">Фильтр</string>
 </resources>
