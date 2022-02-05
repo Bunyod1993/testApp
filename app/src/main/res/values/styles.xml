@@ -138,7 +138,7 @@
         <item name="fontFamily">@font/roboto_regular</item>
         <item name="android:textStyle">normal</item>
         <item name="fontWeight">600</item>
-        <item name="android:textColor">@color/lightGrey</item>
+        <item name="android:textColor">@color/darkGrey</item>
         <item name="lineHeight">21sp</item>
     </style>
 

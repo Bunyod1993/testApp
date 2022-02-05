@@ -58,4 +58,5 @@
     <string name="sync.info">Для синхронизации доступно:</string>
     <string name="skip">Пропустить</string>
     <string name="filter">Фильтр</string>
+    <string name="accept">Применить</string>
 </resources>
