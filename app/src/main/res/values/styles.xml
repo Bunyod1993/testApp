@@ -175,7 +175,7 @@
         <item name="fontFamily">@font/roboto_regular</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/lightGrey</item>
-        <item name="lineHeight">18.23sp</item>
+        <item name="lineHeight">15.23sp</item>
     </style>
 
     <style name="headlineBlackBold16">

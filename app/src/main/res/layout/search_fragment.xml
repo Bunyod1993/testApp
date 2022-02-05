@@ -48,17 +48,16 @@
                     android:id="@+id/searchInputLayout"
                     style="@style/outlinedTextField"
                     app:hintEnabled="false"
-
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/searchFiled"
                         style="@style/digitRegular18"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/app_name"
-                        android:inputType="textEmailAddress"
+                        android:background="@drawable/input"
+                        android:paddingBottom="12dp"
                         android:maxLength="30"
                         android:text="" />
             </com.google.android.material.textfield.TextInputLayout>

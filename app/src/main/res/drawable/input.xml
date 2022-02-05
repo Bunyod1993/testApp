@@ -2,8 +2,13 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_enabled="false"
             android:drawable="@drawable/input_disabled"/>
+
     <item android:state_focused="true"
-            android:drawable="@drawable/input_focused" /> <!-- focused -->
+            android:drawable="@drawable/input_focused" />
+    <item android:state_focused="false"
+            android:drawable="@drawable/input_default" />
     <item android:state_enabled="true"
-            android:drawable="@drawable/input_enabled"/> <!-- idle state -->
+          android:drawable="@drawable/input_enabled"/>
+    <item android:state_first="true"
+            android:drawable="@drawable/input_default"/>
 </selector>
