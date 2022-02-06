@@ -31,6 +31,10 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
         binding.fouth.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homeToLocalInfoFragment)
         }
+        binding.second.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeToSearchFragment)
+
+        }
     }
 
 }

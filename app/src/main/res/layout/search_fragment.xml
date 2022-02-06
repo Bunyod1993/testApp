@@ -143,46 +143,76 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+                    <TextView
+                            android:id="@+id/labelFio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/fio"
+                            style="@style/label13"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintBottom_toTopOf="@+id/fio"
+                            app:layout_constraintTop_toTopOf="parent"/>
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/fio"
                             style="@style/outlinedTextField"
                             app:hintEnabled="false"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            app:layout_constraintTop_toTopOf="parent">
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintTop_toBottomOf="@+id/labelFio">
                         <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/fioFiled"
                                 style="@style/digitRegular18"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/app_name"
+                                android:hint="@string/fio"
                                 android:background="@drawable/input"
                                 android:paddingBottom="15dp"
                                 android:maxLength="30"
                                 android:text="" />
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <TextView
+                            android:id="@+id/labelIdent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/ident.number"
+                            style="@style/label13"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/fio" />
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/ident"
                             style="@style/outlinedTextField"
                             app:hintEnabled="false"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:layout_constraintTop_toBottomOf="@+id/fio"
+                            app:layout_constraintTop_toBottomOf="@+id/labelIdent"
                             android:layout_marginTop="10dp">
                         <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/identFiled"
                                 style="@style/digitRegular18"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/app_name"
+                                android:hint="@string/ident.number"
                                 android:background="@drawable/input"
                                 android:paddingBottom="15dp"
                                 android:maxLength="30"
                                 android:text="" />
                     </com.google.android.material.textfield.TextInputLayout>
-
+                    <TextView
+                            android:id="@+id/labelPassport"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/passport.details"
+                            style="@style/label13"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ident" />
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/passport"
                             style="@style/outlinedTextField"
@@ -190,43 +220,61 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            app:layout_constraintTop_toBottomOf="@+id/ident"
+                            app:layout_constraintTop_toBottomOf="@+id/labelPassport"
                             >
                         <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/passportFiled"
                                 style="@style/digitRegular18"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/app_name"
+                                android:hint="@string/passport.details"
                                 android:background="@drawable/input"
                                 android:paddingBottom="15dp"
                                 android:maxLength="30"
                                 android:text="" />
                     </com.google.android.material.textfield.TextInputLayout>
-
+                    <TextView
+                            android:id="@+id/labelDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/birthday"
+                            style="@style/label13"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/passport" />
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/date"
                             style="@style/outlinedTextField"
                             app:hintEnabled="false"
                             app:endIconMode="custom"
-                            app:endIconDrawable="@android:drawable/ic_menu_my_calendar"
+                            app:endIconDrawable="@drawable/ic_calendar"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            app:layout_constraintTop_toBottomOf="@+id/passport"
+                            app:layout_constraintTop_toBottomOf="@+id/labelDate"
                             >
                         <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/dateFiled"
                                 style="@style/digitRegular18"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/app_name"
+                                android:hint="@string/birthday"
                                 android:background="@drawable/input"
                                 android:paddingBottom="15dp"
                                 android:maxLength="30"
                                 android:text="" />
                     </com.google.android.material.textfield.TextInputLayout>
-
+                    <TextView
+                            android:id="@+id/labelPhone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/phone"
+                            style="@style/label13"
+                            android:visibility="gone"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/date" />
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/phone"
                             style="@style/outlinedTextField"
@@ -234,14 +282,14 @@
                             android:layout_width="match_parent"
                             android:layout_marginTop="10dp"
                             android:layout_height="wrap_content"
-                            app:layout_constraintTop_toBottomOf="@+id/date"
+                            app:layout_constraintTop_toBottomOf="@+id/labelPhone"
                             >
                         <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/phoneFiled"
                                 style="@style/digitRegular18"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/app_name"
+                                android:hint="@string/phone"
                                 android:background="@drawable/input"
                                 android:paddingBottom="15dp"
                                 android:maxLength="30"

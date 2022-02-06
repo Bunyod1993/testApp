@@ -50,7 +50,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     android:layout_marginTop="5dp"
                     android:text="Файзобод"
-                    style="@style/headlineBlackRegular13"
+                    style="@style/label13"
                     app:layout_constraintTop_toBottomOf="@+id/mainText"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

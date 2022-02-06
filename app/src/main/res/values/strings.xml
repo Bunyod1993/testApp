@@ -59,4 +59,8 @@
     <string name="skip">Пропустить</string>
     <string name="filter">Фильтр</string>
     <string name="accept">Применить</string>
+    <string name="fio">ФИО</string>
+    <string name="ident.number">Идентификационный номер</string>
+    <string name="passport.details">Паспортные данные</string>
+    <string name="birthday">Дата рождения</string>
 </resources>

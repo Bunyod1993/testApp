@@ -20,6 +20,9 @@
         <action
                 android:id="@+id/action_homeToLocalInfoFragment"
                 app:destination="@id/infoFragment"/>
+        <action
+                android:id="@+id/action_homeToSearchFragment"
+                app:destination="@id/searchFragment"/>
     </fragment>
 
     <fragment

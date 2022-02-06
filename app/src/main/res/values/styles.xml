@@ -195,12 +195,14 @@
     </style>
 
 
-    <style name="headlineBlackRegular13">
+    <style name="label13">
         <item name="android:textSize">13sp</item>
         <item name="fontFamily">@font/roboto_regular</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="lineHeight">15.23sp</item>
+        <item name="fontWeight">600</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+        <item name="android:textColor">@color/label</item>
+        <item name="lineHeight">17.23sp</item>
     </style>
 
     <style name="blackRegular16">
@@ -227,6 +229,7 @@
         <item name="android:textColor">@color/black</item>
         <item name="lineHeight">18sp</item>
         <item name="backgroundTint">@null</item>
+        <item name="android:background">@drawable/input</item>
     </style>
 
     <style name="digitRegularPlaceholder18">

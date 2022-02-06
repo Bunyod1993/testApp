@@ -12,6 +12,7 @@
     <color name="black_overlay">#66000000</color>
     <color name="transparent">#00000000</color>
     <color name="black">#222222</color>
+    <color name="label">#777777</color>
     <color name="white">#FFFFFF</color>
     <color name="darkGrey">#73787D</color>
     <color name="lightGrey">#9BA1A7</color>
