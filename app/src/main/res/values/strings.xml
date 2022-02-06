@@ -62,5 +62,12 @@
     <string name="fio">ФИО</string>
     <string name="ident.number">Идентификационный номер</string>
     <string name="passport.details">Паспортные данные</string>
+    <string name="news.info">Инициирующее учреждение (ПМСП где беременная состоит на учете)</string>
+    <string name="date.of.pastonavka">Дата постановки на учет по беременности</string>
+    <string name="filial.type">Тип учреждения</string>
     <string name="birthday">Дата рождения</string>
+    <string name="register_title">Постановка беременной на учет (1-й дородовый визит)</string>
+    <string name="region">Район</string>
+    <string name="street">Джамоат</string>
+    <string name="filial">Учреждение</string>
 </resources>

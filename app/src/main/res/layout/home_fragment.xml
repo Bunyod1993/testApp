@@ -82,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:textAlignment="textStart"
                         style="@style/headlineBlackRegular16"
-                        android:text="Постановка беременной на учет (1-й дородовый визит)"
+                        android:text="@string/register_title"
                         app:layout_constraintLeft_toRightOf="@+id/addIcon"
                         app:layout_constraintRight_toLeftOf="@+id/arrowIcon"
                         app:layout_constraintBottom_toBottomOf="parent"
