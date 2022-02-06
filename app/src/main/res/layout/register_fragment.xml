@@ -17,13 +17,47 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:title="@string/register_title"
                     app:navigationIcon="@drawable/ic_back_texted" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/indicatorWrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+            <ImageView
+                    android:id="@+id/indicatorFirst"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_rectangle_active"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            <ImageView
+                    android:id="@+id/indicatorSecond"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/ic_rectangle_disable"
+                    app:layout_constraintLeft_toRightOf="@+id/indicatorFirst"
+                    app:layout_constraintRight_toLeftOf="@+id/indicatorThird"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            <ImageView
+                    android:id="@+id/indicatorThird"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_rectangle_disable"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/headerWrapper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintVertical_bias="0.1"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbar">
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@+id/indicatorWrapper">
                 <ImageView
                         android:id="@+id/news"
                         android:layout_width="wrap_content"
@@ -164,18 +198,18 @@
                             android:maxLength="30"
                             android:text="" />
                 </com.google.android.material.textfield.TextInputLayout>
-                <Button
-                        android:id="@+id/next"
-                        style="@style/stateEnabledButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:text="@string/next"
-                        android:layout_marginTop="15dp"
-                        android:enabled="true"
-                       app:layout_constraintTop_toBottomOf="@+id/phone"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+        <Button
+                android:id="@+id/next"
+                style="@style/stateEnabledButton"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="@string/next"
+                android:layout_marginBottom="15dp"
+                android:enabled="true"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

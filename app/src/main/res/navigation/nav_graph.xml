@@ -49,6 +49,24 @@
             android:id="@+id/registerFragment"
             android:name="com.example.patient.screens.register.RegisterFragment"
             tools:layout="@layout/register_fragment">
+        <action
+                android:id="@+id/action_toRegisterSecondFragment"
+                app:destination="@id/registerSecondFragment"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/registerSecondFragment"
+            android:name="com.example.patient.screens.register.RegisterSecondFragment"
+            tools:layout="@layout/register_second_fragment">
+        <action
+                android:id="@+id/action_toRegisterThirdFragment"
+                app:destination="@id/registerThirdFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/registerThirdFragment"
+            android:name="com.example.patient.screens.register.RegisterThirdFragment"
+            tools:layout="@layout/register_third_fragment">
+
     </fragment>
 
     <fragment

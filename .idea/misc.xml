@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.21851851851851853" />
         <entry key="app/src/main/res/drawable/ic_line.xml" value="0.116" />
         <entry key="app/src/main/res/drawable/ic_navigate_up.xml" value="0.16302083333333334" />
+        <entry key="app/src/main/res/drawable/ic_rectangle_active.xml" value="0.217" />
         <entry key="app/src/main/res/drawable/ic_refresh.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/drawable/ic_refresh_cw_2.xml" value="0.18645833333333334" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.2140625" />
@@ -52,7 +53,8 @@
         <entry key="app/src/main/res/layout/login_fragment.xml" value="0.241259765625" />
         <entry key="app/src/main/res/layout/patient_empty.xml" value="0.2164855072463768" />
         <entry key="app/src/main/res/layout/patient_list_item.xml" value="0.251582247969033" />
-        <entry key="app/src/main/res/layout/register_fragment.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/register_fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/register_second_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/scan_fragment.xml" value="0.1265625" />
         <entry key="app/src/main/res/layout/scan_passport_fragment.xml" value="0.1644021739130435" />
         <entry key="app/src/main/res/layout/search_fragment.xml" value="0.274169921875" />
