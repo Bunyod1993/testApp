@@ -38,12 +38,12 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
                 when (it.second) {
                     InputErrorType.EMPTY -> {}
                     InputErrorType.MISMATCH -> {
-                        binding.emailAddress.isErrorEnabled = true
-                        binding.emailAddress.error = getString(R.string.error_fill_correctly)
+                        binding.emailAddress.setBackgroundResource(R.drawable.input_disabled)
+//                        binding.emailAddress.error = getString(R.string.error_fill_correctly)
                     }
                     InputErrorType.VALID -> {
-                        binding.emailAddress.isErrorEnabled = false
-                        binding.emailAddress.error = ""
+                        binding.emailAddress.setBackgroundResource(R.drawable.input)
+
                     }
                     else -> {}
                 }
@@ -52,12 +52,10 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
                     InputErrorType.EMPTY -> {}
                     InputErrorType.MISMATCH -> {}
                     InputErrorType.INVALID -> {
-                        binding.password.isErrorEnabled = true
-                        binding.password.error = getString(R.string.error_fill_correctly)
+                        binding.password.setBackgroundResource(R.drawable.input_disabled)
                     }
                     InputErrorType.VALID -> {
-                        binding.password.isErrorEnabled = false
-                        binding.password.error = ""
+                        binding.password.setBackgroundResource(R.drawable.input)
                     }
                 }
             }
@@ -76,13 +74,11 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
         }.launchIn(lifecycleScope)
 
         viewModel.email.observe(viewLifecycleOwner) {
-            binding.emailAddress.isErrorEnabled = false
-            binding.emailAddress.error = ""
+            binding.emailAddress.setBackgroundResource(R.drawable.input)
         }
 
         viewModel.password.observe(viewLifecycleOwner) {
-            binding.password.isErrorEnabled = false
-            binding.password.error = ""
+            binding.password.setBackgroundResource(R.drawable.input)
         }
 
         viewModel.isLogin.observe(viewLifecycleOwner) {

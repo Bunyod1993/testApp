@@ -228,6 +228,7 @@
         <item name="lineHeight">18sp</item>
         <item name="backgroundTint">@null</item>
     </style>
+
     <style name="digitRegularPlaceholder18">
         <item name="android:textSize">18sp</item>
         <item name="fontFamily">@font/roboto_regular</item>
@@ -236,6 +237,7 @@
         <item name="android:textColor">@color/lightGrey</item>
         <item name="lineHeight">18sp</item>
     </style>
+
     <style name="outlinedBtn" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:textSize">16sp</item>
         <item name="fontFamily">@font/roboto_regular</item>
@@ -244,7 +246,32 @@
         <item name="lineHeight">18.13sp</item>
     </style>
 
+    <style name="digitRegularLogin18">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="fontWeight">400</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="lineHeight">18sp</item>
+        <item name="backgroundTint">@color/input_border</item>
+        <item name="boxStrokeColor">@color/transparent</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
 
+
+    <style name="outlinedTextLoginField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="hintTextColor">@color/darkGrey</item>
+        <item name="errorTextColor">@color/redWarning</item>
+        <item name="endIconTint">@color/input_border</item>
+        <item name="boxStrokeColor">@color/input_border</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:background">@drawable/input</item>
+        <item name="lineHeight">15.13sp</item>
+    </style>
 
     <style name="outlinedTextField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:textSize">18sp</item>
