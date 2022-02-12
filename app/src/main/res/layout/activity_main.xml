@@ -26,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:menu="@menu/bottom_nav"
+                android:background="@color/bg_color"
                 app:layout_constraintBottom_toBottomOf="parent" />
         <FrameLayout
                 android:id="@+id/progressBarHolder"
