@@ -78,78 +78,28 @@
                     android:text="@string/news.info"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/next"
+                app:layout_constraintTop_toBottomOf="@+id/headerWrapper">
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/contentWrapper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/headerWrapper"
-                app:layout_constraintVertical_bias="0.1">
-            <TextView
-                    android:id="@+id/labelRegion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/region"
-                    style="@style/blueRegular13"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-            <TextView
-                    android:id="@+id/region"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:layout_marginTop="5dp"
-                    android:text="Fayzobod"
-                    style="@style/blackRegular16"
-                    app:layout_constraintTop_toBottomOf="@+id/labelRegion"/>
-            <TextView
-                    android:id="@+id/labelStreet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/street"
-                    style="@style/blueRegular13"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/region"/>
-            <TextView
-                    android:id="@+id/street"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:layout_marginTop="5dp"
-                    android:text="ч/д, Мехробод (Гумбулок)"
-                    style="@style/blackRegular16"
-                    app:layout_constraintTop_toBottomOf="@+id/labelStreet"/>
+                app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                    android:id="@+id/labelFilial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/filial"
-                    style="@style/blueRegular13"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/street"/>
-            <TextView
-                    android:id="@+id/filial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:layout_marginTop="5dp"
-                    android:text="СЦЗ Мехробод"
-                    style="@style/blackRegular16"
-                    app:layout_constraintTop_toBottomOf="@+id/labelFilial"/>
-
-            <TextView
-                    android:id="@+id/labelDate"
+                    android:id="@+id/labelFirstDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="@string/date.of.pastonavka"
+                    android:text="@string/date_first_sickness"
                     style="@style/label13"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/filial" />
+                    app:layout_constraintTop_toTopOf="parent" />
             <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/date"
+                    android:id="@+id/firstDate"
                     style="@style/outlinedTextField"
                     app:hintEnabled="false"
                     app:endIconMode="custom"
@@ -157,10 +107,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@+id/labelDate"
+                    app:layout_constraintTop_toBottomOf="@+id/labelFirstDate"
                     >
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/dateFiled"
+                        android:id="@+id/firstDateFiled"
                         style="@style/digitRegular18"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -171,22 +121,54 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                    android:id="@+id/labelPhone"
+                    android:id="@+id/labelSecondDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="@string/filial.type"
+                    android:text="@string/date_second_sickness"
                     style="@style/label13"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/date" />
+                    app:layout_constraintTop_toBottomOf="@+id/firstDate" />
+
             <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/phone"
+                    android:id="@+id/secondDate"
+                    style="@style/outlinedTextField"
+                    app:hintEnabled="false"
+                    app:endIconMode="custom"
+                    app:endIconDrawable="@drawable/ic_calendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@+id/labelSecondDate"
+                    >
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/secondDateFiled"
+                        style="@style/digitRegular18"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/input"
+                        android:paddingBottom="15dp"
+                        android:maxLength="30"
+                        android:text="" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                    android:id="@+id/labelNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/number_of_child"
+                    style="@style/label13"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/secondDate" />
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/number"
                     style="@style/outlinedTextField"
                     app:hintEnabled="false"
                     android:layout_width="match_parent"
                     android:layout_marginTop="10dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/labelPhone"
+                    app:layout_constraintTop_toBottomOf="@+id/labelNumber"
                     >
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/phoneFiled"
@@ -199,14 +181,22 @@
                         android:text="" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintTop_toBottomOf="@+id/number"
+                    android:text="@string/existence"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
         <Button
                 android:id="@+id/next"
                 style="@style/stateEnabledButton"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:text="@string/next"
+                android:text="@string/register"
                 android:layout_marginBottom="15dp"
                 android:enabled="true"
                 app:layout_constraintBottom_toBottomOf="parent"/>

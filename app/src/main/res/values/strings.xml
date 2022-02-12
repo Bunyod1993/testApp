@@ -65,9 +65,20 @@
     <string name="news.info">Инициирующее учреждение (ПМСП где беременная состоит на учете)</string>
     <string name="date.of.pastonavka">Дата постановки на учет по беременности</string>
     <string name="filial.type">Тип учреждения</string>
+    <string name="fio.pregnant">ФИО беременной/роженицы</string>
     <string name="birthday">Дата рождения</string>
     <string name="register_title">Постановка беременной на учет (1-й дородовый визит)</string>
     <string name="region">Район</string>
     <string name="street">Джамоат</string>
     <string name="filial">Учреждение</string>
+    <string name="age">Возраст</string>
+    <string name="serial">Серия паспорта</string>
+    <string name="address">Адрес по фактическому месту жительства</string>
+    <string name="phone_number">Телефонный номер</string>
+    <string name="phone_number_relative">Телефонный номер родственника на случай экстренного оповощения</string>
+    <string name="date_first_sickness">1-й день последней менструации</string>
+    <string name="date_second_sickness">Предполагаемая дата родов</string>
+    <string name="number_of_child">Паритет (какие роды по счету)</string>
+    <string name="existence">Предшествующее оперативное родоразрешение</string>
+    <string name="register">Зарегистрировать</string>
 </resources>
