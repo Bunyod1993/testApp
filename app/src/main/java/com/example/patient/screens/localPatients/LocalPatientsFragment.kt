@@ -7,5 +7,9 @@ class LocalPatientsFragment : BaseFragment<LocalPatientsFragmentBinding, LocalPa
 
     override fun getViewBinding() = LocalPatientsFragmentBinding.inflate(layoutInflater)
     override fun getViewModelClass() = LocalPatientsViewModel::class.java
+    override fun setUpViews() {
+        super.setUpViews()
+
+    }
 
 }

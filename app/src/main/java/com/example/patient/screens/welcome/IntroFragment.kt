@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.patient.R
 import com.example.patient.adapters.WelcomePagerAdapter
@@ -31,6 +32,10 @@ class IntroFragment : Fragment() {
         val digitalPager = view.findViewById<ViewPager2>(R.id.intro_pager)
         digitalPager.adapter = pagerAdapter
         val pagerTabLayout = view.findViewById<TabLayout>(R.id.into_tab_layout)
+        val skip=view.findViewById<TextView>(R.id.skip)
+        skip.setOnClickListener {
+            openMainActivity()
+        }
 
         TabLayoutMediator(pagerTabLayout, digitalPager) { _, _ -> }.attach()
 
@@ -55,11 +60,14 @@ class IntroFragment : Fragment() {
                     digitalPager.setCurrentItem(2, true)
                 }
                 2 -> {
-                    val homeIntent = Intent(requireContext(), MainActivity::class.java)
-                    requireContext().startActivity(homeIntent)
-                    requireActivity().finish()
+                    openMainActivity()
                 }
             }
         }
+    }
+    private fun openMainActivity(){
+        val homeIntent = Intent(requireContext(), MainActivity::class.java)
+        requireContext().startActivity(homeIntent)
+        requireActivity().finish()
     }
 }

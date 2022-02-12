@@ -2,6 +2,7 @@ package com.example.patient.screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
@@ -9,13 +10,15 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.patient.R
 import com.example.patient.databinding.ActivityMainBinding
+import com.example.patient.utils.ui.applyKeyboardInset
 import com.example.patient.utils.ui.invisible
 import com.example.patient.utils.ui.visible
+import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 //    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
@@ -51,5 +54,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

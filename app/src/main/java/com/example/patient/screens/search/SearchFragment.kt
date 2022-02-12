@@ -5,6 +5,7 @@ import androidx.core.view.isVisible
 import com.example.patient.R
 import com.example.patient.adapters.FilterAdapter
 import com.example.patient.databinding.SearchFragmentBinding
+import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
 import com.example.patient.utils.ui.invisible
 import com.example.patient.utils.ui.visible
@@ -19,6 +20,8 @@ class SearchFragment:  BaseFragment<SearchFragmentBinding, SearchViewModel>() {
 
     override fun setUpViews() {
         super.setUpViews()
+        (activity as MainActivity).setSupportActionBar(binding.toolbar)
+
         val adapter=FilterAdapter(listOf("","",""))
         binding.recycleView.adapter=adapter
         adapter.notifyItemRangeChanged(0,0)

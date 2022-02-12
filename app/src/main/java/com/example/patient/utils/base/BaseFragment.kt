@@ -60,22 +60,24 @@ abstract class BaseFragment<VBinding:ViewBinding,VM:BaseViewModel>:Fragment() {
 
         val progressBarHolder=requireActivity().findViewById<FrameLayout>(R.id.progressBarHolder)
 
-        viewModel.mutableErrorType.observe(viewLifecycleOwner,  {
+        viewModel.mutableErrorType.observe(viewLifecycleOwner) {
             progressBarHolder.invisible()
-            when(it){
-                ErrorType.UNKNOWN,ErrorType.NETWORK,ErrorType.SESSION_EXPIRED,
-                ErrorType.TIMEOUT, ErrorType.HOST_EXCEPTION ->{
-                    Snackbar.make(requireContext(),requireView(),it.name,2000).show()
+            when (it) {
+                ErrorType.UNKNOWN, ErrorType.NETWORK, ErrorType.SESSION_EXPIRED,
+                ErrorType.TIMEOUT, ErrorType.HOST_EXCEPTION -> {
+                    Snackbar.make(requireContext(), requireView(), it.name, 2000).show()
                 }
-                ErrorType.BAD_REQUEST->{
-                    Snackbar.make(requireContext(),requireView(),
-                        viewModel.mutableErrorMessage.value?:"", 2000).show()
+                ErrorType.BAD_REQUEST -> {
+                    Snackbar.make(
+                        requireContext(), requireView(),
+                        viewModel.mutableErrorMessage.value ?: "", 2000
+                    ).show()
                 }
-                else->{
+                else -> {
 
                 }
             }
-        })
+        }
 
         viewModel.mutableErrorMessage.observe(viewLifecycleOwner,){
             Snackbar.make(requireContext(),requireView(),it,2000).show()

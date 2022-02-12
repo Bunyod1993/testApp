@@ -3,6 +3,7 @@ package com.example.patient.screens.register
 import androidx.navigation.Navigation
 import com.example.patient.R
 import com.example.patient.databinding.RegisterSecondFragmentBinding
+import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
 
 class RegisterSecondFragment :  BaseFragment<RegisterSecondFragmentBinding, RegisterSecondViewModel>() {
@@ -12,6 +13,8 @@ class RegisterSecondFragment :  BaseFragment<RegisterSecondFragmentBinding, Regi
 
     override fun setUpViews() {
         super.setUpViews()
+        (activity as MainActivity).setSupportActionBar(binding.toolbar)
+
         binding.next.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_toRegisterThirdFragment)
         }

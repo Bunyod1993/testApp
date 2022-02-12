@@ -9,7 +9,6 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:background="@color/bg_color">
-
             <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
@@ -77,129 +76,135 @@
                         app:layout_constraintLeft_toRightOf="@+id/news"
                         android:text="@string/news.info"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
+           <ScrollView
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   app:layout_constraintBottom_toTopOf="@+id/next"
+                   app:layout_constraintTop_toBottomOf="@+id/headerWrapper">
+               <androidx.constraintlayout.widget.ConstraintLayout
+                       android:id="@+id/contentWrapper"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       app:layout_constraintTop_toTopOf="parent">
+                   <TextView
+                           android:id="@+id/labelRegion"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="@string/region"
+                           style="@style/blueRegular13"
+                           app:layout_constraintLeft_toLeftOf="parent"
+                           app:layout_constraintTop_toTopOf="parent"/>
+                   <TextView
+                           android:id="@+id/region"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           app:layout_constraintLeft_toLeftOf="parent"
+                           android:layout_marginTop="5dp"
+                           android:text="Fayzobod"
+                           style="@style/blackRegular16"
+                           app:layout_constraintTop_toBottomOf="@+id/labelRegion"/>
+                   <TextView
+                           android:id="@+id/labelStreet"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="@string/street"
+                           style="@style/blueRegular13"
+                           android:layout_marginTop="10dp"
+                           app:layout_constraintLeft_toLeftOf="parent"
+                           app:layout_constraintTop_toBottomOf="@+id/region"/>
+                   <TextView
+                           android:id="@+id/street"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           app:layout_constraintLeft_toLeftOf="parent"
+                           android:layout_marginTop="5dp"
+                           android:text="ч/д, Мехробод (Гумбулок)"
+                           style="@style/blackRegular16"
+                           app:layout_constraintTop_toBottomOf="@+id/labelStreet"/>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/contentWrapper"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/headerWrapper"
-                    app:layout_constraintVertical_bias="0.1">
-                <TextView
-                        android:id="@+id/labelRegion"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/region"
-                        style="@style/blueRegular13"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
-                <TextView
-                        android:id="@+id/region"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        android:layout_marginTop="5dp"
-                        android:text="Fayzobod"
-                        style="@style/blackRegular16"
-                        app:layout_constraintTop_toBottomOf="@+id/labelRegion"/>
-                <TextView
-                        android:id="@+id/labelStreet"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/street"
-                        style="@style/blueRegular13"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/region"/>
-                <TextView
-                        android:id="@+id/street"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        android:layout_marginTop="5dp"
-                        android:text="ч/д, Мехробод (Гумбулок)"
-                        style="@style/blackRegular16"
-                        app:layout_constraintTop_toBottomOf="@+id/labelStreet"/>
+                   <TextView
+                           android:id="@+id/labelFilial"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="@string/filial"
+                           style="@style/blueRegular13"
+                           android:layout_marginTop="10dp"
+                           app:layout_constraintLeft_toLeftOf="parent"
+                           app:layout_constraintTop_toBottomOf="@+id/street"/>
+                   <TextView
+                           android:id="@+id/filial"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           app:layout_constraintLeft_toLeftOf="parent"
+                           android:layout_marginTop="5dp"
+                           android:text="СЦЗ Мехробод"
+                           style="@style/blackRegular16"
+                           app:layout_constraintTop_toBottomOf="@+id/labelFilial"/>
 
-                <TextView
-                        android:id="@+id/labelFilial"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/filial"
-                        style="@style/blueRegular13"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/street"/>
-                <TextView
-                        android:id="@+id/filial"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        android:layout_marginTop="5dp"
-                        android:text="СЦЗ Мехробод"
-                        style="@style/blackRegular16"
-                        app:layout_constraintTop_toBottomOf="@+id/labelFilial"/>
+                   <TextView
+                           android:id="@+id/labelDate"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="15dp"
+                           android:text="@string/date.of.pastonavka"
+                           style="@style/label13"
+                           app:layout_constraintLeft_toLeftOf="parent"
+                           app:layout_constraintTop_toBottomOf="@+id/filial" />
+                   <com.google.android.material.textfield.TextInputLayout
+                           android:id="@+id/date"
+                           style="@style/outlinedTextField"
+                           app:hintEnabled="false"
+                           app:endIconMode="custom"
+                           app:endIconDrawable="@drawable/ic_calendar"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="10dp"
+                           app:layout_constraintTop_toBottomOf="@+id/labelDate"
+                           >
+                       <com.google.android.material.textfield.TextInputEditText
+                               android:id="@+id/dateFiled"
+                               style="@style/digitRegular18"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:background="@drawable/input"
+                               android:paddingBottom="15dp"
+                               android:maxLength="30"
+                               android:text="" />
+                   </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                        android:id="@+id/labelDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="@string/date.of.pastonavka"
-                        style="@style/label13"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/filial" />
-                <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/date"
-                        style="@style/outlinedTextField"
-                        app:hintEnabled="false"
-                        app:endIconMode="custom"
-                        app:endIconDrawable="@drawable/ic_calendar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintTop_toBottomOf="@+id/labelDate"
-                        >
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/dateFiled"
-                            style="@style/digitRegular18"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/input"
-                            android:paddingBottom="15dp"
-                            android:maxLength="30"
-                            android:text="" />
-                </com.google.android.material.textfield.TextInputLayout>
+                   <TextView
+                           android:id="@+id/labelPhone"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="15dp"
+                           android:text="@string/filial.type"
+                           style="@style/label13"
+                           app:layout_constraintLeft_toLeftOf="parent"
+                           app:layout_constraintTop_toBottomOf="@+id/date" />
+                   <com.google.android.material.textfield.TextInputLayout
+                           android:id="@+id/phone"
+                           style="@style/outlinedTextField"
+                           app:hintEnabled="false"
+                           android:layout_width="match_parent"
+                           android:layout_marginTop="10dp"
+                           android:layout_height="wrap_content"
+                           app:layout_constraintTop_toBottomOf="@+id/labelPhone"
+                           >
+                       <com.google.android.material.textfield.TextInputEditText
+                               android:id="@+id/phoneFiled"
+                               style="@style/digitRegular18"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:background="@drawable/input"
+                               android:paddingBottom="15dp"
+                               android:maxLength="30"
+                               android:text="" />
+                   </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                        android:id="@+id/labelPhone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="@string/filial.type"
-                        style="@style/label13"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/date" />
-                <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/phone"
-                        style="@style/outlinedTextField"
-                        app:hintEnabled="false"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@+id/labelPhone"
-                        >
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/phoneFiled"
-                            style="@style/digitRegular18"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/input"
-                            android:paddingBottom="15dp"
-                            android:maxLength="30"
-                            android:text="" />
-                </com.google.android.material.textfield.TextInputLayout>
+               </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+           </ScrollView>
+
 
         <Button
                 android:id="@+id/next"

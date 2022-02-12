@@ -28,7 +28,7 @@ fun View.applyKeyboardInset() {
 
         view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
 //            updateMargins(bottom=posBottom)
-            updatePadding(top=status)
+             updatePadding(top=status)
         }
 
         if (view is ViewGroup) {
