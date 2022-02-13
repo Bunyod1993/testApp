@@ -7,15 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.patient.R
 import com.example.patient.adapters.WelcomePagerAdapter
 import com.example.patient.screens.MainActivity
+import com.example.patient.utils.ui.invisible
+import com.example.patient.utils.ui.visible
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class IntroFragment : Fragment() {
+    private lateinit var progressBar: FrameLayout
     private var currentItem = 0
 
     override fun onCreateView(
@@ -33,7 +37,10 @@ class IntroFragment : Fragment() {
         digitalPager.adapter = pagerAdapter
         val pagerTabLayout = view.findViewById<TabLayout>(R.id.into_tab_layout)
         val skip=view.findViewById<TextView>(R.id.skip)
+        progressBar=requireView().findViewById<FrameLayout>(R.id.progressBarHolder)
+
         skip.setOnClickListener {
+            progressBar.visible()
             openMainActivity()
         }
 
@@ -60,6 +67,7 @@ class IntroFragment : Fragment() {
                     digitalPager.setCurrentItem(2, true)
                 }
                 2 -> {
+                    progressBar.visible()
                     openMainActivity()
                 }
             }
@@ -69,5 +77,6 @@ class IntroFragment : Fragment() {
         val homeIntent = Intent(requireContext(), MainActivity::class.java)
         requireContext().startActivity(homeIntent)
         requireActivity().finish()
+        progressBar.invisible()
     }
 }

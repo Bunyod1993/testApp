@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
@@ -12,8 +11,6 @@ import com.example.patient.R
 import com.example.patient.databinding.LoginFragmentBinding
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.ui.applyKeyboardInset
-import com.example.patient.utils.ui.invisible
-import com.example.patient.utils.ui.visible
 import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseFragment<VBinding : ViewBinding, VM : BaseViewModel> : Fragment() {
@@ -67,10 +64,10 @@ abstract class BaseFragment<VBinding : ViewBinding, VM : BaseViewModel> : Fragme
 
     open fun observeData() {
 
-        val progressBarHolder = requireActivity().findViewById<FrameLayout>(R.id.progressBarHolder)
+//        val progressBarHolder = requireActivity().findViewById<FrameLayout>(R.id.progressBarHolder)
 
         viewModel.mutableErrorType.observe(viewLifecycleOwner) {
-            progressBarHolder.invisible()
+//            progressBarHolder.invisible()
             when (it) {
                 ErrorType.UNKNOWN, ErrorType.NETWORK, ErrorType.SESSION_EXPIRED,
                 ErrorType.TIMEOUT, ErrorType.HOST_EXCEPTION -> {
@@ -93,8 +90,8 @@ abstract class BaseFragment<VBinding : ViewBinding, VM : BaseViewModel> : Fragme
         }
 
         viewModel.mutableScreenState.observe(viewLifecycleOwner) {
-            if (it == ScreenState.LOADING) progressBarHolder.visible()
-            else progressBarHolder.invisible()
+//            if (it == ScreenState.LOADING) progressBarHolder.visible()
+//            else progressBarHolder.invisible()
         }
 
     }

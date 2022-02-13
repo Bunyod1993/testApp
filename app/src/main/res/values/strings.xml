@@ -81,4 +81,7 @@
     <string name="number_of_child">Паритет (какие роды по счету)</string>
     <string name="existence">Предшествующее оперативное родоразрешение</string>
     <string name="register">Зарегистрировать</string>
+    <string name="before_birth_registration">Регистрация дородовых посещений (ДРП)</string>
+    <string name="first_analysis">1 - й осмотр беременной</string>
+    <string name="date_first_analysis">1 - й осмотр беременной</string>
 </resources>
