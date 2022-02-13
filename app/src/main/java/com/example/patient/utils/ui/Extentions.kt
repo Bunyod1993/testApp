@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CheckResult
 import androidx.core.view.*
+import com.example.patient.screens.MainActivity.Companion.isLogin
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
@@ -20,7 +21,7 @@ fun View.visible(){
 fun View.invisible(){
     this.visibility=View.GONE
 }
-fun View.applyKeyboardInset() {
+fun View.applyKeyboardInset(isSubtract:Boolean=false) {
     ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
         val posBottom = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
         val pos = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
@@ -28,7 +29,9 @@ fun View.applyKeyboardInset() {
 
         view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
 //            updateMargins(bottom=posBottom)
-             updatePadding(top=status)
+            if (isSubtract)  updateMargins(bottom=-(posBottom), top = 0)
+                else updatePadding(bottom=(posBottom-pos-40),top=status)
+
         }
 
         if (view is ViewGroup) {

@@ -2,10 +2,13 @@ package com.example.patient.screens.home
 
 
 import android.os.CountDownTimer
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation
 import com.example.patient.R
 import com.example.patient.databinding.HomeFragmentBinding
+import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
+import com.example.patient.utils.ui.applyKeyboardInset
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

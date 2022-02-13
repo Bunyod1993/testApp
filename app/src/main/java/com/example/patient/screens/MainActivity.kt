@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity(){
 //    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
     private val viewModel: MainViewModel by viewModels()
+    companion object{
+         var isLogin:Boolean=false
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -31,6 +34,7 @@ class MainActivity : AppCompatActivity(){
 //            WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(binding.root)
         WindowCompat.setDecorFitsSystemWindows(window, false)
+
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
@@ -49,7 +53,7 @@ class MainActivity : AppCompatActivity(){
                 R.id.homeFragment,R.id.loginFragment,R.id.localPatientsFragment -> {
                     binding.bottomNavigation.invisible()
                 }
-                else->{
+                else-> {
                     binding.bottomNavigation.visible()
                 }
             }
