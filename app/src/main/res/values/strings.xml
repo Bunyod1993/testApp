@@ -84,4 +84,14 @@
     <string name="before_birth_registration">Регистрация дородовых посещений (ДРП)</string>
     <string name="first_analysis">1 - й осмотр беременной</string>
     <string name="date_first_analysis">1 - й осмотр беременной</string>
+    <string name="emergency_title">Экстренное направление 1 в другое учреждение</string>
+    <string name="date_of_transportation">Дата и время начала транспортировки</string>
+    <string name="choose">Выбрать ...</string>
+    <string name="reason_of_exportation">Диагноз/ причины направления</string>
+    <string name="process_description">Лечение, проведенное ИУ, перед транспортировкой</string>
+    <string name="nurse_description">Пол сопровождающего медработника</string>
+    <string name="checkbox4">Транспорт предоставлен направляющим медучреждением?</string>
+    <string name="checkbox3">Сопровождающий медработник</string>
+    <string name="checkbox2">Выдано проектное направление</string>
+    <string name="checkbox1">Женщина (и сопровождающие родственники) получили информацию о причинах и необходимости экстренного направления</string>
 </resources>

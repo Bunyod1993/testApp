@@ -288,6 +288,18 @@
         <item name="backgroundTint">@null</item>
         <item name="lineHeight">15.13sp</item>
     </style>
+    <style name="outlinedTextFieldDropdown" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="hintTextColor">@color/darkGrey</item>
+        <item name="errorTextColor">@color/redWarning</item>
+        <item name="endIconTint">@color/input_border</item>
+        <item name="boxStrokeColor">@color/input_border</item>
+        <item name="backgroundTint">@null</item>
+        <item name="lineHeight">15.13sp</item>
+    </style>
     <!-- Online identification -->
     <style name="online_ident_show_example_tv">
         <item name="android:textColor">@color/alifGreen</item>
