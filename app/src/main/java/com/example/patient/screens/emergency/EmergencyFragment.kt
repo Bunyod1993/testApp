@@ -1,32 +1,23 @@
 package com.example.patient.screens.emergency
 
-import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.example.patient.R
+import com.example.patient.databinding.EmergencyFragmentBinding
+import com.example.patient.screens.MainActivity
+import com.example.patient.utils.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class EmergencyFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = EmergencyFragment()
+@AndroidEntryPoint
+class EmergencyFragment : BaseFragment<EmergencyFragmentBinding,EmergencyViewModel>() {
+    override fun getViewModelClass()=EmergencyViewModel::class.java
+    override fun getViewBinding()= EmergencyFragmentBinding.inflate(layoutInflater)
+    override fun setUpViews() {
+        super.setUpViews()
+        (activity as MainActivity).setSupportActionBar(binding.toolbar)
+        binding.next.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_toReverseRegisterFragment)
+        }
     }
 
-    private lateinit var viewModel: EmergencyViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.emergency_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(EmergencyViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }

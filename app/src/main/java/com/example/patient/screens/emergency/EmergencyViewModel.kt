@@ -1,7 +1,7 @@
 package com.example.patient.screens.emergency
 
-import androidx.lifecycle.ViewModel
+import com.example.patient.utils.base.BaseViewModel
 
-class EmergencyViewModel : ViewModel() {
+class EmergencyViewModel : BaseViewModel() {
     // TODO: Implement the ViewModel
 }
