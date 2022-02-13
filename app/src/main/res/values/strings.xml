@@ -94,4 +94,8 @@
     <string name="checkbox3">Сопровождающий медработник</string>
     <string name="checkbox2">Выдано проектное направление</string>
     <string name="checkbox1">Женщина (и сопровождающие родственники) получили информацию о причинах и необходимости экстренного направления</string>
+    <string name="reverse_registration">Регистрация обратного направления в ПМСП</string>
+    <string name="subTitle">Принимающее учреждение ПМСП</string>
+    <string name="checkbox5">получено обратное направление из роддома</string>
+    <string name="checkbox6">1 - й осмотр беременной</string>
 </resources>

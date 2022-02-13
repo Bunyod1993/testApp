@@ -66,7 +66,31 @@
             android:id="@+id/registerThirdFragment"
             android:name="com.example.patient.screens.register.RegisterThirdFragment"
             tools:layout="@layout/register_third_fragment">
+        <action
+                android:id="@+id/action_toBeforeBirthRegisterFragment"
+                app:destination="@id/beforeBirthRegisterFragment"/>
+    </fragment>
 
+    <fragment
+            android:id="@+id/beforeBirthRegisterFragment"
+            android:name="com.example.patient.screens.beforebirth.BeforeBirthRegisterFragment"
+            tools:layout="@layout/before_birth_register_fragment">
+        <action
+                android:id="@+id/action_toEmergencyFragment"
+                app:destination="@id/emergencyFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/emergencyFragment"
+            android:name="com.example.patient.screens.emergency.EmergencyFragment"
+            tools:layout="@layout/emergency_fragment">
+        <action
+                android:id="@+id/action_toReverseRegisterFragment"
+                app:destination="@id/reverseRegisterFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/reverseRegisterFragment"
+            android:name="com.example.patient.screens.reverse.ReverseRegisterFragment"
+            tools:layout="@layout/reverse_register_fragment">
     </fragment>
 
     <fragment
