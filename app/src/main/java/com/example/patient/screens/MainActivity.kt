@@ -2,7 +2,6 @@ package com.example.patient.screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
@@ -10,28 +9,19 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.patient.R
 import com.example.patient.databinding.ActivityMainBinding
-import com.example.patient.utils.ui.applyKeyboardInset
 import com.example.patient.utils.ui.invisible
 import com.example.patient.utils.ui.visible
-import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(){
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-//    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
     private val viewModel: MainViewModel by viewModels()
-    companion object{
-         var isLogin:Boolean=false
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        requestWindowFeature(Window.FEATURE_NO_TITLE)
-//        window.setFlags(
-//            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//            WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(binding.root)
         WindowCompat.setDecorFitsSystemWindows(window, false)
 

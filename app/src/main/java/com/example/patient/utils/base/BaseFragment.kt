@@ -11,7 +11,6 @@ import androidx.viewbinding.ViewBinding
 import com.example.patient.R
 import com.example.patient.databinding.LoginFragmentBinding
 import com.example.patient.screens.MainActivity
-import com.example.patient.screens.MainActivity.Companion.isLogin
 import com.example.patient.utils.ui.applyKeyboardInset
 import com.example.patient.utils.ui.invisible
 import com.example.patient.utils.ui.visible

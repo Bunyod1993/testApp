@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CheckResult
 import androidx.core.view.*
-import com.example.patient.screens.MainActivity.Companion.isLogin
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
