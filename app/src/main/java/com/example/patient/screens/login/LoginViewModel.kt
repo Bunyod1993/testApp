@@ -49,7 +49,7 @@ class LoginViewModel @Inject constructor(private val authRepository: AuthReposit
                     str.isEmpty() -> {
                         Pair(inputType, InputErrorType.EMPTY)
                     }
-                    str.matches(Patterns.EMAIL_ADDRESS.toRegex()) -> {
+                    str.length > 4 -> {
                         Pair(inputType, InputErrorType.VALID)
                     }
                     else -> {

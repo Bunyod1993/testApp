@@ -10,6 +10,7 @@ import androidx.viewbinding.ViewBinding
 import com.example.patient.R
 import com.example.patient.databinding.LoginFragmentBinding
 import com.example.patient.screens.MainActivity
+import com.example.patient.utils.ui.InfoAlert
 import com.example.patient.utils.ui.applyKeyboardInset
 import com.google.android.material.snackbar.Snackbar
 
@@ -64,10 +65,9 @@ abstract class BaseFragment<VBinding : ViewBinding, VM : BaseViewModel> : Fragme
 
     open fun observeData() {
 
-//        val progressBarHolder = requireActivity().findViewById<FrameLayout>(R.id.progressBarHolder)
-
+        InfoAlert.hideProgressDialog()
         viewModel.mutableErrorType.observe(viewLifecycleOwner) {
-//            progressBarHolder.invisible()
+            InfoAlert.hideProgressDialog()
             when (it) {
                 ErrorType.UNKNOWN, ErrorType.NETWORK, ErrorType.SESSION_EXPIRED,
                 ErrorType.TIMEOUT, ErrorType.HOST_EXCEPTION -> {
@@ -90,8 +90,8 @@ abstract class BaseFragment<VBinding : ViewBinding, VM : BaseViewModel> : Fragme
         }
 
         viewModel.mutableScreenState.observe(viewLifecycleOwner) {
-//            if (it == ScreenState.LOADING) progressBarHolder.visible()
-//            else progressBarHolder.invisible()
+            if (it == ScreenState.LOADING) InfoAlert.showProgressDialog(requireContext())
+            else InfoAlert.hideProgressDialog()
         }
 
     }

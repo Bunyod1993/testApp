@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
+import android.view.Window
 import androidx.appcompat.app.AlertDialog
 import androidx.core.text.HtmlCompat
 import com.example.patient.R
@@ -73,5 +74,21 @@ object InfoAlert {
         alertDialog = dialogBuilder.show()
         alertDialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog?.setOnDismissListener { alertDialog = null }
+    }
+    fun showProgressDialog(context: Context){
+        if (dialogProcess != null && dialogProcess!!.isShowing) {
+            return
+        }
+        dialogProcess =  Dialog(context)
+        dialogProcess!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogProcess!!.setContentView(R.layout.custom_process_dialog)
+        dialogProcess!!.setCancelable(false)
+        dialogProcess!!.show()
+
+    }
+    fun hideProgressDialog(){
+        if (dialogProcess != null && dialogProcess!!.isShowing) {
+            dialogProcess!!.dismiss();
+        }
     }
 }
