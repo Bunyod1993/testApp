@@ -1,7 +1,6 @@
 package com.example.patient.screens.login
 
 
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.patient.R
@@ -10,9 +9,8 @@ import com.example.patient.repositories.Resource
 import com.example.patient.utils.base.BaseFragment
 import com.example.patient.utils.enums.InputErrorType
 import com.example.patient.utils.enums.InputType
-import com.example.patient.utils.ui.AlifAlert
+import com.example.patient.utils.ui.InfoAlert
 import com.example.patient.utils.ui.textChanges
-import com.google.android.material.snackbar.Snackbar.make
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -100,7 +98,7 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
                 if (it is Resource.Success)
                     Navigation.findNavController(requireView()).navigate(R.id.action_loginToHome)
                 else {
-                    AlifAlert.showWarningAlert(requireContext(), "Error", it.message ?: "") {}
+                    InfoAlert.showWarningAlert(requireContext(), "Error", it.message ?: "") {}
                 }
             }
         }

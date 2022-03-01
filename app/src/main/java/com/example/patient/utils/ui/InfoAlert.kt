@@ -12,7 +12,7 @@ import androidx.core.text.HtmlCompat
 import com.example.patient.R
 import com.example.patient.databinding.ConfirmAlertBinding
 
-object AlifAlert {
+object InfoAlert {
 
     var dialog: AlertDialog.Builder? = null
     var alertDialog: AlertDialog? = null

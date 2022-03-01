@@ -49,7 +49,10 @@ class MainActivity : AppCompatActivity(){
             }
         }
     }
-
+    override fun onBackPressed() {
+        if (navController.currentDestination?.id == R.id.loginFragment) return
+        super.onBackPressed()
+    }
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
