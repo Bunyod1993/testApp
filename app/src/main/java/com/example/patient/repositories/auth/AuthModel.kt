@@ -2,6 +2,7 @@ package com.example.patient.repositories.auth
 
 import androidx.annotation.Keep
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 data class AuthModel(
@@ -20,6 +21,7 @@ data class AuthModel(
 @Entity(tableName = "profile")
 data class User(
     @SerializedName("id")
+    @PrimaryKey
     val id:String,
     @SerializedName("fullname")
     val fullName:String,

@@ -25,6 +25,7 @@ object PersistenceModule {
 
     @Singleton
     @Provides
-    fun provideProfileDao(dataBase: PatientDatabase) = dataBase.testDao()
+    fun provideProfileDao(dataBase: PatientDatabase) = dataBase.profileDao()
+
 
 }

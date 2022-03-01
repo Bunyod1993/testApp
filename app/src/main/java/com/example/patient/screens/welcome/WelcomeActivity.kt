@@ -1,5 +1,7 @@
 package com.example.patient.screens.welcome
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
@@ -9,6 +11,7 @@ import com.example.patient.R
 import com.example.patient.adapters.WelcomePagerAdapter
 import com.example.patient.databinding.ActivityMainBinding
 import com.example.patient.databinding.ActivityWelcomeBinding
+import com.example.patient.utils.Constants
 import com.google.android.material.tabs.TabLayoutMediator
 
 class WelcomeActivity : AppCompatActivity() {
@@ -17,5 +20,7 @@ class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        val prefs=getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
+        prefs.edit().putBoolean(Constants.FIRST_ACCESS, false).apply()
     }
 }

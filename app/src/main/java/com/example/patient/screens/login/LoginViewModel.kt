@@ -1,13 +1,11 @@
 package com.example.patient.screens.login
 
-import android.content.SharedPreferences
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.patient.repositories.Resource
 import com.example.patient.repositories.auth.AuthRepository
-import com.example.patient.utils.Constants.AUTH_TOKEN
 import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.base.ScreenState
 import com.example.patient.utils.enums.InputErrorType
@@ -20,28 +18,25 @@ import org.json.JSONObject
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(prefs:SharedPreferences,private val authRepository: AuthRepository) :
+class LoginViewModel @Inject constructor(private val authRepository: AuthRepository) :
     BaseViewModel() {
-    val token = MutableLiveData<String>()
     val email = MutableLiveData("")
     val password = MutableLiveData("")
     val isLogin = MutableLiveData(false)
     val fieldError = MutableLiveData(Pair(InputType.NONE, InputErrorType.EMPTY))
     private val setOfFields by lazy { authRepository.getFields() }
-    init {
-        token.postValue(prefs.getString(AUTH_TOKEN,""))
-    }
+
     fun login(): LiveData<Resource<String>> {
-        val resp=MutableLiveData<Resource<String>>()
+        val resp = MutableLiveData<Resource<String>>()
         viewModelScope.launch(Dispatchers.IO) {
             mutableScreenState.postValue(ScreenState.LOADING)
-            authRepository.login(this@LoginViewModel,email.value!!, password.value!!)
+            authRepository.login(this@LoginViewModel, email.value!!, password.value!!)
                 .collect {
                     mutableScreenState.postValue(ScreenState.RENDER)
                     resp.postValue(it)
                 }
         }
-        return  resp
+        return resp
     }
 
     fun validateLoginFields(inputType: InputType) {
