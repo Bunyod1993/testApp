@@ -2,8 +2,10 @@ package com.example.patient.screens.login
 
 import android.content.SharedPreferences
 import android.util.Patterns
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.patient.repositories.Resource
 import com.example.patient.repositories.auth.AuthRepository
 import com.example.patient.utils.Constants.AUTH_TOKEN
 import com.example.patient.utils.base.BaseViewModel
@@ -29,18 +31,17 @@ class LoginViewModel @Inject constructor(prefs:SharedPreferences,private val aut
     init {
         token.postValue(prefs.getString(AUTH_TOKEN,""))
     }
-    fun login() {
+    fun login(): LiveData<Resource<String>> {
+        val resp=MutableLiveData<Resource<String>>()
         viewModelScope.launch(Dispatchers.IO) {
-            val paramObject = JSONObject()
-            paramObject.put(InputType.EMAIL.fieldType, email.value)
-            paramObject.put(InputType.PASSWORD.fieldType, password.value)
             mutableScreenState.postValue(ScreenState.LOADING)
-            authRepository.login(this@LoginViewModel, paramObject.toString())
+            authRepository.login(this@LoginViewModel,email.value!!, password.value!!)
                 .collect {
                     mutableScreenState.postValue(ScreenState.RENDER)
-                    token.postValue(it.data?:"")
+                    resp.postValue(it)
                 }
         }
+        return  resp
     }
 
     fun validateLoginFields(inputType: InputType) {

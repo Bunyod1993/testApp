@@ -1,14 +1,18 @@
 package com.example.patient.screens.login
 
 
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.patient.R
 import com.example.patient.databinding.LoginFragmentBinding
+import com.example.patient.repositories.Resource
 import com.example.patient.utils.base.BaseFragment
 import com.example.patient.utils.enums.InputErrorType
 import com.example.patient.utils.enums.InputType
+import com.example.patient.utils.ui.AlifAlert
 import com.example.patient.utils.ui.textChanges
+import com.google.android.material.snackbar.Snackbar.make
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -27,10 +31,10 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
     override fun observeData() {
         super.observeData()
 
-        viewModel.token.observe(viewLifecycleOwner) {
-            if (!it.isNullOrEmpty())
-                Navigation.findNavController(requireView()).navigate(R.id.action_loginToHome)
-        }
+//        viewModel.token.observe(viewLifecycleOwner) {
+//            if (!it.isNullOrEmpty())
+//                Navigation.findNavController(requireView()).navigate(R.id.action_loginToHome)
+//        }
 
         viewModel.fieldError.observe(viewLifecycleOwner) {
             if (it.first == InputType.EMAIL) {
@@ -92,9 +96,13 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
         super.setUpViews()
         binding.loginModel = viewModel
         binding.login.setOnClickListener {
-            Navigation.findNavController(requireView()).navigate(R.id.action_loginToHome)
-
-//            viewModel.login()
+            viewModel.login().observe(viewLifecycleOwner) {
+                if (it is Resource.Success)
+                    Navigation.findNavController(requireView()).navigate(R.id.action_loginToHome)
+                else {
+                    AlifAlert.showWarningAlert(requireContext(), "Error", it.message ?: "") {}
+                }
+            }
         }
 //        binding.emailField.setOnFocusChangeListener { _, hasFocus ->
 //            if (!hasFocus)

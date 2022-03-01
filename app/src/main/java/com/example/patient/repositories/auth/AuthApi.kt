@@ -6,8 +6,8 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface AuthApi {
-    @POST("/auth/login")
-    suspend fun login(@Body body: RequestBody): AuthModel
+    @POST("/api/login")
+    suspend fun login(@Query("login") login:String,@Query("password") password:String): AuthModel
 
     @GET("/questions/{questionId}?key=" + Constants.STACKOVERFLOW_API_KEY + "&site=stackoverflow&filter=withbody")
     suspend fun questionDetails(@Path("questionId") questionId: String?): Response<Any>
