@@ -1,13 +1,21 @@
 package com.example.patient.utils.ui
 
+import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AutoCompleteTextView
+import android.widget.TextView
 import androidx.annotation.CheckResult
 import androidx.core.view.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import com.example.patient.R
+import com.example.patient.utils.enums.InputErrorType
 import com.google.android.material.textfield.TextInputEditText
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import com.google.android.material.textfield.TextInputLayout
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -42,13 +50,96 @@ fun View.applyKeyboardInset(isSubtract:Boolean=false) {
     }
 }
 
+
+fun <T> LiveData<T>.debounce(duration: Long = 1000L, coroutineScope: CoroutineScope) = MediatorLiveData<T>().also { mld ->
+
+    val source = this
+    var job: Job? = null
+
+    mld.addSource(source) {
+        job?.cancel()
+        job = coroutineScope.launch {
+            delay(duration)
+            mld.value = source.value
+        }
+    }
+}
+fun AutoCompleteTextView.validate(context: Context, type: InputErrorType, view: TextView) {
+    when (type) {
+        InputErrorType.EMPTY -> {
+            this.setBackgroundResource(R.drawable.border_bottom_error)
+            view.text = context.getText(R.string.error_empty)
+        }
+        InputErrorType.VALID -> {
+            this.setBackgroundResource(R.drawable.border_bottom)
+            view.text = ""
+        }
+        InputErrorType.INVALID -> {
+            this.setBackgroundResource(R.drawable.border_bottom_error)
+            view.text = context.getText(R.string.error_fill_correctly)
+        }
+        else -> {}
+    }
+}
+
+fun TextInputLayout.validate(context: Context, type: InputErrorType) {
+    when (type) {
+        InputErrorType.EMPTY -> {
+            this.isErrorEnabled = true
+            this.error = context.getText(R.string.error_empty)
+        }
+        InputErrorType.VALID -> {
+            this.isErrorEnabled = false
+            this.error = ""
+        }
+        InputErrorType.REPEATED -> {
+            this.isErrorEnabled = true
+            this.error = context.getText(R.string.mismatch)
+        }
+        InputErrorType.MISMATCH -> {
+            this.isErrorEnabled = true
+            this.error = context.getText(R.string.mismatch)
+        }
+        InputErrorType.INVALID -> {
+            this.isErrorEnabled = true
+            this.error = context.getText(R.string.error_fill_correctly)
+        }
+        else -> {}
+    }
+}
+
+fun TextInputEditText.validate(context: Context, type: InputErrorType, view: TextView) {
+    when (type) {
+        InputErrorType.EMPTY -> {
+            this.setBackgroundResource(R.drawable.border_bottom_error)
+            view.text = context.getText(R.string.error_empty)
+        }
+        InputErrorType.VALID -> {
+            this.setBackgroundResource(R.drawable.border_bottom)
+            view.text = ""
+        }
+        InputErrorType.REPEATED -> {
+            this.setBackgroundResource(R.drawable.border_bottom_error)
+            view.text = context.getText(R.string.error_fill_correctly)
+        }
+        InputErrorType.INVALID -> {
+            this.setBackgroundResource(R.drawable.border_bottom_error)
+            view.text = context.getText(R.string.error_fill_correctly)
+        }
+        else -> {}
+    }
+}
 @ExperimentalCoroutinesApi
 @CheckResult
 fun TextInputEditText.textChanges(): Flow<CharSequence?> {
-    return callbackFlow<CharSequence?> {
+    return callbackFlow {
         val listener = object : TextWatcher {
+
             override fun afterTextChanged(s: Editable?) = Unit
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) =
+                Unit
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 trySend(s)
             }

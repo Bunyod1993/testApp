@@ -20,7 +20,9 @@ object PersistenceModule {
     @Provides
     fun provideDatabase(
         @ApplicationContext context: Context
-    ) = Room.databaseBuilder(context, PatientDatabase::class.java, DB_NAME).build()
+    ) = Room.databaseBuilder(context, PatientDatabase::class.java, DB_NAME)
+        .fallbackToDestructiveMigration()
+        .allowMainThreadQueries().build()
 
 
     @Singleton
