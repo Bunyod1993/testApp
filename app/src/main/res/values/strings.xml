@@ -16,13 +16,6 @@
     <string name="forgot.password">Забыли пароль?</string>
     <string name="error.fill.correctly">Пожалуйста, заполните поле корректно</string>
     <string name="error.empty">Пожалуйста, заполните поле</string>
-
-    <string name="iden.step1.text">Сфотографируйте лицевую сторону паспорта с фотографией</string>
-    <string name="iden.step2.text">Сфотографируйте страницу с пропиской в паспорте</string>
-    <string name="iden.step3.text">Сделайте селфи с лицевой стороной паспорта и загрузите </string>
-    <string name="iden.send.doc">Отправка документов</string>
-    <string name="iden.show.example">Показать пример</string>
-    <string name="iden.button.send">Отправить заявку</string>
     <string name="access">Разрешить</string>
     <string name="no.thanks">Нет, спасибо</string>
     <string name="make.photo">Сделать фото</string>
@@ -98,4 +91,11 @@
     <string name="subTitle">Принимающее учреждение ПМСП</string>
     <string name="checkbox5">получено обратное направление из роддома</string>
     <string name="checkbox6">1 - й осмотр беременной</string>
+    <string name="checkbox7">Зарегистрирована материнская смертность</string>
+    <string name="checkbox8">Зарегистрирована неонатальная смертность</string>
+    <string name="death.title">Регистрация случаев неонатальной смертности (до 28 дней)</string>
+    <string name="death_filial">Учреждение зарегистрировавшее случай материнской смертности</string>
+    <string name="haours_after_death">На какие сутки после рождения была зарегистрирована неонатальная смертность?</string>
+    <string name="death_reason">Причина неонатальной смертности (до 28 суток после рождения)</string>
+    <string name="death_mother_reason">Причина материнской смертности</string>
 </resources>
