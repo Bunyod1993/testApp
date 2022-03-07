@@ -6,11 +6,9 @@ import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.patient.BuildConfig
 import com.example.patient.networking.interceptors.AuthorizationInterceptor
-import com.example.patient.networking.ConsultantApi
 import com.example.patient.networking.interceptors.LiveNetworkMonitor
 import com.example.patient.networking.UrlProvider
 import com.example.patient.repositories.auth.AuthApi
-import com.example.patient.utils.Constants.AUTH_TOKEN
 import com.example.patient.utils.Constants.PREF_NAME
 import dagger.Module
 import dagger.Provides
@@ -87,9 +85,6 @@ object AppModule {
     @Provides
     fun getNetworkMonitor(@ApplicationContext context: Context) = LiveNetworkMonitor(context)
 
-    @AppScope
-    @Provides
-    fun consultantApi(retrofit: Retrofit): ConsultantApi = retrofit.create(ConsultantApi::class.java)
 
 
     @AppScope
@@ -97,11 +92,6 @@ object AppModule {
     fun authApi(retrofit: Retrofit): AuthApi = retrofit.create(AuthApi::class.java)
 
 
-//    @AppScope
-//    @Provides
-//    fun getAuthRepository(authApi: AuthApi): AuthRepository {
-//        return AuthRepositoryImpl(authApi)
-//    }
 
     @Provides
     fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences =

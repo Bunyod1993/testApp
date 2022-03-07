@@ -1,6 +1,7 @@
 package com.example.patient.repositories.auth
 
 import android.content.SharedPreferences
+import android.util.Log
 import com.example.patient.database.ProfileDao
 import com.example.patient.repositories.Resource
 import com.example.patient.utils.Constants
@@ -28,6 +29,7 @@ class AuthRepositoryImpl @Inject constructor(
                 if (resp.code == 200) {
                     emit(Resource.Success(resp.message))
                     prefs.edit().putString(Constants.AUTH_TOKEN, resp.token).apply()
+                    Log.v("tag","$resp")
                     resp.user?.let { profileDao.insertPromoter(it) }
                 } else {
                     emit(Resource.Error(resp.message))

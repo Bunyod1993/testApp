@@ -59,6 +59,7 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
                     InputErrorType.VALID -> {
                         binding.password.setBackgroundResource(R.drawable.input)
                     }
+                    else -> {}
                 }
             }
         }

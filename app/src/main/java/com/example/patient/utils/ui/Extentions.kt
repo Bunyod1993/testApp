@@ -67,15 +67,15 @@ fun <T> LiveData<T>.debounce(duration: Long = 1000L, coroutineScope: CoroutineSc
 fun AutoCompleteTextView.validate(context: Context, type: InputErrorType, view: TextView) {
     when (type) {
         InputErrorType.EMPTY -> {
-            this.setBackgroundResource(R.drawable.border_bottom_error)
+            this.setBackgroundResource(R.drawable.input_disabled)
             view.text = context.getText(R.string.error_empty)
         }
         InputErrorType.VALID -> {
-            this.setBackgroundResource(R.drawable.border_bottom)
+            this.setBackgroundResource(R.drawable.input)
             view.text = ""
         }
         InputErrorType.INVALID -> {
-            this.setBackgroundResource(R.drawable.border_bottom_error)
+            this.setBackgroundResource(R.drawable.input_disabled)
             view.text = context.getText(R.string.error_fill_correctly)
         }
         else -> {}
@@ -111,19 +111,19 @@ fun TextInputLayout.validate(context: Context, type: InputErrorType) {
 fun TextInputEditText.validate(context: Context, type: InputErrorType, view: TextView) {
     when (type) {
         InputErrorType.EMPTY -> {
-            this.setBackgroundResource(R.drawable.border_bottom_error)
+            this.setBackgroundResource(R.drawable.input_disabled)
             view.text = context.getText(R.string.error_empty)
         }
         InputErrorType.VALID -> {
-            this.setBackgroundResource(R.drawable.border_bottom)
+            this.setBackgroundResource(R.drawable.input)
             view.text = ""
         }
         InputErrorType.REPEATED -> {
-            this.setBackgroundResource(R.drawable.border_bottom_error)
+            this.setBackgroundResource(R.drawable.input_disabled)
             view.text = context.getText(R.string.error_fill_correctly)
         }
         InputErrorType.INVALID -> {
-            this.setBackgroundResource(R.drawable.border_bottom_error)
+            this.setBackgroundResource(R.drawable.input_disabled)
             view.text = context.getText(R.string.error_fill_correctly)
         }
         else -> {}
