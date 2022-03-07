@@ -25,12 +25,12 @@ class AuthRepositoryImpl @Inject constructor(
         return flow {
             safeApiCallNoContext(emitter) {
                 val resp = api.login(login,password)
-                if (resp.status == "success") {
-                    emit(Resource.Success(resp.status))
+                if (resp.code == 200) {
+                    emit(Resource.Success(resp.message))
                     prefs.edit().putString(Constants.AUTH_TOKEN, resp.token).apply()
                     resp.user?.let { profileDao.insertPromoter(it) }
                 } else {
-                    emit(Resource.Error(resp.status))
+                    emit(Resource.Error(resp.message))
                 }
             }
         }

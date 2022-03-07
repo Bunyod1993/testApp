@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/border_bottom.xml" value="0.181" />
+        <entry key="app/src/main/res/drawable/border_bottom_error.xml" value="0.181" />
         <entry key="app/src/main/res/drawable/btn_back.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/drawable/button.xml" value="0.1595" />
         <entry key="app/src/main/res/drawable/button_default.xml" value="0.1715" />

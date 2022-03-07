@@ -6,11 +6,13 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 data class AuthModel(
-    @SerializedName("status")
-    val status:String,
     @SerializedName("access_token")
     val token:String,
-    @SerializedName("user")
+    @SerializedName("code")
+    val code:Int,
+    @SerializedName("message")
+    val message:String,
+    @SerializedName("payload")
     val user:User?
 ) {
 
