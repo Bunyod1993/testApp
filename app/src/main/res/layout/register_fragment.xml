@@ -183,22 +183,22 @@
                            app:layout_constraintTop_toBottomOf="@+id/date" />
                    <com.google.android.material.textfield.TextInputLayout
                            android:id="@+id/phone"
-                           style="@style/outlinedTextField"
+                           style="@style/outlinedTextFieldDropdown"
                            app:hintEnabled="false"
+                           app:endIconMode="dropdown_menu"
                            android:layout_width="match_parent"
                            android:layout_marginTop="10dp"
                            android:layout_height="wrap_content"
                            app:layout_constraintTop_toBottomOf="@+id/labelPhone"
                            >
-                       <com.google.android.material.textfield.TextInputEditText
+                       <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                                android:id="@+id/phoneFiled"
                                style="@style/digitRegular18"
                                android:layout_width="match_parent"
                                android:layout_height="wrap_content"
-                               android:background="@drawable/input"
-                               android:paddingBottom="15dp"
                                android:maxLength="30"
-                               android:text="" />
+                               android:text=""
+                               android:inputType="none"/>
                    </com.google.android.material.textfield.TextInputLayout>
 
                </androidx.constraintlayout.widget.ConstraintLayout>
