@@ -21,15 +21,15 @@ class AuthRepositoryImpl @Inject constructor(
     BaseRemoteRepository() {
     override suspend fun login(
         emitter: RemoteErrorEmitter,
-        login: String,password:String
+        login: String, password: String
     ): Flow<Resource<String>> {
         return flow {
             safeApiCallNoContext(emitter) {
-                val resp = api.login(login,password)
+                val resp = api.login(login, password)
                 if (resp.code == 200) {
                     emit(Resource.Success(resp.message))
                     prefs.edit().putString(Constants.AUTH_TOKEN, resp.token).apply()
-                    Log.v("tag","$resp")
+                    Log.v("tag", "$resp")
                     resp.user?.let { profileDao.insertPromoter(it) }
                 } else {
                     emit(Resource.Error(resp.message))
@@ -43,4 +43,7 @@ class AuthRepositoryImpl @Inject constructor(
             Pair(InputType.EMAIL, InputErrorType.EMPTY),
             Pair(InputType.PASSWORD, InputErrorType.EMPTY)
         )
+
+    override fun getProfile(): Flow<User?> = profileDao.getProfile()
+
 }

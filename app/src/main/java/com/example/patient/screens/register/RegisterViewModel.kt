@@ -3,6 +3,8 @@ package com.example.patient.screens.register
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
+import com.example.patient.repositories.auth.AuthRepository
+import com.example.patient.repositories.auth.User
 import com.example.patient.utils.Constants.dateRegex
 import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.enums.InputErrorType
@@ -17,10 +19,25 @@ import javax.inject.Inject
 
 @FlowPreview
 @HiltViewModel
-class RegisterViewModel @Inject constructor() : BaseViewModel() {
+class RegisterViewModel @Inject constructor(
+    private val authRepository: AuthRepository
+) : BaseViewModel() {
     val date = MutableLiveData("")
     val type = MutableLiveData(-1)
+    val user = MutableLiveData<User?>(null)
     var requiredFiledNumber = 2
+    init {
+        getProfile()
+    }
+
+    private fun getProfile() {
+        viewModelScope.launch {
+            authRepository.getProfile().collect {
+                user.postValue(it)
+            }
+        }
+
+    }
 
     val fieldError = MutableSharedFlow<Pair<String, InputErrorType>>()
 

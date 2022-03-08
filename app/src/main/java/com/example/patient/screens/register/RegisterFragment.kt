@@ -1,6 +1,7 @@
 package com.example.patient.screens.register
 
 
+import android.util.Log
 import android.widget.ArrayAdapter
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
@@ -8,15 +9,16 @@ import com.example.patient.R
 import com.example.patient.databinding.RegisterFragmentBinding
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
-import com.example.patient.utils.ui.debounce
 import com.example.patient.utils.ui.toDate
 import com.example.patient.utils.ui.validate
 import com.google.android.material.datepicker.MaterialDatePicker
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @FlowPreview
+@AndroidEntryPoint
 class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel>() {
 
     override fun getViewBinding() = RegisterFragmentBinding.inflate(layoutInflater)
@@ -60,6 +62,7 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
         binding.typeField.setOnFocusChangeListener { _, b ->
             if (b) viewModel.validateType()
         }
+        binding.typeField.setBackgroundResource(R.drawable.input)
 
     }
 
@@ -72,17 +75,20 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
                         binding.dateField.validate(requireContext(), it.second)
                     }
                     else -> {
-                        binding.typeLayout.validate(requireContext(), it.second)
+                        binding.typeField.validate(requireContext(), it.second)
                     }
                 }
             }
         }
-        viewModel.type.debounce(200L, lifecycleScope).observe(viewLifecycleOwner) {
-            binding.typeLayout.setBackgroundResource(R.drawable.input)
+        viewModel.user.observe(viewLifecycleOwner) {
+            Log.v("tag","$it")
+            it?.let { user->
+                binding.region.text=user.region
+                binding.street.text=user.subregion
+                binding.filial.text=user.hospital
+            }
         }
-        viewModel.date.debounce(200L, lifecycleScope).observe(viewLifecycleOwner) {
-            binding.date.setBackgroundResource(R.drawable.input)
-        }
+
     }
 
     private fun getTypes(): List<Pair<Int, String>> =

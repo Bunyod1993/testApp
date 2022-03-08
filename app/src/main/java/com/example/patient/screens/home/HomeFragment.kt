@@ -20,11 +20,17 @@ class HomeFragment : BaseFragment<HomeFragmentBinding, HomeViewModel>() {
 
     override fun observeData() {
         super.observeData()
+        viewModel.user.observe(viewLifecycleOwner){
+            it?.let { user ->
+                binding.subText.text=user.hospital
+            }
+        }
 
     }
 
     override fun setUpViews() {
         super.setUpViews()
+        binding.homeModel=viewModel
         binding.first.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homeToRegister)
         }
