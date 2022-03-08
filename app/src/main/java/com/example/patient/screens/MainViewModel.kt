@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(prefs: SharedPreferences): ViewModel() {
-    val authToken= MutableLiveData("")
+    val authToken= MutableLiveData("default")
     init {
         authToken.postValue(prefs.getString(Constants.AUTH_TOKEN,""))
     }

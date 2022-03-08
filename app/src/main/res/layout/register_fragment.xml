@@ -3,6 +3,11 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name="registerViewModel"
+                type="com.example.patient.screens.register.RegisterViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -162,14 +167,13 @@
                            app:layout_constraintTop_toBottomOf="@+id/labelDate"
                            >
                        <com.google.android.material.textfield.TextInputEditText
-                               android:id="@+id/dateFiled"
+                               android:id="@+id/dateField"
                                style="@style/digitRegular18"
                                android:layout_width="match_parent"
                                android:layout_height="wrap_content"
-                               android:background="@drawable/input"
                                android:paddingBottom="15dp"
                                android:maxLength="30"
-                               android:text="" />
+                               android:text="@={registerViewModel.date}" />
                    </com.google.android.material.textfield.TextInputLayout>
 
                    <TextView
@@ -182,23 +186,23 @@
                            app:layout_constraintLeft_toLeftOf="parent"
                            app:layout_constraintTop_toBottomOf="@+id/date" />
                    <com.google.android.material.textfield.TextInputLayout
-                           android:id="@+id/phone"
-                           style="@style/outlinedTextFieldDropdown"
+                           android:id="@+id/typeLayout"
+                           style="@style/outlinedTextField"
                            app:hintEnabled="false"
                            app:endIconMode="dropdown_menu"
                            android:layout_width="match_parent"
                            android:layout_marginTop="10dp"
                            android:layout_height="wrap_content"
+                           android:background="@drawable/input"
                            app:layout_constraintTop_toBottomOf="@+id/labelPhone"
                            >
-                       <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                               android:id="@+id/phoneFiled"
-                               style="@style/digitRegular18"
+                       <AutoCompleteTextView
+                               android:id="@+id/typeField"
+                               style="@style/digitRegular18Dropdown"
                                android:layout_width="match_parent"
                                android:layout_height="wrap_content"
                                android:maxLength="30"
-                               android:text=""
-                               android:inputType="none"/>
+                               android:inputType="none" />
                    </com.google.android.material.textfield.TextInputLayout>
 
                </androidx.constraintlayout.widget.ConstraintLayout>

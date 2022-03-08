@@ -232,6 +232,15 @@
         <item name="android:background">@drawable/input</item>
     </style>
 
+    <style name="digitRegular18Dropdown" >
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="fontWeight">400</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="lineHeight">18sp</item>
+    </style>
+
     <style name="digitRegularPlaceholder18">
         <item name="android:textSize">18sp</item>
         <item name="fontFamily">@font/roboto_regular</item>

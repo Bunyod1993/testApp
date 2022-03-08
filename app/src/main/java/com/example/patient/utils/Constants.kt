@@ -7,6 +7,7 @@ object Constants {
     const val DB_VERSION = 2
     const val DB_NAME = "patient"
     const val PREF_NAME = "prefs"
+    const val dateRegex: String = "^\\d{2}\\.\\d{2}\\.\\d{4}\$"
 //    const val RUS_FORMAT = "+7 ### ### ## ##"
 //    const val TJK_FORMAT = "+992 ## ### ####"
 }

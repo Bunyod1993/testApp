@@ -1,5 +1,6 @@
 package com.example.patient.utils.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
@@ -20,6 +21,8 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.onStart
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun View.visible(){
     this.visibility=View.VISIBLE
@@ -64,19 +67,19 @@ fun <T> LiveData<T>.debounce(duration: Long = 1000L, coroutineScope: CoroutineSc
         }
     }
 }
-fun AutoCompleteTextView.validate(context: Context, type: InputErrorType, view: TextView) {
+fun AutoCompleteTextView.validate(context: Context, type: InputErrorType, view: TextView?=null) {
     when (type) {
         InputErrorType.EMPTY -> {
             this.setBackgroundResource(R.drawable.input_disabled)
-            view.text = context.getText(R.string.error_empty)
+            view?.text = context.getText(R.string.error_empty)
         }
         InputErrorType.VALID -> {
             this.setBackgroundResource(R.drawable.input)
-            view.text = ""
+            view?.text = ""
         }
         InputErrorType.INVALID -> {
             this.setBackgroundResource(R.drawable.input_disabled)
-            view.text = context.getText(R.string.error_fill_correctly)
+            view?.text = context.getText(R.string.error_fill_correctly)
         }
         else -> {}
     }
@@ -108,23 +111,23 @@ fun TextInputLayout.validate(context: Context, type: InputErrorType) {
     }
 }
 
-fun TextInputEditText.validate(context: Context, type: InputErrorType, view: TextView) {
+fun TextInputEditText.validate(context: Context, type: InputErrorType, view: TextView?=null) {
     when (type) {
         InputErrorType.EMPTY -> {
             this.setBackgroundResource(R.drawable.input_disabled)
-            view.text = context.getText(R.string.error_empty)
+            view?.text = context.getText(R.string.error_empty)
         }
         InputErrorType.VALID -> {
             this.setBackgroundResource(R.drawable.input)
-            view.text = ""
+            view?.text = ""
         }
         InputErrorType.REPEATED -> {
             this.setBackgroundResource(R.drawable.input_disabled)
-            view.text = context.getText(R.string.error_fill_correctly)
+            view?.text = context.getText(R.string.error_fill_correctly)
         }
         InputErrorType.INVALID -> {
             this.setBackgroundResource(R.drawable.input_disabled)
-            view.text = context.getText(R.string.error_fill_correctly)
+            view?.text = context.getText(R.string.error_fill_correctly)
         }
         else -> {}
     }
@@ -147,4 +150,12 @@ fun TextInputEditText.textChanges(): Flow<CharSequence?> {
         addTextChangedListener(listener)
         awaitClose { removeTextChangedListener(listener) }
     }.onStart { emit(text) }
+}
+
+@SuppressLint("SimpleDateFormat")
+fun Long.toDate(): String {
+    val utc = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+    utc.timeInMillis = this
+    val format = SimpleDateFormat("dd.MM.yyyy")
+    return format.format(utc.time)
 }

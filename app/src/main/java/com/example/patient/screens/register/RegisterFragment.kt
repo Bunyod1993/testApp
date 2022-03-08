@@ -1,23 +1,96 @@
 package com.example.patient.screens.register
 
 
+import android.widget.ArrayAdapter
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.patient.R
 import com.example.patient.databinding.RegisterFragmentBinding
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
+import com.example.patient.utils.ui.debounce
+import com.example.patient.utils.ui.toDate
+import com.example.patient.utils.ui.validate
+import com.google.android.material.datepicker.MaterialDatePicker
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
-class RegisterFragment :  BaseFragment<RegisterFragmentBinding, RegisterViewModel>() {
+@FlowPreview
+class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel>() {
 
     override fun getViewBinding() = RegisterFragmentBinding.inflate(layoutInflater)
     override fun getViewModelClass() = RegisterViewModel::class.java
 
     override fun setUpViews() {
         super.setUpViews()
+        binding.registerViewModel = viewModel
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
 
         binding.next.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_toRegisterSecondFragment)
         }
+        binding.dateField.setOnFocusChangeListener { _, b ->
+            if (b) {
+                viewModel.validateDate()
+            }
+        }
+        binding.date.setEndIconOnClickListener {
+            val datePicker =
+                MaterialDatePicker.Builder
+                    .datePicker()
+                    .setTitleText(getString(R.string.date_of_pastonavka))
+                    .build()
+            datePicker.show(parentFragmentManager, "date")
+            datePicker.addOnPositiveButtonClickListener {
+                binding.dateField.setText(it.toDate())
+            }
+        }
+
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item,
+            getTypes().map { pair -> pair.second })
+
+        binding.typeField.setAdapter(adapter)
+
+        binding.typeField.setOnItemClickListener { _, _, i, _ ->
+            val itemId = getTypes()[i].first
+            viewModel.type.postValue(itemId)
+        }
+
+        binding.typeField.setOnFocusChangeListener { _, b ->
+            if (b) viewModel.validateType()
+        }
+
     }
+
+    override fun observeData() {
+        super.observeData()
+        lifecycleScope.launch {
+            viewModel.fieldError.collect {
+                when (it.first) {
+                    "date" -> {
+                        binding.dateField.validate(requireContext(), it.second)
+                    }
+                    else -> {
+                        binding.typeLayout.validate(requireContext(), it.second)
+                    }
+                }
+            }
+        }
+        viewModel.type.debounce(200L, lifecycleScope).observe(viewLifecycleOwner) {
+            binding.typeLayout.setBackgroundResource(R.drawable.input)
+        }
+        viewModel.date.debounce(200L, lifecycleScope).observe(viewLifecycleOwner) {
+            binding.date.setBackgroundResource(R.drawable.input)
+        }
+    }
+
+    private fun getTypes(): List<Pair<Int, String>> =
+        listOf(
+            Pair(1, "Дом здоровья"), Pair(1, "Центр здоровья"), Pair(1, "Сельскый центр здоровья"),
+            Pair(1, "Ройонный центр здоровья"), Pair(1, "Сельская участковая больница"),
+            Pair(1, "Сельская номерная больница"), Pair(1, "Центральная районная больница"),
+            Pair(1, "Роддом третьего уровня/перинатальный центр")
+        )
+
 }
