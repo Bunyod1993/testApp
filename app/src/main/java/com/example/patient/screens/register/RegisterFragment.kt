@@ -1,7 +1,6 @@
 package com.example.patient.screens.register
 
 
-import android.util.Log
 import android.widget.ArrayAdapter
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
@@ -81,7 +80,6 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
             }
         }
         viewModel.user.observe(viewLifecycleOwner) {
-            Log.v("tag","$it")
             it?.let { user->
                 binding.region.text=user.region
                 binding.street.text=user.subregion

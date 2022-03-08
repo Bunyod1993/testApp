@@ -1,6 +1,7 @@
 package com.example.patient.repositories.auth
 
 import androidx.annotation.Keep
+import androidx.annotation.Nullable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -30,11 +31,11 @@ data class User(
     @SerializedName("phone")
     val phone:String,
     @SerializedName("image")
-    val image:String,
+    val image:String?,
     @SerializedName("email")
-    val email:String,
+    val email:String?,
     @SerializedName("job")
-    val job:String,
+    val job:String?,
     @SerializedName("region")
     val region:String,
     @SerializedName("subregion")
