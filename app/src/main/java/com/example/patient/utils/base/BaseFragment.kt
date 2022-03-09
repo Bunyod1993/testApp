@@ -49,6 +49,7 @@ abstract class BaseFragment<VBinding : ViewBinding, VM : BaseViewModel> : Fragme
         super.onViewCreated(view, savedInstanceState)
         setUpViews()
         observeData()
+        observeView()
         val root= (activity as MainActivity).findViewById<View>(R.id.activityView)
         if (binding !is LoginFragmentBinding) {
             binding.root.applyKeyboardInset()

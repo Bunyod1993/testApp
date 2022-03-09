@@ -3,6 +3,11 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name="registerViewModel"
+                type="com.example.patient.screens.register.RegisterSecondViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -116,7 +121,7 @@
                         android:background="@drawable/input"
                         android:paddingBottom="15dp"
                         android:maxLength="30"
-                        android:text="" />
+                        android:text="@={registerViewModel.fio}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -141,14 +146,14 @@
                     app:layout_constraintTop_toBottomOf="@+id/labelDate"
                     >
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/dateFiled"
+                        android:id="@+id/dateField"
                         style="@style/digitRegular18"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/input"
                         android:paddingBottom="15dp"
                         android:maxLength="30"
-                        android:text="" />
+                        android:text="@={registerViewModel.dateOfBirth}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -171,14 +176,14 @@
                     app:layout_constraintTop_toBottomOf="@+id/labelSerial"
                     >
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/serialFiled"
+                        android:id="@+id/serialField"
                         style="@style/digitRegular18"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/input"
                         android:paddingBottom="15dp"
                         android:maxLength="30"
-                        android:text="" />
+                        android:text="@={registerViewModel.number}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -208,7 +213,7 @@
                         android:background="@drawable/input"
                         android:paddingBottom="15dp"
                         android:maxLength="30"
-                        android:text="" />
+                        android:text="@={registerViewModel.mainAddress}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -238,7 +243,7 @@
                         android:background="@drawable/input"
                         android:paddingBottom="15dp"
                         android:maxLength="30"
-                        android:text="" />
+                        android:text="@={registerViewModel.phone}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -267,7 +272,7 @@
                         android:background="@drawable/input"
                         android:paddingBottom="15dp"
                         android:maxLength="30"
-                        android:text="" />
+                        android:text="@={registerViewModel.extraPhone}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 

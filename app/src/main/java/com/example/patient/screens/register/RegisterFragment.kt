@@ -80,11 +80,14 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
             }
         }
         viewModel.user.observe(viewLifecycleOwner) {
-            it?.let { user->
-                binding.region.text=user.region
-                binding.street.text=user.subregion
-                binding.filial.text=user.hospital
+            it?.let { user ->
+                binding.region.text = user.region
+                binding.street.text = user.subregion
+                binding.filial.text = user.hospital
             }
+        }
+        viewModel.date.observe(viewLifecycleOwner) {
+            binding.dateField.setBackgroundResource(R.drawable.input)
         }
 
     }
