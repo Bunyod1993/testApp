@@ -6,7 +6,9 @@ import com.example.patient.R
 import com.example.patient.databinding.RegisterSecondFragmentBinding
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
+import com.example.patient.utils.ui.toDate
 import com.example.patient.utils.ui.validate
+import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
@@ -100,6 +102,19 @@ class RegisterSecondFragment :
         }
         binding.addressField.setOnFocusChangeListener { _, b ->
             if (b) viewModel.validateAddress()
+        }
+
+        binding.date.setEndIconOnClickListener {
+            viewModel.validateBirthDay()
+            val datePicker =
+                MaterialDatePicker.Builder
+                    .datePicker()
+                    .setTitleText(getString(R.string.date_of_pastonavka))
+                    .build()
+            datePicker.show(parentFragmentManager, "dateOfBirth")
+            datePicker.addOnPositiveButtonClickListener {
+                binding.dateField.setText(it.toDate())
+            }
         }
     }
 }
