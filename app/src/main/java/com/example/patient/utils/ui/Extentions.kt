@@ -129,6 +129,10 @@ fun TextInputEditText.validate(context: Context, type: InputErrorType, view: Tex
             this.setBackgroundResource(R.drawable.input_disabled)
             view?.text = context.getText(R.string.error_fill_correctly)
         }
+        InputErrorType.MISMATCH -> {
+            this.setBackgroundResource(R.drawable.input_disabled)
+            view?.text = context.getText(R.string.error_fill_correctly)
+        }
         else -> {}
     }
 }
