@@ -1,8 +1,11 @@
 package com.example.patient.screens.register
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
+import com.example.patient.repositories.register.Register
+import com.example.patient.repositories.register.RegisterRepository
 import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.enums.InputErrorType
 import com.example.patient.utils.ui.Validator
@@ -15,7 +18,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterThirdViewModel @Inject constructor() : BaseViewModel() {
+class RegisterThirdViewModel @Inject constructor(
+    private val registerRepository: RegisterRepository
+) : BaseViewModel() {
     val lastMenstruationDate = MutableLiveData("")
     val estimatedBirthDate = MutableLiveData("")
     val parity = MutableLiveData("")
@@ -45,7 +50,7 @@ class RegisterThirdViewModel @Inject constructor() : BaseViewModel() {
     fun validateMenstruation() {
         viewModelScope.launch {
             lastMenstruationDate.asFlow().debounce(400).distinctUntilChanged().collect {
-                val valid= Validator.validateTextFields("dateOfMenstruation", it)
+                val valid = Validator.validateTextFields("dateOfMenstruation", it)
                 addField(valid)
                 fieldError.emit(valid)
             }
@@ -55,9 +60,18 @@ class RegisterThirdViewModel @Inject constructor() : BaseViewModel() {
     fun validateParity() {
         viewModelScope.launch {
             parity.asFlow().debounce(400).distinctUntilChanged().collect {
-                val valid= Validator.validateTextFields("parity", it)
+                val valid = Validator.validateDigitField("parity", it)
                 addField(valid)
                 fieldError.emit(valid)
+            }
+        }
+    }
+
+    fun register(register: Register) {
+        viewModelScope.launch {
+            registerRepository.registerPregnant(this@RegisterThirdViewModel,register)
+                .collect {
+                Log.v("tag","$it")
             }
         }
     }

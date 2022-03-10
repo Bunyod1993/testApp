@@ -68,7 +68,9 @@ class RegisterSecondViewModel @Inject constructor(): BaseViewModel() {
     fun validateExtraPhone(){
         viewModelScope.launch {
             extraPhone.asFlow().debounce(300).distinctUntilChanged().collect {
-                val valid=validateTextFields("extraPhone",it)
+                val valid= if (it.equals(phone.value))
+                    Pair("extraPhone",InputErrorType.REPEATED)
+                    else validateTextFields("extraPhone",it)
                 addField(valid)
                 fieldError.emit(valid)
             }

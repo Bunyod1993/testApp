@@ -27,13 +27,12 @@ class AuthorizationInterceptor @Inject constructor(private val prefs:SharedPrefe
 
     private fun Request.signedRequest(): Request {
         //should be changed to dynamic
-        val accessToken = "authorizationRepository.getAccessToken()"
         val token = prefs.getString(AUTH_TOKEN,"")?:""
         return newBuilder()
             .addHeader("Content-Type", "application/json")
             .addHeader("Accept", "application/json")
-            .addHeader("Authorization", token)
-            .addHeader("Language", "En")
+            .addHeader("Authorization","Bearer $token")
+            .addHeader("Language", "Ru")
             .build()
     }
 }

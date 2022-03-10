@@ -29,6 +29,8 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
 
         binding.next.setOnClickListener {
+            mainViewModel.register.type=viewModel.type.value?:-1
+            mainViewModel.register.publishDate=viewModel.date.value?:""
             Navigation.findNavController(it).navigate(R.id.action_toRegisterSecondFragment)
         }
         binding.dateField.setOnFocusChangeListener { _, b ->

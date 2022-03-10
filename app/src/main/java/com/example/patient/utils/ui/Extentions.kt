@@ -163,3 +163,10 @@ fun Long.toDate(): String {
     val format = SimpleDateFormat("dd.MM.yyyy")
     return format.format(utc.time)
 }
+fun String.normalize(): String {
+    val date = this.split(".")
+    if (date.size == 3) {
+        return date[2] + "-" + date[1] + date[0]
+    }
+    return this
+}

@@ -1,7 +1,6 @@
 package com.example.patient.screens.register
 
 
-import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.patient.R
@@ -17,21 +16,24 @@ import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
-class RegisterThirdFragment  :  BaseFragment<RegisterThirdFragmentBinding, RegisterThirdViewModel>() {
+class RegisterThirdFragment : BaseFragment<RegisterThirdFragmentBinding, RegisterThirdViewModel>() {
 
     override fun getViewBinding() = RegisterThirdFragmentBinding.inflate(layoutInflater)
     override fun getViewModelClass() = RegisterThirdViewModel::class.java
 
     override fun setUpViews() {
         super.setUpViews()
-        binding.registerViewModel=viewModel
+        binding.registerViewModel = viewModel
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
         binding.next.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_toBeforeBirthRegisterFragment)
+            mainViewModel.register.infoMenstruation = viewModel.lastMenstruationDate.value ?: ""
+            mainViewModel.register.infoEstimatedDate = viewModel.estimatedBirthDate.value ?: ""
+            mainViewModel.register.infoParity = (viewModel.parity.value ?: "-1").toInt()
+            viewModel.register(mainViewModel.register)
+//            Navigation.findNavController(it).navigate(R.id.action_toDetailsFragment)
         }
         lifecycleScope.launch {
             viewModel.fieldError.collect {
-                Log.v("tag","$it")
                 when (it.first) {
                     "dateOfMenstruation" -> {
                         binding.firstDateField.validate(requireContext(), it.second, null)
@@ -56,9 +58,14 @@ class RegisterThirdFragment  :  BaseFragment<RegisterThirdFragmentBinding, Regis
             datePicker.show(parentFragmentManager, "dateOfMenstruation")
             datePicker.addOnPositiveButtonClickListener {
                 binding.firstDateField.setText(it.toDate())
-                val estimatedTime=it+ TimeUnit.DAYS.toMillis(280)
+                val estimatedTime = it + TimeUnit.DAYS.toMillis(280)
                 binding.secondDateField.setText(estimatedTime.toDate())
             }
+        }
+
+        binding.checkbox.setOnCheckedChangeListener { _, b ->
+            if (b) mainViewModel.register.infoBirthPermit = 1
+            else mainViewModel.register.infoBirthPermit = 0
         }
 
     }

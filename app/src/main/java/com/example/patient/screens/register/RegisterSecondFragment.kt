@@ -27,6 +27,12 @@ class RegisterSecondFragment :
         binding.registerViewModel = viewModel
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
         binding.next.setOnClickListener {
+            mainViewModel.register.fio = viewModel.fio.value ?: ""
+            mainViewModel.register.passport = viewModel.number.value ?: ""
+            mainViewModel.register.address = viewModel.mainAddress.value ?: ""
+            mainViewModel.register.phone = viewModel.phone.value ?: ""
+            mainViewModel.register.phoneEx = viewModel.extraPhone.value ?: ""
+            mainViewModel.register.birthday = viewModel.dateOfBirth.value ?: ""
             Navigation.findNavController(it).navigate(R.id.action_toRegisterThirdFragment)
         }
 

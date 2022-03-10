@@ -67,10 +67,17 @@
             android:name="com.example.patient.screens.register.RegisterThirdFragment"
             tools:layout="@layout/register_third_fragment">
         <action
+                android:id="@+id/action_toDetailsFragment"
+                app:destination="@id/detailsFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/detailsFragment"
+            android:name="com.example.patient.screens.details.DetailFragmentFragment"
+            tools:layout="@layout/detail_fragment">
+        <action
                 android:id="@+id/action_toBeforeBirthRegisterFragment"
                 app:destination="@id/beforeBirthRegisterFragment"/>
     </fragment>
-
     <fragment
             android:id="@+id/beforeBirthRegisterFragment"
             android:name="com.example.patient.screens.beforebirth.BeforeBirthRegisterFragment"
