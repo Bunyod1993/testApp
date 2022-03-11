@@ -72,7 +72,7 @@
     </fragment>
     <fragment
             android:id="@+id/detailsFragment"
-            android:name="com.example.patient.screens.details.DetailFragmentFragment"
+            android:name="com.example.patient.screens.details.DetailFragment"
             tools:layout="@layout/detail_fragment">
         <action
                 android:id="@+id/action_toBeforeBirthRegisterFragment"

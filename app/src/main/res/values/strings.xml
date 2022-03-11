@@ -99,4 +99,5 @@
     <string name="death_reason">Причина неонатальной смертности (до 28 суток после рождения)</string>
     <string name="death_mother_reason">Причина материнской смертности</string>
     <string name="mismatch">fields don\'t match</string>
+    <string name="patient">Пациент</string>
 </resources>

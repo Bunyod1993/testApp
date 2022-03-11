@@ -1,6 +1,7 @@
 package com.example.patient.screens.register
 
 
+import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.patient.R
@@ -29,8 +30,11 @@ class RegisterThirdFragment : BaseFragment<RegisterThirdFragmentBinding, Registe
             mainViewModel.register.infoMenstruation = viewModel.lastMenstruationDate.value ?: ""
             mainViewModel.register.infoEstimatedDate = viewModel.estimatedBirthDate.value ?: ""
             mainViewModel.register.infoParity = (viewModel.parity.value ?: "-1").toInt()
-            viewModel.register(mainViewModel.register)
-//            Navigation.findNavController(it).navigate(R.id.action_toDetailsFragment)
+            viewModel.register(mainViewModel.register).observe(viewLifecycleOwner) {
+                val bundle= bundleOf(Pair("register",it))
+                Navigation.findNavController(requireView()).navigate(R.id.action_toDetailsFragment,bundle)
+            }
+
         }
         lifecycleScope.launch {
             viewModel.fieldError.collect {

@@ -1,12 +1,15 @@
 package com.example.patient.screens.register
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.example.patient.repositories.register.Register
+import com.example.patient.repositories.register.RegisterModel
 import com.example.patient.repositories.register.RegisterRepository
 import com.example.patient.utils.base.BaseViewModel
+import com.example.patient.utils.base.ScreenState
 import com.example.patient.utils.enums.InputErrorType
 import com.example.patient.utils.ui.Validator
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -67,12 +70,17 @@ class RegisterThirdViewModel @Inject constructor(
         }
     }
 
-    fun register(register: Register) {
+    fun register(register: Register):LiveData<RegisterModel> {
+        val resp=MutableLiveData<RegisterModel>()
         viewModelScope.launch {
+            mutableScreenState.postValue(ScreenState.LOADING)
             registerRepository.registerPregnant(this@RegisterThirdViewModel,register)
                 .collect {
+                    mutableScreenState.postValue(ScreenState.RENDER)
+                    resp.postValue(it.payload)
                 Log.v("tag","$it")
             }
         }
+        return resp
     }
 }
