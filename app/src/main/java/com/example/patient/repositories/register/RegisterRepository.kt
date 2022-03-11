@@ -4,5 +4,5 @@ import com.example.patient.utils.base.RemoteErrorEmitter
 import kotlinx.coroutines.flow.Flow
 
 interface RegisterRepository {
-    suspend fun registerPregnant(emitter: RemoteErrorEmitter,register: Register):Flow<Any>
+    suspend fun registerPregnant(emitter: RemoteErrorEmitter,register: Register):Flow<RegisterResp>
 }

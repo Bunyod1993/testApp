@@ -18,5 +18,5 @@ interface RegisterApi {
                       @Query("info_estimated_date") infoEstimatedDate:String,
                       @Query("info_parity") infoParity:Int,
                       @Query("info_birthpermit") infoBirthPermit:Int,
-      ): Any
+      ): RegisterResp
 }

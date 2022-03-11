@@ -10,7 +10,7 @@ class RegisterRepositoryImpl @Inject constructor(private val api:RegisterApi) : 
     override suspend fun registerPregnant(
         emitter: RemoteErrorEmitter,
         register: Register
-    ): Flow<Any> {
+    ): Flow<RegisterResp> {
         return flow {
             safeApiCallNoContext(emitter){
                 val resp=api.register(
