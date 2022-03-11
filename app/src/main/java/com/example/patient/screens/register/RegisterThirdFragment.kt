@@ -12,10 +12,12 @@ import com.example.patient.utils.ui.toDate
 import com.example.patient.utils.ui.validate
 import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
+@FlowPreview
 @AndroidEntryPoint
 class RegisterThirdFragment : BaseFragment<RegisterThirdFragmentBinding, RegisterThirdViewModel>() {
 
@@ -31,8 +33,11 @@ class RegisterThirdFragment : BaseFragment<RegisterThirdFragmentBinding, Registe
             mainViewModel.register.infoEstimatedDate = viewModel.estimatedBirthDate.value ?: ""
             mainViewModel.register.infoParity = (viewModel.parity.value ?: "-1").toInt()
             viewModel.register(mainViewModel.register).observe(viewLifecycleOwner) {
-                val bundle= bundleOf(Pair("register",it))
-                Navigation.findNavController(requireView()).navigate(R.id.action_toDetailsFragment,bundle)
+                if (it != null) {
+                    val bundle = bundleOf(Pair("register", it))
+                    Navigation.findNavController(requireView())
+                        .navigate(R.id.action_toDetailsFragment, bundle)
+                }
             }
 
         }

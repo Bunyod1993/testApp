@@ -13,6 +13,7 @@ import com.example.patient.utils.base.ScreenState
 import com.example.patient.utils.enums.InputErrorType
 import com.example.patient.utils.ui.Validator
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
@@ -20,6 +21,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@FlowPreview
 @HiltViewModel
 class RegisterThirdViewModel @Inject constructor(
     private val registerRepository: RegisterRepository
@@ -70,14 +72,16 @@ class RegisterThirdViewModel @Inject constructor(
         }
     }
 
-    fun register(register: Register):LiveData<RegisterModel> {
-        val resp=MutableLiveData<RegisterModel>()
+    fun register(register: Register):LiveData<RegisterModel?> {
+        val resp=MutableLiveData<RegisterModel?>()
         viewModelScope.launch {
             mutableScreenState.postValue(ScreenState.LOADING)
             registerRepository.registerPregnant(this@RegisterThirdViewModel,register)
                 .collect {
                     mutableScreenState.postValue(ScreenState.RENDER)
+                    if (it.code==200)
                     resp.postValue(it.payload)
+                    else resp.postValue(null)
                 Log.v("tag","$it")
             }
         }
