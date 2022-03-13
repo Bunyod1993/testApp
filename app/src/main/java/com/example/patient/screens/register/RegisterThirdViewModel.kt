@@ -14,6 +14,7 @@ import com.example.patient.utils.enums.InputErrorType
 import com.example.patient.utils.ui.Validator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
@@ -72,18 +73,28 @@ class RegisterThirdViewModel @Inject constructor(
         }
     }
 
-    fun register(register: Register):LiveData<RegisterModel?> {
-        val resp=MutableLiveData<RegisterModel?>()
+    private var job: Job? = null
+    fun validateFields() {
+        job?.cancel()
+        job = viewModelScope.launch {
+            validateParity()
+            validateMenstruation()
+        }
+        job?.start()
+    }
+
+    fun register(register: Register): LiveData<RegisterModel?> {
+        val resp = MutableLiveData<RegisterModel?>()
         viewModelScope.launch {
             mutableScreenState.postValue(ScreenState.LOADING)
-            registerRepository.registerPregnant(this@RegisterThirdViewModel,register)
+            registerRepository.registerPregnant(this@RegisterThirdViewModel, register)
                 .collect {
                     mutableScreenState.postValue(ScreenState.RENDER)
-                    if (it.code==200)
-                    resp.postValue(it.payload)
+                    if (it.code == 200)
+                        resp.postValue(it.payload)
                     else resp.postValue(null)
-                Log.v("tag","$it")
-            }
+                    Log.v("tag", "$it")
+                }
         }
         return resp
     }

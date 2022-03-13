@@ -10,6 +10,7 @@ import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.enums.InputErrorType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
@@ -80,6 +81,14 @@ class RegisterViewModel @Inject constructor(
                 addField(validator)
                 fieldError.emit(validator)
             }
+        }
+    }
+    private var job: Job?=null
+    fun validateFields(){
+        job?.cancel()
+        job=viewModelScope.launch {
+            validateType()
+            validateDate()
         }
     }
 }

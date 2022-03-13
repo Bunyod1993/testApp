@@ -1,6 +1,7 @@
 package com.example.patient.screens.register
 
 
+import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
@@ -29,20 +30,29 @@ class RegisterThirdFragment : BaseFragment<RegisterThirdFragmentBinding, Registe
         binding.registerViewModel = viewModel
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
         binding.next.setOnClickListener {
-            mainViewModel.register.infoMenstruation = viewModel.lastMenstruationDate.value ?: ""
-            mainViewModel.register.infoEstimatedDate = viewModel.estimatedBirthDate.value ?: ""
-            mainViewModel.register.infoParity = (viewModel.parity.value ?: "-1").toInt()
-            viewModel.register(mainViewModel.register).observe(viewLifecycleOwner) {
-                if (it != null) {
-                    val bundle = bundleOf(Pair("register", it))
-                    Navigation.findNavController(requireView())
-                        .navigate(R.id.action_toDetailsFragment, bundle)
+            Log.v("tag","${viewModel.buttonEnabled.value!!}")
+            if (viewModel.buttonEnabled.value!!){
+                mainViewModel.register.infoMenstruation = viewModel.lastMenstruationDate.value ?: ""
+                mainViewModel.register.infoEstimatedDate = viewModel.estimatedBirthDate.value ?: ""
+                val parity = viewModel.parity.value ?: "-1"
+                mainViewModel.register.infoParity = if (parity.isEmpty()) -1 else parity.toInt()
+                viewModel.register(mainViewModel.register).observe(viewLifecycleOwner) {
+                    if (it != null) {
+                        val bundle = bundleOf(Pair("register", it))
+                        Navigation.findNavController(requireView())
+                            .navigate(R.id.action_toDetailsFragment, bundle)
+                    }
                 }
+            } else {
+                viewModel.validateFields()
             }
+
 
         }
         lifecycleScope.launch {
             viewModel.fieldError.collect {
+                Log.v("tag","$it")
+
                 when (it.first) {
                     "dateOfMenstruation" -> {
                         binding.firstDateField.validate(requireContext(), it.second, null)

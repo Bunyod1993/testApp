@@ -29,9 +29,14 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
 
         binding.next.setOnClickListener {
-            mainViewModel.register.type=viewModel.type.value?:-1
-            mainViewModel.register.publishDate=viewModel.date.value?:""
-            Navigation.findNavController(it).navigate(R.id.action_toRegisterSecondFragment)
+            if (viewModel.buttonEnabled.value!!) {
+                mainViewModel.register.type = viewModel.type.value ?: -1
+                mainViewModel.register.publishDate = viewModel.date.value ?: ""
+                Navigation.findNavController(it).navigate(R.id.action_toRegisterSecondFragment)
+            } else {
+                viewModel.validateFields()
+            }
+
         }
         binding.dateField.setOnFocusChangeListener { _, b ->
             if (b) {
@@ -50,10 +55,7 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
             }
         }
 
-        val adapter = ArrayAdapter(requireContext(), R.layout.list_item,
-            getTypes().map { pair -> pair.second })
 
-        binding.typeField.setAdapter(adapter)
 
         binding.typeField.setOnItemClickListener { _, _, i, _ ->
             val itemId = getTypes()[i].first
@@ -61,7 +63,12 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
         }
 
         binding.typeField.setOnFocusChangeListener { _, b ->
-            if (b) viewModel.validateType()
+            if (b) {
+                val adapter = ArrayAdapter(requireContext(), R.layout.list_item,
+                    getTypes().map { pair -> pair.second })
+                binding.typeField.setAdapter(adapter)
+                viewModel.validateType()
+            }
         }
         binding.typeField.setBackgroundResource(R.drawable.input)
 
@@ -93,6 +100,7 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
         }
 
     }
+
 
     private fun getTypes(): List<Pair<Int, String>> =
         listOf(
