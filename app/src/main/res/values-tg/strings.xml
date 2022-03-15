@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Patient</string>
+    <string name="app_name">бемор</string>
     <string name="welcome_txt">Добро пожаловать</string>
     <string name="email">Логин</string>
     <string name="email.placeholder">example@gmail.com</string>
@@ -100,7 +100,4 @@
     <string name="death_mother_reason">Причина материнской смертности</string>
     <string name="mismatch">fields don\'t match</string>
     <string name="patient">Пациент</string>
-    <string name="language">Язык</string>
-    <string name="russian">Русский</string>
-    <string name="tajik">Таджикиский</string>
 </resources>
