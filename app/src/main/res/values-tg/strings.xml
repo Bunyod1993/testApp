@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">бемор</string>
-    <string name="welcome_txt">Добро пожаловать</string>
+    <string name="welcome_txt">Хуш омадед</string>
     <string name="email">Логин</string>
     <string name="email.placeholder">example@gmail.com</string>
-    <string name="phone">Номер клиента</string>
+    <string name="phone">Раками телефон</string>
     <string name="phone.placeholder">+992 88 111 22 31</string>
     <string name="otp">Код</string>
+    <string name="language">Забон</string>
+    <string name="russian">Русский</string>
+    <string name="tajik">Таджикиский</string>
     <string name="otp.placeholder">Ввести Код</string>
     <string name="password">Пароль</string>
     <string name="password.placeholder">Ввести пароль</string>
@@ -44,7 +47,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="bottom.search">Поиск</string>
     <string name="bottom.search.title">Ввод данных</string>
-    <string name="bottom.help">Помощь</string>
+    <string name="bottom.help">Ердам</string>
     <string name="bottom.register">Регистрация</string>
     <string name="bottom.info">Контакты</string>
     <string name="sync.title">Синхронизация</string>

@@ -1,6 +1,7 @@
 package com.example.patient.screens
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.patient.R
 import com.example.patient.screens.welcome.WelcomeActivity
+import com.example.patient.utils.LocaleManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 
@@ -36,6 +38,9 @@ class SplashActivity : AppCompatActivity() {
 
     companion object {
         private const val AUTO_HIDE_DELAY_MILLIS = 1000L
+    }
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleManager.setLocale(it) })
     }
 
     private fun startHomeActivity(homeIntent: Intent) {

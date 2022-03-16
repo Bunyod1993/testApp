@@ -1,5 +1,7 @@
 package com.example.patient.screens
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -9,9 +11,11 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.patient.R
 import com.example.patient.databinding.ActivityMainBinding
+import com.example.patient.utils.LocaleManager
 import com.example.patient.utils.ui.invisible
 import com.example.patient.utils.ui.visible
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 
 @AndroidEntryPoint
@@ -19,11 +23,14 @@ class MainActivity : AppCompatActivity(){
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private lateinit var navController: NavController
     private val viewModel: MainViewModel by viewModels()
-
+    private var lang=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         WindowCompat.setDecorFitsSystemWindows(window, false)
+//        if (!lang){
+//            setLocale(viewModel.lang!!)
+//        }
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -56,5 +63,16 @@ class MainActivity : AppCompatActivity(){
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleManager.setLocale(it) })
+    }
+
+    fun setLocale(language: String) {
+        viewModel.persistLanguage(language)
+        LocaleManager.setNewLocale(this,language)
+        startActivity(Intent(this, SplashActivity::class.java))
+        finish()
     }
 }
