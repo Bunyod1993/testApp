@@ -14,6 +14,7 @@ class EmergencyFragment : BaseFragment<EmergencyFragmentBinding,EmergencyViewMod
     override fun setUpViews() {
         super.setUpViews()
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
+        binding.viewModel = viewModel
         binding.next.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_toReverseRegisterFragment)
         }

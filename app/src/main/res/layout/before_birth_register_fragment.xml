@@ -105,6 +105,37 @@
                         android:layout_marginTop="15dp"
                         app:layout_constraintTop_toBottomOf="@+id/date"
                         android:text="@string/second_analysis"/>
+                <TextView
+                        android:id="@+id/labelDate2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/date_first_analysis"
+                        style="@style/label13"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/checkbox1" />
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/dateSecond"
+                        style="@style/outlinedTextField"
+                        app:hintEnabled="false"
+                        app:endIconMode="custom"
+                        app:endIconDrawable="@drawable/ic_calendar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toBottomOf="@+id/labelDate"
+                        >
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/secondDateField"
+                            style="@style/digitRegular18"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/input"
+                            android:paddingBottom="15dp"
+                            android:maxLength="30"
+                            android:text="@={viewModel.secondDate}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
