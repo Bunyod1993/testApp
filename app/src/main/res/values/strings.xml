@@ -76,6 +76,7 @@
     <string name="register">Зарегистрировать</string>
     <string name="before_birth_registration">Регистрация дородовых посещений (ДРП)</string>
     <string name="first_analysis">1 - й осмотр беременной</string>
+    <string name="second_analysis">2 - й осмотр беременной</string>
     <string name="date_first_analysis">1 - й осмотр беременной</string>
     <string name="emergency_title">Экстренное направление 1 в другое учреждение</string>
     <string name="date_of_transportation">Дата и время начала транспортировки</string>

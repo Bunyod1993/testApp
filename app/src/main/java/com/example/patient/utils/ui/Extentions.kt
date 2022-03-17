@@ -24,14 +24,15 @@ import kotlinx.coroutines.flow.onStart
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun View.visible(){
-    this.visibility=View.VISIBLE
+fun View.visible() {
+    this.visibility = View.VISIBLE
 }
 
-fun View.invisible(){
-    this.visibility=View.GONE
+fun View.invisible() {
+    this.visibility = View.GONE
 }
-fun View.applyKeyboardInset(isSubtract:Boolean=false) {
+
+fun View.applyKeyboardInset(isSubtract: Boolean = false) {
     ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
         val posBottom = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
         val pos = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
@@ -39,8 +40,8 @@ fun View.applyKeyboardInset(isSubtract:Boolean=false) {
 
         view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
 //            updateMargins(bottom=posBottom)
-            if (isSubtract)  updateMargins(bottom=-(posBottom), top = 0)
-                else updatePadding(bottom=(posBottom-pos-40),top=status)
+            if (isSubtract) updateMargins(bottom = -(posBottom), top = 0)
+            else updatePadding(bottom = (posBottom - pos - 40), top = status)
 
         }
 
@@ -54,20 +55,22 @@ fun View.applyKeyboardInset(isSubtract:Boolean=false) {
 }
 
 
-fun <T> LiveData<T>.debounce(duration: Long = 1000L, coroutineScope: CoroutineScope) = MediatorLiveData<T>().also { mld ->
+fun <T> LiveData<T>.debounce(duration: Long = 1000L, coroutineScope: CoroutineScope) =
+    MediatorLiveData<T>().also { mld ->
 
-    val source = this
-    var job: Job? = null
+        val source = this
+        var job: Job? = null
 
-    mld.addSource(source) {
-        job?.cancel()
-        job = coroutineScope.launch {
-            delay(duration)
-            mld.value = source.value
+        mld.addSource(source) {
+            job?.cancel()
+            job = coroutineScope.launch {
+                delay(duration)
+                mld.value = source.value
+            }
         }
     }
-}
-fun AutoCompleteTextView.validate(context: Context, type: InputErrorType, view: TextView?=null) {
+
+fun AutoCompleteTextView.validate(context: Context, type: InputErrorType, view: TextView? = null) {
     when (type) {
         InputErrorType.EMPTY -> {
 //            this.setBackgroundResource(R.drawable.input_disabled)
@@ -83,6 +86,11 @@ fun AutoCompleteTextView.validate(context: Context, type: InputErrorType, view: 
         }
         else -> {}
     }
+}
+
+fun TextInputLayout.reset() {
+    this.error = ""
+    this.isErrorEnabled = false
 }
 
 fun TextInputLayout.validate(context: Context, type: InputErrorType) {
@@ -111,7 +119,7 @@ fun TextInputLayout.validate(context: Context, type: InputErrorType) {
     }
 }
 
-fun TextInputEditText.validate(context: Context, type: InputErrorType, view: TextView?=null) {
+fun TextInputEditText.validate(context: Context, type: InputErrorType, view: TextView? = null) {
     when (type) {
         InputErrorType.EMPTY -> {
             this.setBackgroundResource(R.drawable.input_disabled)
@@ -136,6 +144,7 @@ fun TextInputEditText.validate(context: Context, type: InputErrorType, view: Tex
         else -> {}
     }
 }
+
 @ExperimentalCoroutinesApi
 @CheckResult
 fun TextInputEditText.textChanges(): Flow<CharSequence?> {
@@ -163,6 +172,7 @@ fun Long.toDate(): String {
     val format = SimpleDateFormat("dd.MM.yyyy")
     return format.format(utc.time)
 }
+
 fun String.normalize(): String {
     val date = this.split(".")
     if (date.size == 3) {

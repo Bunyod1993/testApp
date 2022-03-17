@@ -70,6 +70,7 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
                 viewModel.validateType()
             }
         }
+
         binding.typeField.setBackgroundResource(R.drawable.input)
 
     }
