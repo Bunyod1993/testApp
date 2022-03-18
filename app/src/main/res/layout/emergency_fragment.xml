@@ -70,8 +70,9 @@
                         style="@style/label13"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
+
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/transportationLayout"
+                        android:id="@+id/typeLayout"
                         style="@style/outlinedTextFieldDropdown"
                         app:hintEnabled="false"
                         app:endIconMode="custom"
@@ -80,16 +81,15 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         app:layout_constraintTop_toBottomOf="@+id/labelFilial">
+
                     <AutoCompleteTextView
-                            android:id="@+id/transportationField"
+                            android:id="@+id/typeField"
                             style="@style/digitRegular18"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/input"
-                            android:inputType="none"
                             android:hint="@string/choose"
-                            android:text="@={viewModel.type}"
-                             />
+                            android:inputType="none"
+                            android:text="@={viewModel.type}" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <TextView
                         android:id="@+id/labelDate"
@@ -99,7 +99,7 @@
                         android:text="@string/date_of_transportation"
                         style="@style/label13"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/transportationLayout" />
+                        app:layout_constraintTop_toBottomOf="@+id/typeLayout" />
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/date"
                         style="@style/outlinedTextField"
@@ -112,7 +112,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/labelDate"
                         >
                     <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/dateFiled"
+                            android:id="@+id/dateField"
                             style="@style/digitRegular18"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

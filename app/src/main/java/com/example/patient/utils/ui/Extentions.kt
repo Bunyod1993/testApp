@@ -88,6 +88,10 @@ fun AutoCompleteTextView.validate(context: Context, type: InputErrorType, view: 
     }
 }
 
+fun AutoCompleteTextView.reset() {
+    this.setBackgroundResource(R.drawable.input)
+}
+
 fun TextInputLayout.reset() {
     this.error = ""
     this.isErrorEnabled = false
@@ -118,7 +122,9 @@ fun TextInputLayout.validate(context: Context, type: InputErrorType) {
         else -> {}
     }
 }
-
+fun TextInputEditText.reset(){
+    this.setBackgroundResource(R.drawable.input)
+}
 fun TextInputEditText.validate(context: Context, type: InputErrorType, view: TextView? = null) {
     when (type) {
         InputErrorType.EMPTY -> {

@@ -8,6 +8,8 @@ import com.example.patient.R
 import com.example.patient.databinding.RegisterFragmentBinding
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
+import com.example.patient.utils.ui.Utils
+import com.example.patient.utils.ui.Utils.getTypes
 import com.example.patient.utils.ui.toDate
 import com.example.patient.utils.ui.validate
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -101,14 +103,5 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
         }
 
     }
-
-
-    private fun getTypes(): List<Pair<Int, String>> =
-        listOf(
-            Pair(1, "Дом здоровья"), Pair(1, "Центр здоровья"), Pair(1, "Сельскый центр здоровья"),
-            Pair(1, "Ройонный центр здоровья"), Pair(1, "Сельская участковая больница"),
-            Pair(1, "Сельская номерная больница"), Pair(1, "Центральная районная больница"),
-            Pair(1, "Роддом третьего уровня/перинатальный центр")
-        )
 
 }
