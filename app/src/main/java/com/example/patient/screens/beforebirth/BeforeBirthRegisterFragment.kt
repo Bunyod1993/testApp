@@ -33,7 +33,12 @@ class BeforeBirthRegisterFragment :
         }
 
         binding.next.setOnClickListener {
+            if (viewModel.buttonEnabled.value!!)
             Navigation.findNavController(it).navigate(R.id.action_toEmergencyFragment)
+            else {
+                viewModel.validateDate()
+                viewModel.validateSecondDate()
+            }
         }
 
         binding.date.setOnFocusChangeListener { _, b ->

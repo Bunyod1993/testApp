@@ -1,7 +1,6 @@
 package com.example.patient.screens.beforebirth
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.example.patient.utils.Constants
@@ -9,7 +8,6 @@ import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.enums.InputErrorType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
@@ -49,6 +47,7 @@ class BeforeBirthRegisterViewModel @Inject constructor() : BaseViewModel() {
         val current = numberOfValidFields.value!! + 1
         numberOfValidFields.postValue(current)
     }
+
     fun removeField() {
         val current = numberOfValidFields.value!! - 1
         numberOfValidFields.postValue(current)
@@ -68,6 +67,7 @@ class BeforeBirthRegisterViewModel @Inject constructor() : BaseViewModel() {
             }
         }
     }
+
     fun validateSecondDate() {
         viewModelScope.launch {
             date.asFlow().debounce(400).distinctUntilChanged().collect {
