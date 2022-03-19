@@ -104,7 +104,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/labelDate"
                         >
                     <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/dateFiled"
+                            android:id="@+id/dateField"
                             style="@style/digitRegular18"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
