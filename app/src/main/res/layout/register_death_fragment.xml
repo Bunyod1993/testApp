@@ -67,65 +67,73 @@
                         app:layout_constraintTop_toTopOf="parent"
                         android:text="@string/checkbox7"
                         style="@style/label13"/>
-                <TextView
-                        android:id="@+id/labelDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="@string/death_filial"
-                        style="@style/label13"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/checkbox1" />
-                <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/deathRegionLayout"
-                        style="@style/outlinedTextField"
-                        app:hintEnabled="false"
-                        app:endIconMode="clear_text"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/firstDeathReasonWrapper"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintTop_toBottomOf="@+id/labelDate"
-                        >
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/deathRegionFiled"
-                            style="@style/digitRegular18"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toBottomOf="@+id/checkbox1">
+                    <TextView
+                            android:id="@+id/labelDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/death_filial"
+                            style="@style/label13"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/deathRegionLayout"
+                            style="@style/outlinedTextField"
+                            app:hintEnabled="false"
+                            app:endIconMode="clear_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/input"
-                            android:paddingBottom="15dp"
-                            android:maxLength="30"
-                            android:text="" />
-                </com.google.android.material.textfield.TextInputLayout>
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintTop_toBottomOf="@+id/labelDate"
+                            >
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/deathRegionField"
+                                style="@style/digitRegular18"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/input"
+                                android:paddingBottom="15dp"
+                                android:maxLength="30"
+                                android:text="@={viewModel.deathRegionOne}" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                        android:id="@+id/labelReason"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="@string/death_mother_reason"
-                        style="@style/label13"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/deathRegionLayout" />
+                    <TextView
+                            android:id="@+id/labelReason"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/death_mother_reason"
+                            style="@style/label13"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/deathRegionLayout" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/deathReasonLayout"
-                        style="@style/outlinedTextField"
-                        app:hintEnabled="false"
-                        app:endIconMode="clear_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintTop_toBottomOf="@+id/labelReason">
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/deathReason"
-                            style="@style/digitRegular18"
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/deathReasonLayout"
+                            style="@style/outlinedTextField"
+                            app:hintEnabled="false"
+                            app:endIconMode="clear_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/input"
-                            android:paddingBottom="15dp"
-                            android:maxLength="30"
-                            android:text="" />
-                </com.google.android.material.textfield.TextInputLayout>
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintTop_toBottomOf="@+id/labelReason">
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/deathReason"
+                                style="@style/digitRegular18"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/input"
+                                android:paddingBottom="15dp"
+                                android:maxLength="30"
+                                android:text="@={viewModel.deathReasonOne}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <CheckBox
                         android:id="@+id/checkbox2"
@@ -133,98 +141,107 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="-8dp"
-                        app:layout_constraintTop_toBottomOf="@+id/deathReasonLayout"
+                        app:layout_constraintTop_toBottomOf="@+id/firstDeathReasonWrapper"
                         android:text="@string/checkbox8"
                         style="@style/label13"/>
-                <TextView
-                        android:id="@+id/labelDeathHours"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="@string/haours_after_death"
-                        style="@style/label13"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/checkbox2" />
-                <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/deathHoursLayout"
-                        style="@style/outlinedTextField"
-                        app:hintEnabled="false"
-                        app:endIconMode="clear_text"
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/secondDeathReasonWrapper"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintTop_toBottomOf="@+id/labelDeathHours"
-                        >
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/deathHours"
-                            style="@style/digitRegular18"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toBottomOf="@+id/checkbox2">
+                    <TextView
+                            android:id="@+id/labelDeathHours"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/haours_after_death"
+                            style="@style/label13"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/deathHoursLayout"
+                            style="@style/outlinedTextField"
+                            app:hintEnabled="false"
+                            app:endIconMode="clear_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/input"
-                            android:paddingBottom="15dp"
-                            android:maxLength="30"
-                            android:text="" />
-                </com.google.android.material.textfield.TextInputLayout>
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintTop_toBottomOf="@+id/labelDeathHours"
+                            >
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/deathHours"
+                                style="@style/digitRegular18"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/input"
+                                android:paddingBottom="15dp"
+                                android:maxLength="30"
+                                android:text="@={viewModel.deathHours}" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                        android:id="@+id/labelDeathRegion2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="@string/death_filial"
-                        style="@style/label13"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/deathHoursLayout" />
+                    <TextView
+                            android:id="@+id/labelDeathRegion2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/death_filial"
+                            style="@style/label13"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/deathHoursLayout" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/deathRegionLayout2"
-                        style="@style/outlinedTextField"
-                        app:hintEnabled="false"
-                        app:endIconMode="clear_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintTop_toBottomOf="@+id/labelDeathRegion2">
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/deathRegion2"
-                            style="@style/digitRegular18"
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/deathRegionLayout2"
+                            style="@style/outlinedTextField"
+                            app:hintEnabled="false"
+                            app:endIconMode="clear_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/input"
-                            android:paddingBottom="15dp"
-                            android:maxLength="30"
-                            android:text="" />
-                </com.google.android.material.textfield.TextInputLayout>
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintTop_toBottomOf="@+id/labelDeathRegion2">
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/deathRegion2"
+                                style="@style/digitRegular18"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/input"
+                                android:paddingBottom="15dp"
+                                android:maxLength="30"
+                                android:text="@={viewModel.deathRegionTwo}" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                        android:id="@+id/labelDeathReason2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="@string/death_reason"
-                        style="@style/label13"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/deathRegionLayout2" />
+                    <TextView
+                            android:id="@+id/labelDeathReason2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/death_reason"
+                            style="@style/label13"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/deathRegionLayout2" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/deathReasonLayout2"
-                        style="@style/outlinedTextField"
-                        app:hintEnabled="false"
-                        app:endIconMode="clear_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintTop_toBottomOf="@+id/labelDeathReason2">
-                    <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/deathReason2"
-                            style="@style/digitRegular18"
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/deathReasonLayout2"
+                            style="@style/outlinedTextField"
+                            app:hintEnabled="false"
+                            app:endIconMode="clear_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/input"
-                            android:paddingBottom="15dp"
-                            android:maxLength="30"
-                            android:text="" />
-                </com.google.android.material.textfield.TextInputLayout>
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintTop_toBottomOf="@+id/labelDeathReason2">
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/deathReason2"
+                                style="@style/digitRegular18"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/input"
+                                android:paddingBottom="15dp"
+                                android:maxLength="30"
+                                android:text="@={viewModel.deathReasonTwo}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
