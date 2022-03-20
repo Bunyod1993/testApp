@@ -1,12 +1,18 @@
 package com.example.patient.repositories.register
 
 import androidx.annotation.Keep
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.example.patient.utils.ui.normalize
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "patient")
 @Keep
 data class Register(
+    @SerializedName("id")
+    @PrimaryKey
+    var id: Int,
     @SerializedName("fio")
     var fio:String,
     @SerializedName("publish_date")
@@ -32,7 +38,7 @@ data class Register(
     @SerializedName("info_birthpermit")
     var infoBirthPermit:Int
 ){
-    constructor():this("","",-1,"","",
+    constructor():this(-1,"","",-1,"","",
         "","","","","",
         -1,-1)
     fun toJson():String{

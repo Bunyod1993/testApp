@@ -15,4 +15,5 @@ import javax.inject.Singleton
 @Singleton
 abstract class PatientDatabase : RoomDatabase() {
     abstract fun profileDao():ProfileDao
+    abstract fun patientDao():PatientDao
 }
