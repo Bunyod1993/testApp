@@ -2,6 +2,8 @@ package com.example.patient.dependencyInjection
 
 import com.example.patient.repositories.auth.AuthRepository
 import com.example.patient.repositories.auth.AuthRepositoryImpl
+import com.example.patient.repositories.helper.HelperRepository
+import com.example.patient.repositories.helper.HelperRepositoryImpl
 import com.example.patient.repositories.register.RegisterRepository
 import com.example.patient.repositories.register.RegisterRepositoryImpl
 import dagger.Binds
@@ -16,4 +18,7 @@ interface RepositoryModule {
 
     @Binds
     fun provideRegisterRepository(repoImpl: RegisterRepositoryImpl): RegisterRepository
+
+    @Binds
+    fun provideHelperRepository(repoImpl: HelperRepositoryImpl): HelperRepository
 }

@@ -11,7 +11,7 @@ import com.google.gson.annotations.SerializedName
 @Keep
 data class Register(
     @SerializedName("id")
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var id: Int,
     @SerializedName("fio")
     var fio:String,
@@ -170,15 +170,15 @@ data class RegisterModel(
     val updated_at: String,
     val updated_by: Int,
     val visit_date_1: String,
-    val visit_date_2: Any,
-    val visit_date_3: Any,
-    val visit_date_4: Any,
-    val visit_date_5: Any,
-    val visit_date_6: Any,
-    val visit_date_7: Any,
-    val visit_date_8: Any,
-    val visit_gestational: Any,
-    val visit_preparations: Int,
+    val visit_date_2: String,
+    val visit_date_3: String,
+    val visit_date_4: String,
+    val visit_date_5: String,
+    val visit_date_6: String,
+    val visit_date_7: String,
+    val visit_date_8: String,
+    val visit_gestational: String,
+    val visit_preparations: Any,
     val visit_qnt: Int
 )
 

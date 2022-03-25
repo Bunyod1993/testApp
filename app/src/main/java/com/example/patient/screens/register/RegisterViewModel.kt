@@ -1,12 +1,17 @@
 package com.example.patient.screens.register
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.example.patient.repositories.auth.AuthRepository
 import com.example.patient.repositories.auth.User
+import com.example.patient.repositories.helper.HelperRepository
+import com.example.patient.repositories.helper.Hospital
+import com.example.patient.repositories.helper.HospitalType
 import com.example.patient.utils.Constants.dateRegex
 import com.example.patient.utils.base.BaseViewModel
+import com.example.patient.utils.base.ScreenState
 import com.example.patient.utils.enums.InputErrorType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
@@ -21,7 +26,8 @@ import javax.inject.Inject
 @FlowPreview
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val helperRepository: HelperRepository
 ) : BaseViewModel() {
     val date = MutableLiveData("")
     val type = MutableLiveData(-1)
@@ -90,5 +96,17 @@ class RegisterViewModel @Inject constructor(
             validateType()
             validateDate()
         }
+    }
+
+    fun getHospitals(): LiveData<List<HospitalType>> {
+        val resp = MutableLiveData<List<HospitalType>>()
+        viewModelScope.launch {
+            mutableScreenState.postValue(ScreenState.LOADING)
+            helperRepository.getHospitalTypes(this@RegisterViewModel).collect {
+                mutableScreenState.postValue(ScreenState.RENDER)
+                resp.postValue(it)
+            }
+        }
+        return resp
     }
 }

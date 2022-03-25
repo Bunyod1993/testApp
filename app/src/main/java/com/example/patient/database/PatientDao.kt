@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PatientDao {
     @Query("SELECT * FROM patient")
-    fun getProfile(): Flow<User>
+    fun getPatient(): Flow<Register>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPatient(vararg entity: Register)

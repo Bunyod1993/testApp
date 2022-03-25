@@ -33,5 +33,9 @@ object PersistenceModule {
     @Provides
     fun providePatientDao(dataBase: PatientDatabase) = dataBase.patientDao()
 
+    @Singleton
+    @Provides
+    fun provideHelperDao(dataBase: PatientDatabase) = dataBase.helperDao()
+
 
 }

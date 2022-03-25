@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EmergencyViewModel @Inject constructor() : BaseViewModel() {
-    val type = MutableLiveData("-1")
+    val type = MutableLiveData("")
     val date = MutableLiveData("")
     val diagnose = MutableLiveData("")
     val process = MutableLiveData("")

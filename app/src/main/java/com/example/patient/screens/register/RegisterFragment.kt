@@ -64,14 +64,18 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
             viewModel.type.postValue(itemId)
         }
 
-        binding.typeField.setOnFocusChangeListener { _, b ->
-            if (b) {
-                val adapter = ArrayAdapter(requireContext(), R.layout.list_item,
-                    getTypes().map { pair -> pair.second })
-                binding.typeField.setAdapter(adapter)
-                viewModel.validateType()
+        viewModel.getHospitals().observe(viewLifecycleOwner) {
+            binding.typeField.setOnFocusChangeListener { _, b ->
+                if (b) {
+                    val adapter = ArrayAdapter(requireContext(), R.layout.list_item,
+                        it.map { pair -> pair.name })
+                    binding.typeField.setAdapter(adapter)
+                    viewModel.validateType()
+                }
             }
         }
+
+
 
         binding.typeField.setBackgroundResource(R.drawable.input)
 

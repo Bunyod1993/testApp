@@ -1,6 +1,5 @@
 package com.example.patient.repositories.register
 
-import com.example.patient.repositories.auth.AuthModel
 import retrofit2.http.POST
 import retrofit2.http.Query
 

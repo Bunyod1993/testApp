@@ -9,6 +9,7 @@ import com.example.patient.networking.interceptors.AuthorizationInterceptor
 import com.example.patient.networking.interceptors.LiveNetworkMonitor
 import com.example.patient.networking.UrlProvider
 import com.example.patient.repositories.auth.AuthApi
+import com.example.patient.repositories.helper.HelperApi
 import com.example.patient.repositories.register.RegisterApi
 import com.example.patient.utils.Constants.PREF_NAME
 import dagger.Module
@@ -96,6 +97,11 @@ object AppModule {
     @AppScope
     @Provides
     fun registerApi(retrofit: Retrofit): RegisterApi = retrofit.create(RegisterApi::class.java)
+
+
+    @AppScope
+    @Provides
+    fun helperApi(retrofit: Retrofit): HelperApi = retrofit.create(HelperApi::class.java)
 
     @Provides
     fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences =
