@@ -20,8 +20,17 @@ data class Hospital(
     @SerializedName("id")
     @PrimaryKey
     val id:Int,
-    @SerializedName("name")
+    @SerializedName("sub_region_id")
+    @PrimaryKey
+    val subRegionId:Int,
+    @SerializedName("title")
     val name:String,
+    @SerializedName("phone")
+    val phone:String,
+    @SerializedName("address")
+    val address:String,
+    @SerializedName("type")
+    val type:String,
 )
 @Keep
 data class HelperHospitalTypeResp(
