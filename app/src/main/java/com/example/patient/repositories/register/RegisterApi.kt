@@ -41,7 +41,7 @@ interface RegisterApi {
     suspend fun updateForm2(
         @Path("code" ) code:String,
         @Part("ch_visit_date_1") ch_visit_date_1:Boolean,
-        @Part("visit_date_1") publishDate:String,
+        @Part("visit_date_1") visit_date_1:String,
         @Part("ch_visit_date_2") ch_visit_date_2:Boolean,
         @Part("visit_date_2") visit_date_2:String
     ):RegisterResp
@@ -69,7 +69,7 @@ interface RegisterApi {
         @Path("code" ) code:String,
         @Part("rtn_accept_referral") rtn_accept_referral:Int,
         @Part("ch_rtn_accept_newborn_1") ch_rtn_accept_newborn_1:Int,
-        @Part("rtn_accept_newborn_1") ch_visit_date_2:String
+        @Part("rtn_accept_newborn_1") rtn_accept_newborn_1:String
     ):RegisterResp
 
     @Multipart
