@@ -33,4 +33,27 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
             }
         }
     }
+
+    override suspend fun updateForm2(emitter: RemoteErrorEmitter, form2: Form2): Flow<Any> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateForm3(emitter: RemoteErrorEmitter, form2: Form2): Flow<Any> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateForm4(emitter: RemoteErrorEmitter, form2: Form2): Flow<Any> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateForm5(emitter: RemoteErrorEmitter, form2: Form2): Flow<Any> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateForm1(
+        emitter: RemoteErrorEmitter,
+        register: Register
+    ): Flow<RegisterResp> {
+        TODO("Not yet implemented")
+    }
 }
