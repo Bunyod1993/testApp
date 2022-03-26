@@ -1,9 +1,13 @@
 package com.example.patient.screens.emergency
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
+import com.example.patient.repositories.helper.HelperRepository
+import com.example.patient.repositories.helper.Hospital
 import com.example.patient.utils.base.BaseViewModel
+import com.example.patient.utils.base.ScreenState
 import com.example.patient.utils.enums.InputErrorType
 import com.example.patient.utils.ui.Validator.validateTextFields
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +19,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class EmergencyViewModel @Inject constructor() : BaseViewModel() {
+class EmergencyViewModel @Inject constructor(
+    private val helperRepository: HelperRepository
+) : BaseViewModel() {
     val type = MutableLiveData("")
     val date = MutableLiveData("")
     val diagnose = MutableLiveData("")
@@ -102,5 +108,16 @@ class EmergencyViewModel @Inject constructor() : BaseViewModel() {
         validateDiagnose()
         validateProcess()
         validateNurse()
+    }
+    fun getHospitals(): LiveData<List<Hospital>> {
+        val resp = MutableLiveData<List<Hospital>>()
+        viewModelScope.launch {
+            mutableScreenState.postValue(ScreenState.LOADING)
+            helperRepository.getHospitals(this@EmergencyViewModel).collect {
+                mutableScreenState.postValue(ScreenState.RENDER)
+                resp.postValue(it)
+            }
+        }
+        return resp
     }
 }

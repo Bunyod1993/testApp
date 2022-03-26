@@ -57,13 +57,6 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
             }
         }
 
-
-
-        binding.typeField.setOnItemClickListener { _, _, i, _ ->
-            val itemId = getTypes()[i].first
-            viewModel.type.postValue(itemId)
-        }
-
         viewModel.getHospitals().observe(viewLifecycleOwner) {
             binding.typeField.setOnFocusChangeListener { _, b ->
                 if (b) {
@@ -72,6 +65,10 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
                     binding.typeField.setAdapter(adapter)
                     viewModel.validateType()
                 }
+            }
+            binding.typeField.setOnItemClickListener { _, _, i, _ ->
+                val itemId = it[i].id
+                viewModel.type.postValue(itemId)
             }
         }
 

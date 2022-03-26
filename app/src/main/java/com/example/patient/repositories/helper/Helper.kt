@@ -14,6 +14,7 @@ data class HelperHospitalResp(
     @SerializedName("payload")
     val payload: List<Hospital>
 )
+
 @Keep
 @Entity(tableName = "hospitals")
 data class Hospital(
@@ -21,7 +22,6 @@ data class Hospital(
     @PrimaryKey
     val id:Int,
     @SerializedName("sub_region_id")
-    @PrimaryKey
     val subRegionId:Int,
     @SerializedName("title")
     val name:String,
@@ -32,6 +32,7 @@ data class Hospital(
     @SerializedName("type")
     val type:String,
 )
+
 @Keep
 data class HelperHospitalTypeResp(
     @SerializedName("code")

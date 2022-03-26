@@ -27,19 +27,23 @@ class EmergencyFragment : BaseFragment<EmergencyFragmentBinding, EmergencyViewMo
                 Navigation.findNavController(it).navigate(R.id.action_toReverseRegisterFragment)
             else viewModel.validateAll()
         }
-        binding.typeField.setOnItemClickListener { _, _, i, _ ->
-            val itemId = getTypes()[i].first
-            viewModel.type.postValue(itemId.toString())
-        }
 
-        binding.typeField.setOnFocusChangeListener { _, b ->
-            if (b) {
-                val adapter = ArrayAdapter(requireContext(), R.layout.list_item,
-                    getTypes().map { pair -> pair.second })
-                binding.typeField.setAdapter(adapter)
-                viewModel.validateType()
+        viewModel.getHospitals().observe(viewLifecycleOwner) {
+            binding.typeField.setOnFocusChangeListener { _, b ->
+                if (b) {
+                    val adapter = ArrayAdapter(requireContext(), R.layout.list_item,
+                        it.map { pair -> pair.name })
+                    binding.typeField.setAdapter(adapter)
+                    viewModel.validateType()
+                }
+            }
+            binding.typeField.setOnItemClickListener { _, _, i, _ ->
+                val itemId = it[i]
+                viewModel.type.postValue(itemId.id.toString())
             }
         }
+
+
         binding.typeField.setBackgroundResource(R.drawable.input)
         binding.nurseField.setOnFocusChangeListener { _, b ->
             if (b) viewModel.validateNurse()

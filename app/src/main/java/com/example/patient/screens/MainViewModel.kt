@@ -23,6 +23,7 @@ class MainViewModel @Inject constructor(val prefs: SharedPreferences) : ViewMode
     }
 
     val register = Register()
+
     val lang = prefs.getString(LANGUAGE, "ru")
     fun persistLanguage(lang: String) {
         viewModelScope.launch(Dispatchers.Main) {

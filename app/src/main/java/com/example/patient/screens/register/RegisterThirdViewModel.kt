@@ -55,7 +55,7 @@ class RegisterThirdViewModel @Inject constructor(
 
     fun validateMenstruation() {
         viewModelScope.launch {
-            lastMenstruationDate.asFlow().debounce(400).distinctUntilChanged().collect {
+            lastMenstruationDate.asFlow().debounce(200).distinctUntilChanged().collect {
                 val valid = Validator.validateTextFields("dateOfMenstruation", it)
                 addField(valid)
                 fieldError.emit(valid)
@@ -65,7 +65,7 @@ class RegisterThirdViewModel @Inject constructor(
 
     fun validateParity() {
         viewModelScope.launch {
-            parity.asFlow().debounce(400).distinctUntilChanged().collect {
+            parity.asFlow().debounce(200).distinctUntilChanged().collect {
                 val valid = Validator.validateDigitField("parity", it)
                 addField(valid)
                 fieldError.emit(valid)
@@ -90,7 +90,7 @@ class RegisterThirdViewModel @Inject constructor(
             registerRepository.registerPregnant(this@RegisterThirdViewModel, register)
                 .collect {
                     mutableScreenState.postValue(ScreenState.RENDER)
-                    if (it.code == 200)
+                    if (it.code == 200 || it.code == 201)
                         resp.postValue(it.payload)
                     else resp.postValue(null)
                     Log.v("tag", "$it")

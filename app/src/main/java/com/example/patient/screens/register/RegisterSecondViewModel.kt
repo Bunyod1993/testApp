@@ -5,7 +5,6 @@ import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.enums.InputErrorType
-import com.example.patient.utils.ui.Validator.validateDigitField
 import com.example.patient.utils.ui.Validator.validateTextFields
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
@@ -49,7 +48,7 @@ class RegisterSecondViewModel @Inject constructor() : BaseViewModel() {
 
     fun validateFio() {
         viewModelScope.launch {
-            fio.asFlow().debounce(300).distinctUntilChanged().collect {
+            fio.asFlow().debounce(200).distinctUntilChanged().collect {
                 val valid = validateTextFields("fio", it)
                 addField(valid)
                 fieldError.emit(valid)
@@ -60,7 +59,7 @@ class RegisterSecondViewModel @Inject constructor() : BaseViewModel() {
 
     fun validatePhone() {
         viewModelScope.launch {
-            phone.asFlow().debounce(300).distinctUntilChanged().collect {
+            phone.asFlow().debounce(200).distinctUntilChanged().collect {
                 val valid = validateTextFields("phone", it)
                 addField(valid)
                 fieldError.emit(valid)
@@ -70,7 +69,7 @@ class RegisterSecondViewModel @Inject constructor() : BaseViewModel() {
 
     fun validateExtraPhone() {
         viewModelScope.launch {
-            extraPhone.asFlow().debounce(300).distinctUntilChanged().collect {
+            extraPhone.asFlow().debounce(200).distinctUntilChanged().collect {
                 val valid = if (it.equals(phone.value))
                     Pair("extraPhone", InputErrorType.REPEATED)
                 else validateTextFields("extraPhone", it)
@@ -82,7 +81,7 @@ class RegisterSecondViewModel @Inject constructor() : BaseViewModel() {
 
     fun validateNumber() {
         viewModelScope.launch {
-            number.asFlow().debounce(300).distinctUntilChanged().collect {
+            number.asFlow().debounce(200).distinctUntilChanged().collect {
                 val valid = validateTextFields("number", it)
                 addField(valid)
                 fieldError.emit(valid)
@@ -92,7 +91,7 @@ class RegisterSecondViewModel @Inject constructor() : BaseViewModel() {
 
     fun validateAddress() {
         viewModelScope.launch {
-            mainAddress.asFlow().debounce(300).distinctUntilChanged().collect {
+            mainAddress.asFlow().debounce(200).distinctUntilChanged().collect {
                 val valid = validateTextFields("address", it)
                 addField(valid)
                 fieldError.emit(valid)
@@ -102,7 +101,7 @@ class RegisterSecondViewModel @Inject constructor() : BaseViewModel() {
 
     fun validateBirthDay() {
         viewModelScope.launch {
-            dateOfBirth.asFlow().debounce(300).distinctUntilChanged().collect {
+            dateOfBirth.asFlow().debounce(200).distinctUntilChanged().collect {
                 val valid = validateTextFields("dateOfBirth", it)
                 addField(valid)
                 fieldError.emit(valid)

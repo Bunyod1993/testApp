@@ -60,12 +60,13 @@ data class RegisterResp(
     val payload:RegisterModel
 )
 
+
 @Keep
 data class RegisterModel(
-    val accept_date: Any,
-    val accept_diagnosis: Any,
-    val accept_hospital_id: Any,
-    val accept_hospital_type: Any,
+    val accept_date: String?,
+    val accept_diagnosis: String?,
+    val accept_hospital_id: Int?,
+    val accept_hospital_type: String?,
     val accept_project: Int,
     val address: String,
     val birthdate: String,
@@ -73,13 +74,13 @@ data class RegisterModel(
     val childbirth_apgar_scale_total: Any,
     val childbirth_complications_child: Any,
     val childbirth_complications_mother: Any,
-    val childbirth_date: Any,
+    val childbirth_date: String,
     val childbirth_discharged_home: Int,
     val childbirth_emergency: Int,
     val childbirth_emergency_care: Int,
-    val childbirth_gender: Any,
-    val childbirth_height: Any,
-    val childbirth_hospital_id: Any,
+    val childbirth_gender: String,
+    val childbirth_height: Int,
+    val childbirth_hospital_id: Int,
     val childbirth_hospital_type: Any,
     val childbirth_operation_ks: Int,
     val childbirth_referral: Int,

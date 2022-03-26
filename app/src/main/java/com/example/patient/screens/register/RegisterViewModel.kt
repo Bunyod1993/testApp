@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.patient.repositories.auth.AuthRepository
 import com.example.patient.repositories.auth.User
 import com.example.patient.repositories.helper.HelperRepository
-import com.example.patient.repositories.helper.Hospital
 import com.example.patient.repositories.helper.HospitalType
 import com.example.patient.utils.Constants.dateRegex
 import com.example.patient.utils.base.BaseViewModel
@@ -30,7 +29,7 @@ class RegisterViewModel @Inject constructor(
     private val helperRepository: HelperRepository
 ) : BaseViewModel() {
     val date = MutableLiveData("")
-    val type = MutableLiveData(-1)
+    val type = MutableLiveData(1)
     val user = MutableLiveData<User?>(null)
     var requiredFiledNumber = 2
     init {
