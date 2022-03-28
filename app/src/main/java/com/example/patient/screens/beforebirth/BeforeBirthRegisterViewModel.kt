@@ -29,7 +29,7 @@ class BeforeBirthRegisterViewModel @Inject constructor(
     val firstAnalysis = MutableLiveData(false)
     val secondAnalysis = MutableLiveData(false)
     val buttonEnabled = MutableLiveData(false)
-    private val numberOfValidFields = MutableLiveData(1)
+    private val numberOfValidFields = MutableLiveData(0)
     val fieldError = MutableSharedFlow<Pair<String, InputErrorType>>()
     private val listOfFields = mutableListOf<Pair<String, InputErrorType>>()
 
@@ -89,6 +89,7 @@ class BeforeBirthRegisterViewModel @Inject constructor(
     }
 
     fun updateRequest(code: String) {
+        Log.v("tag","$code")
         viewModelScope.launch {
             val form = Form2()
             form.ch_visit_date_1 = firstAnalysis.value!!

@@ -23,33 +23,43 @@ class BeforeBirthRegisterFragment :
     override fun setUpViews() {
         super.setUpViews()
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
-        binding.toolbar.title=""
+        binding.toolbar.title = ""
         binding.viewModel = viewModel
-
+        viewModel.firstAnalysis.postValue(true)
+        viewModel.addField()
         lifecycleScope.launch {
             viewModel.fieldError.collect {
-                binding.date.validate(requireContext(), it.second)
+                when (it.first) {
+                    "date" -> {
+                        binding.dateField.validate(requireContext(), it.second)
+                    }
+                    "2date" -> {
+                        binding.secondDateField.validate(requireContext(), it.second)
+                    }
+                    else -> {}
+                }
+
             }
         }
 
-        val code=arguments?.getString("code","")?:""
+        val code = arguments?.getString("code", "") ?: ""
 
         binding.next.setOnClickListener {
-            if (viewModel.buttonEnabled.value!!){
+            if (viewModel.buttonEnabled.value!!) {
                 viewModel.updateRequest(code)
                 Navigation.findNavController(it).navigateUp()
-            }
-            else {
+            } else {
                 viewModel.validateDate()
                 viewModel.validateSecondDate()
             }
         }
 
-        binding.date.setOnFocusChangeListener { _, b ->
+        binding.dateField.setOnFocusChangeListener { _, b ->
             if (b) {
                 viewModel.validateDate()
             }
         }
+
 
         binding.secondDateField.setOnFocusChangeListener { _, b ->
             if (b) {
@@ -66,6 +76,7 @@ class BeforeBirthRegisterFragment :
             datePicker.show(parentFragmentManager, "date")
             datePicker.addOnPositiveButtonClickListener {
                 binding.dateField.setText(it.toDate())
+                viewModel.validateDate()
             }
         }
         binding.dateSecond.setEndIconOnClickListener {
@@ -77,6 +88,7 @@ class BeforeBirthRegisterFragment :
             datePicker.show(parentFragmentManager, "2date")
             datePicker.addOnPositiveButtonClickListener {
                 binding.secondDateField.setText(it.toDate())
+                viewModel.validateSecondDate()
             }
         }
 

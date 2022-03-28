@@ -10,6 +10,7 @@ import com.example.patient.repositories.register.Form2
 import com.example.patient.repositories.register.RegisterModel
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
+import com.example.patient.utils.ui.deNormalize
 
 class DetailFragment : BaseFragment<DetailFragmentBinding, DetailViewModel>() {
     override fun getViewModelClass() = DetailViewModel::class.java
@@ -19,42 +20,48 @@ class DetailFragment : BaseFragment<DetailFragmentBinding, DetailViewModel>() {
     override fun setUpViews() {
         super.setUpViews()
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
-        binding.toolbar.title=""
+        binding.toolbar.title = ""
         val arg = arguments?.get("reg")
         arg?.let {
             val register = arg as RegisterModel
-            binding.addressText.text=register.address
-            binding.passportText.text=register.passport
-            binding.fioText.text=register.fio
-            binding.phoneText.text=register.phone
-            binding.dateText.text=register.birthdate
-            binding.idLabel.text=register.id.toString()
-            binding.registeredPLace.setOnClickListener {
-                navigate(R.id.action_toRegisterFragment)
-            }
-            val bundle= bundleOf()
-            bundle.getString("code",register.code)
-            binding.emergencyPLace.setOnClickListener {
-                navigate(R.id.action_toEmergencyFragment)
-            }
-            binding.reversePLace.setOnClickListener {
-                navigate(R.id.action_toReverseRegisterFragment)
-            }
-            binding.registeredBeforeBirthPLace.setOnClickListener {
-                val form=Form2()
+            binding.addressText.text = register.address
+            binding.passportText.text = register.passport
+            binding.fioText.text = register.fio
+            binding.phoneText.text = register.phone
+            binding.dateText.text = register.birthdate.deNormalize()
+            binding.idText.text = register.code
+            val bundle = bundleOf()
+            bundle.putString("code", register.code)
 
-                bundle.putParcelable("form",form)
-                navigate(R.id.action_toBeforeBirthRegisterFragment)
+            binding.registeredPLace.setOnClickListener {
+                navigate(R.id.action_toRegisterFragment, bundle)
             }
+
+            binding.emergencyPLace.setOnClickListener {
+                navigate(R.id.action_toEmergencyFragment, bundle)
+            }
+
+            binding.reversePLace.setOnClickListener {
+                navigate(R.id.action_toReverseRegisterFragment, bundle)
+            }
+
+            binding.registeredBeforeBirthPLace.setOnClickListener {
+                val form = Form2()
+                bundle.putParcelable("form", form)
+                navigate(R.id.action_toBeforeBirthRegisterFragment, bundle)
+            }
+
             binding.deathPLace.setOnClickListener {
-                navigate(R.id.action_toRegisterDeathFragment)
+                navigate(R.id.action_toRegisterDeathFragment, bundle)
             }
+
         }
 
 
     }
-    private fun navigate(id:Int,bundle: Bundle= bundleOf()) {
-        Navigation.findNavController(requireView()).navigate(id,bundle)
+
+    private fun navigate(id: Int, bundle: Bundle = bundleOf()) {
+        Navigation.findNavController(requireView()).navigate(id, bundle)
     }
 
 }

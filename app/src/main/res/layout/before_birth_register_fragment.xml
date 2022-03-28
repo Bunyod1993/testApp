@@ -125,7 +125,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:visibility="gone"
-                        app:layout_constraintTop_toBottomOf="@+id/labelDate"
+                        app:layout_constraintTop_toBottomOf="@+id/labelDate2"
                         >
                     <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/secondDateField"
