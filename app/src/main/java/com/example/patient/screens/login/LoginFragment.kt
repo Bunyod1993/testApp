@@ -29,12 +29,6 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
     override fun observeData() {
         super.observeData()
 
-//        viewModel.token.observe(viewLifecycleOwner) {
-//            if (!it.isNullOrEmpty())
-//                Navigation.findNavController(requireView()).navigate(R.id.action_loginToHome)
-//        }
-
-
         viewModel.fieldError.observe(viewLifecycleOwner) {
             if (it.first == InputType.EMAIL) {
 
