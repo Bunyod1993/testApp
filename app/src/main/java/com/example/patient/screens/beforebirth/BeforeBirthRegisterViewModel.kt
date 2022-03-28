@@ -92,9 +92,9 @@ class BeforeBirthRegisterViewModel @Inject constructor(
         Log.v("tag","$code")
         viewModelScope.launch {
             val form = Form2()
-            form.ch_visit_date_1 = firstAnalysis.value!!
+            form.ch_visit_date_1 = if (firstAnalysis.value!!) 1 else 0
             form.visit_date_1 = date.value!!
-            form.ch_visit_date_2 = secondAnalysis.value!!
+            form.ch_visit_date_2 = if (secondAnalysis.value!!) 1 else 0
             form.visit_date_2 = secondDate.value!!
             mutableScreenState.postValue(ScreenState.LOADING)
             registerRepository.updateForm2(this@BeforeBirthRegisterViewModel, form, code)

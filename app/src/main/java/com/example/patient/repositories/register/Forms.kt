@@ -7,12 +7,12 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Keep
 data class Form2(
-    var ch_visit_date_1: Boolean,
+    var ch_visit_date_1: Int,
     var visit_date_1: String,
-    var ch_visit_date_2: Boolean,
+    var ch_visit_date_2: Int,
     var visit_date_2: String
 ) : Parcelable {
-    constructor() : this(false, "", false, "")
+    constructor() : this(0, "", 0, "")
 }
 
 @Parcelize
