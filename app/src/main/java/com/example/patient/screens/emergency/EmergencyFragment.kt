@@ -21,6 +21,7 @@ class EmergencyFragment : BaseFragment<EmergencyFragmentBinding, EmergencyViewMo
     override fun setUpViews() {
         super.setUpViews()
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
+        binding.toolbar.title=""
         binding.viewModel = viewModel
         binding.next.setOnClickListener {
             if (viewModel.buttonEnabled.value!!)

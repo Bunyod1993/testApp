@@ -23,6 +23,7 @@ class RegisterDeathFragment : BaseFragment<RegisterDeathFragmentBinding, Registe
     override fun setUpViews() {
         super.setUpViews()
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
+        binding.toolbar.title=""
         binding.viewModel = viewModel
         binding.checkbox1.setOnCheckedChangeListener { _, b ->
             if (b) {

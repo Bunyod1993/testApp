@@ -21,6 +21,7 @@ class ReverseRegisterFragment :
     override fun setUpViews() {
         super.setUpViews()
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
+        binding.toolbar.title=""
         binding.viewModel = viewModel
         binding.dateField.setOnFocusChangeListener { _, b ->
             if (b) {

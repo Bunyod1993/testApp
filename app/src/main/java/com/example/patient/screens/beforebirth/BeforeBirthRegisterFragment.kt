@@ -23,7 +23,7 @@ class BeforeBirthRegisterFragment :
     override fun setUpViews() {
         super.setUpViews()
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
-
+        binding.toolbar.title=""
         binding.viewModel = viewModel
 
         lifecycleScope.launch {
@@ -32,9 +32,13 @@ class BeforeBirthRegisterFragment :
             }
         }
 
+        val code=arguments?.getString("code","")?:""
+
         binding.next.setOnClickListener {
-            if (viewModel.buttonEnabled.value!!)
-            Navigation.findNavController(it).navigate(R.id.action_toEmergencyFragment)
+            if (viewModel.buttonEnabled.value!!){
+                viewModel.updateRequest(code)
+                Navigation.findNavController(it).navigateUp()
+            }
             else {
                 viewModel.validateDate()
                 viewModel.validateSecondDate()
@@ -85,9 +89,11 @@ class BeforeBirthRegisterFragment :
             viewModel.secondAnalysis.postValue(b)
             if (b) {
                 viewModel.addField()
+                binding.labelDate2.visible()
                 binding.dateSecond.visible()
             } else {
                 viewModel.removeField()
+                binding.labelDate2.invisible()
                 binding.dateSecond.invisible()
             }
         }

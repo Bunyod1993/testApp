@@ -1,10 +1,14 @@
 package com.example.patient.screens.beforebirth
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
+import com.example.patient.repositories.register.Form2
+import com.example.patient.repositories.register.RegisterRepository
 import com.example.patient.utils.Constants
 import com.example.patient.utils.base.BaseViewModel
+import com.example.patient.utils.base.ScreenState
 import com.example.patient.utils.enums.InputErrorType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
@@ -17,7 +21,9 @@ import javax.inject.Inject
 
 @FlowPreview
 @HiltViewModel
-class BeforeBirthRegisterViewModel @Inject constructor() : BaseViewModel() {
+class BeforeBirthRegisterViewModel @Inject constructor(
+    private val registerRepository: RegisterRepository
+) : BaseViewModel() {
     val date = MutableLiveData("")
     val secondDate = MutableLiveData("")
     val firstAnalysis = MutableLiveData(false)
@@ -79,6 +85,22 @@ class BeforeBirthRegisterViewModel @Inject constructor() : BaseViewModel() {
                 addField(err)
                 fieldError.emit(err)
             }
+        }
+    }
+
+    fun updateRequest(code: String) {
+        viewModelScope.launch {
+            val form = Form2()
+            form.ch_visit_date_1 = firstAnalysis.value!!
+            form.visit_date_1 = date.value!!
+            form.ch_visit_date_2 = secondAnalysis.value!!
+            form.visit_date_2 = secondDate.value!!
+            mutableScreenState.postValue(ScreenState.LOADING)
+            registerRepository.updateForm2(this@BeforeBirthRegisterViewModel, form, code)
+                .collect {
+                    mutableScreenState.postValue(ScreenState.RENDER)
+                    Log.v("tag","$it")
+                }
         }
     }
 }
