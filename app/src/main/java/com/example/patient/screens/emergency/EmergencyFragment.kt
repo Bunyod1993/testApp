@@ -21,12 +21,15 @@ class EmergencyFragment : BaseFragment<EmergencyFragmentBinding, EmergencyViewMo
     override fun setUpViews() {
         super.setUpViews()
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
-        binding.toolbar.title=""
+        binding.toolbar.title = ""
         binding.viewModel = viewModel
+        val code = arguments?.getString("code", "") ?: ""
+
         binding.next.setOnClickListener {
-            if (viewModel.buttonEnabled.value!!)
-                Navigation.findNavController(it).navigate(R.id.action_toReverseRegisterFragment)
-            else viewModel.validateAll()
+            if (viewModel.buttonEnabled.value!!) {
+                viewModel.updateRequest(code)
+                Navigation.findNavController(it).navigateUp()
+            } else viewModel.validateAll()
         }
 
         viewModel.getHospitals().observe(viewLifecycleOwner) {
@@ -57,6 +60,18 @@ class EmergencyFragment : BaseFragment<EmergencyFragmentBinding, EmergencyViewMo
         }
         binding.dateField.setOnFocusChangeListener { _, b ->
             if (b) viewModel.validateDate()
+        }
+        binding.checkbox1.setOnCheckedChangeListener { _, b ->
+            viewModel.beenInformed.postValue(b)
+        }
+        binding.checkbox2.setOnCheckedChangeListener { _, b ->
+            viewModel.hasBeenDirected.postValue(b)
+        }
+        binding.checkbox3.setOnCheckedChangeListener { _, b ->
+            viewModel.hasHelperNurse.postValue(b)
+        }
+        binding.checkbox4.setOnCheckedChangeListener { _, b ->
+            viewModel.transportSupported.postValue(b)
         }
     }
 

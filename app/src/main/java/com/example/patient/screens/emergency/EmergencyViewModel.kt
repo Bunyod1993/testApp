@@ -1,15 +1,21 @@
 package com.example.patient.screens.emergency
 
+import android.util.Log
+import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.example.patient.repositories.helper.HelperRepository
 import com.example.patient.repositories.helper.Hospital
+import com.example.patient.repositories.register.Form2
+import com.example.patient.repositories.register.Form3
+import com.example.patient.repositories.register.RegisterRepository
 import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.base.ScreenState
 import com.example.patient.utils.enums.InputErrorType
 import com.example.patient.utils.ui.Validator.validateTextFields
+import com.example.patient.utils.ui.normalize
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collect
@@ -20,7 +26,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EmergencyViewModel @Inject constructor(
-    private val helperRepository: HelperRepository
+    private val helperRepository: HelperRepository,
+    private val registerRepository: RegisterRepository
 ) : BaseViewModel() {
     val type = MutableLiveData("")
     val date = MutableLiveData("")
@@ -119,5 +126,27 @@ class EmergencyViewModel @Inject constructor(
             }
         }
         return resp
+    }
+    fun updateRequest(code: String) {
+        Log.v("tag","$code")
+        viewModelScope.launch {
+            val form = Form3()
+            form.egcy_init_date=date.value!!.normalize()
+            form.egcy_init_diagnosis=diagnose.value!!
+            form.egcy_init_accompanying_gender=nurse.value!!
+            type.value?.let {
+                form.egcy_init_hospital_type=if (it.isDigitsOnly()) it.toInt() else 0
+            }
+            form.egcy_init_accompanying=if (hasHelperNurse.value!!) 1 else 0
+            form.egcy_init_relatives=if (beenInformed.value!!) 1 else 0
+            form.egcy_init_transport_provided=if (transportSupported.value!!) 1 else 0
+            form.egcy_init_projects=if (hasBeenDirected.value!!) 1 else 0
+            mutableScreenState.postValue(ScreenState.LOADING)
+            registerRepository.updateForm3(this@EmergencyViewModel, form, code)
+                .collect {
+                    mutableScreenState.postValue(ScreenState.RENDER)
+                    Log.v("tag","$it")
+                }
+        }
     }
 }
