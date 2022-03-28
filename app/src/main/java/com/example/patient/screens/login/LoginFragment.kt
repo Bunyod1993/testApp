@@ -34,6 +34,7 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
 //                Navigation.findNavController(requireView()).navigate(R.id.action_loginToHome)
 //        }
 
+
         viewModel.fieldError.observe(viewLifecycleOwner) {
             if (it.first == InputType.EMAIL) {
 
@@ -85,7 +86,6 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
         }
 
         viewModel.isLogin.observe(viewLifecycleOwner) {
-//            binding.login.isEnabled = it
             binding.login.isEnabled = true
         }
 
@@ -94,6 +94,7 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
     override fun setUpViews() {
         super.setUpViews()
         binding.loginModel = viewModel
+        viewModel.logout()
         binding.login.setOnClickListener {
             viewModel.login().observe(viewLifecycleOwner) {
                 if (it is Resource.Success)
@@ -103,14 +104,5 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
                 }
             }
         }
-//        binding.emailField.setOnFocusChangeListener { _, hasFocus ->
-//            if (!hasFocus)
-//                viewModel.validateLoginFields(InputType.EMAIL)
-//        }
-//        binding.passwordField.setOnFocusChangeListener { _, hasFocus ->
-//            if (!hasFocus)
-//                viewModel.validateLoginFields(InputType.PASSWORD)
-//        }
     }
-
 }

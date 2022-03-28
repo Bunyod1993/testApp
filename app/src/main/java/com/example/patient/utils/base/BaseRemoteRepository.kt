@@ -94,8 +94,7 @@ abstract class BaseRemoteRepository {
                 is HttpException -> {
                     val body = e.response()?.errorBody()
                     if(e.code() == 401) {
-//                        emitter.onError(ErrorType.SESSION_EXPIRED)
-                        emitter.onError(getErrorMessage(body))
+                        emitter.onError(ErrorType.SESSION_EXPIRED)
                     }
                     else {
                         emitter.onError(getErrorMessage(body))

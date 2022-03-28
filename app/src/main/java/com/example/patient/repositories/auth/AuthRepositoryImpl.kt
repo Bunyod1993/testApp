@@ -46,4 +46,8 @@ class AuthRepositoryImpl @Inject constructor(
 
     override fun getProfile(): Flow<User?> = profileDao.getProfile()
 
+    override fun logout() {
+        prefs.edit().putString(Constants.AUTH_TOKEN, "").apply()
+    }
+
 }

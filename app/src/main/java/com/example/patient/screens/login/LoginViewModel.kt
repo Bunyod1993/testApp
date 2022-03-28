@@ -86,4 +86,7 @@ class LoginViewModel @Inject constructor(private val authRepository: AuthReposit
         if (index > -1) setOfFields.removeAt(index)
         setOfFields.add(pair)
     }
+    fun logout(){
+        authRepository.logout()
+    }
 }
