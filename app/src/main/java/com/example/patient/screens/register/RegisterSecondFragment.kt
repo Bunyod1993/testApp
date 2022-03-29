@@ -1,9 +1,11 @@
 package com.example.patient.screens.register
 
+import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.patient.R
 import com.example.patient.databinding.RegisterSecondFragmentBinding
+import com.example.patient.repositories.register.Register
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
 import com.example.patient.utils.ui.toDate
@@ -26,6 +28,19 @@ class RegisterSecondFragment :
         super.setUpViews()
         binding.registerViewModel = viewModel
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
+        val code = arguments?.getString("code", "") ?: ""
+        val bundle = bundleOf()
+        bundle.putString("code", code)
+        if (code.isNotEmpty()) {
+            val arg = arguments?.get("reg")
+            arg?.let {
+                val register = it as Register
+                viewModel.initValues(register)
+                viewModel.validateFields()
+                bundle.putParcelable("reg", register)
+            }
+        }
+
         binding.next.setOnClickListener {
             if (viewModel.buttonEnabled.value!!) {
                 mainViewModel.register.fio = viewModel.fio.value ?: ""
@@ -34,9 +49,9 @@ class RegisterSecondFragment :
                 mainViewModel.register.phone = viewModel.phone.value ?: ""
                 mainViewModel.register.phoneEx = viewModel.extraPhone.value ?: ""
                 mainViewModel.register.birthday = viewModel.dateOfBirth.value ?: ""
-                Navigation.findNavController(it).navigate(R.id.action_toRegisterThirdFragment)
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_toRegisterThirdFragment, bundle)
             } else viewModel.validateFields()
-
         }
 
     }

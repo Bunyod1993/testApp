@@ -2,14 +2,14 @@ package com.example.patient.screens.register
 
 
 import android.widget.ArrayAdapter
+import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.patient.R
 import com.example.patient.databinding.RegisterFragmentBinding
+import com.example.patient.repositories.register.Register
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
-import com.example.patient.utils.ui.Utils
-import com.example.patient.utils.ui.Utils.getTypes
 import com.example.patient.utils.ui.toDate
 import com.example.patient.utils.ui.validate
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -29,12 +29,23 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
         super.setUpViews()
         binding.registerViewModel = viewModel
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
-
+        val code = arguments?.getString("code", "") ?: ""
+        val bundle = bundleOf()
+        bundle.putString("code", code)
+        if (code.isNotEmpty()) {
+            val arg = arguments?.get("reg")
+            arg?.let {
+                val register = it as Register
+                bundle.putParcelable("reg",register)
+                viewModel.initValues(register)
+            }
+        }
         binding.next.setOnClickListener {
             if (viewModel.buttonEnabled.value!!) {
                 mainViewModel.register.type = viewModel.type.value ?: -1
                 mainViewModel.register.publishDate = viewModel.date.value ?: ""
-                Navigation.findNavController(it).navigate(R.id.action_toRegisterSecondFragment)
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_toRegisterSecondFragment, bundle)
             } else {
                 viewModel.validateFields()
             }
@@ -58,17 +69,30 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
             }
         }
 
-        viewModel.getHospitals().observe(viewLifecycleOwner) {
+        viewModel.getHospitals().observe(viewLifecycleOwner) { list ->
+            //for saving
+            if (code.isNotEmpty()) {
+                val arg = arguments?.get("reg")
+                arg?.let {
+                    val register = it as Register
+                    val text = list.findLast { p -> p.id == register.type }
+                    viewModel.type.postValue(text?.id)
+                    binding.typeField.setText(text?.title)
+                    viewModel.validateFields()
+                }
+            }
+
+            // default behavior
             binding.typeField.setOnFocusChangeListener { _, b ->
                 if (b) {
                     val adapter = ArrayAdapter(requireContext(), R.layout.list_item,
-                        it.map { pair -> pair.title })
+                        list.map { pair -> pair.title })
                     binding.typeField.setAdapter(adapter)
                     viewModel.validateType()
                 }
             }
             binding.typeField.setOnItemClickListener { _, _, i, _ ->
-                val itemId = it[i].id
+                val itemId = list[i].id
                 viewModel.type.postValue(itemId)
             }
         }

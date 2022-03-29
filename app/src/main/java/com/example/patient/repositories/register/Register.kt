@@ -11,6 +11,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "patient")
 @Keep
+@Parcelize
 data class Register(
     @SerializedName("id")
     @PrimaryKey(autoGenerate = true)
@@ -39,7 +40,7 @@ data class Register(
     var infoParity:Int,
     @SerializedName("info_birthpermit")
     var infoBirthPermit:Int
-){
+):Parcelable{
     constructor():this(-1,"","",-1,"","",
         "","","","","",
         -1,-1)

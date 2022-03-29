@@ -8,6 +8,7 @@ import com.example.patient.repositories.auth.AuthRepository
 import com.example.patient.repositories.auth.User
 import com.example.patient.repositories.helper.HelperRepository
 import com.example.patient.repositories.helper.HospitalType
+import com.example.patient.repositories.register.Register
 import com.example.patient.utils.Constants.dateRegex
 import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.base.ScreenState
@@ -29,7 +30,7 @@ class RegisterViewModel @Inject constructor(
     private val helperRepository: HelperRepository
 ) : BaseViewModel() {
     val date = MutableLiveData("")
-    val type = MutableLiveData(1)
+    val type = MutableLiveData(-1)
     val user = MutableLiveData<User?>(null)
     var requiredFiledNumber = 2
     init {
@@ -107,5 +108,9 @@ class RegisterViewModel @Inject constructor(
             }
         }
         return resp
+    }
+
+    fun initValues(register: Register) {
+        this.date.value=register.publishDate
     }
 }

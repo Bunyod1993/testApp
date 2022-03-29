@@ -1,13 +1,10 @@
 package com.example.patient.screens.register
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
-import com.example.patient.repositories.register.Register
-import com.example.patient.repositories.register.RegisterModel
-import com.example.patient.repositories.register.RegisterRepository
+import com.example.patient.repositories.register.*
 import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.base.ScreenState
 import com.example.patient.utils.enums.InputErrorType
@@ -93,7 +90,26 @@ class RegisterThirdViewModel @Inject constructor(
                     if (it.code == 200 || it.code == 201)
                         resp.postValue(it.payload)
                     else resp.postValue(null)
-                    Log.v("tag", "$it")
+                }
+        }
+        return resp
+    }
+
+    fun initValues(register: Register) {
+        lastMenstruationDate.value = register.infoMenstruation
+        estimatedBirthDate.value = register.infoEstimatedDate
+        parity.value = register.infoParity.toString()
+    }
+    fun update(register: Register,code:String): LiveData<RegisterModel?> {
+        val resp = MutableLiveData<RegisterModel?>()
+        viewModelScope.launch {
+            mutableScreenState.postValue(ScreenState.LOADING)
+            registerRepository.updateFormFirst(this@RegisterThirdViewModel, register,code)
+                .collect {
+                    mutableScreenState.postValue(ScreenState.RENDER)
+                    if (it.code == 200 || it.code == 201)
+                        resp.postValue(it.payload)
+                    else resp.postValue(null)
                 }
         }
         return resp

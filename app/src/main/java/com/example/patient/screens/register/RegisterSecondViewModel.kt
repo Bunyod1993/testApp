@@ -3,6 +3,7 @@ package com.example.patient.screens.register
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
+import com.example.patient.repositories.register.Register
 import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.enums.InputErrorType
 import com.example.patient.utils.ui.Validator.validateTextFields
@@ -26,7 +27,7 @@ class RegisterSecondViewModel @Inject constructor() : BaseViewModel() {
     val dateOfBirth = MutableLiveData("")
     val number = MutableLiveData("")
     val fieldError = MutableSharedFlow<Pair<String, InputErrorType>>()
-    val numberOfFieldsRequired = MutableLiveData(6)
+    private val numberOfFieldsRequired = MutableLiveData(6)
     private val listOfFields = mutableListOf<Pair<String, InputErrorType>>()
 
     val buttonEnabled = MutableLiveData(false)
@@ -120,6 +121,15 @@ class RegisterSecondViewModel @Inject constructor() : BaseViewModel() {
             validateNumber()
             validatePhone()
         }
+    }
+
+    fun initValues(register: Register) {
+        phone.value=register.phone
+        extraPhone.value=register.phoneEx
+        fio.value=register.fio
+        number.value=register.passport
+        dateOfBirth.value=register.birthday
+        mainAddress.value=register.address
     }
 
 }

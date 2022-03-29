@@ -8,6 +8,7 @@ import com.example.patient.R
 import com.example.patient.databinding.DetailFragmentBinding
 import com.example.patient.repositories.register.Detail
 import com.example.patient.repositories.register.Form2
+import com.example.patient.repositories.register.Register
 import com.example.patient.repositories.register.RegisterModel
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
@@ -23,21 +24,21 @@ class DetailFragment : BaseFragment<DetailFragmentBinding, DetailViewModel>() {
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
         binding.toolbar.title = ""
         val arg = arguments?.get("reg")
+        val code = arguments?.getString("code","")?:""
         arg?.let {
-            val register = arg as Detail
+            val register = arg as Register
             binding.addressText.text = register.address
             binding.passportText.text = register.passport
             binding.fioText.text = register.fio
             binding.phoneText.text = register.phone
             binding.dateText.text = register.birthday.deNormalize()
-            binding.idText.text = register.code
+            binding.idText.text = code
             val bundle = bundleOf()
-            bundle.putString("code", register.code)
-
+            bundle.putString("code", code)
+            bundle.putParcelable("reg",register)
             binding.registeredPLace.setOnClickListener {
                 navigate(R.id.action_toRegisterFragment, bundle)
             }
-
             binding.emergencyPLace.setOnClickListener {
                 navigate(R.id.action_toEmergencyFragment, bundle)
             }

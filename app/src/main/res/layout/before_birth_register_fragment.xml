@@ -110,7 +110,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:text="@string/date_first_analysis"
+                        android:text="@string/second_analysis"
                         style="@style/label13"
                         android:visibility="gone"
                         app:layout_constraintLeft_toLeftOf="parent"

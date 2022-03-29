@@ -50,7 +50,7 @@ class BeforeBirthRegisterFragment :
                 viewModel.updateRequest(code).observe(viewLifecycleOwner) {
                     if (it.code == 200 || it.code == 201)
                         Navigation.findNavController(requireView()).navigateUp()
-                    else Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
             } else {
                 viewModel.validateDate()
