@@ -123,6 +123,7 @@ class RegisterSecondFragment :
             datePicker.show(parentFragmentManager, "dateOfBirth")
             datePicker.addOnPositiveButtonClickListener {
                 binding.dateField.setText(it.toDate())
+                viewModel.validateBirthDay()
             }
         }
     }

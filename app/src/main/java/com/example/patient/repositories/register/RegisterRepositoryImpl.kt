@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 
 class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
-     RegisterRepository, BaseRemoteRepository() {
+    RegisterRepository, BaseRemoteRepository() {
     override suspend fun registerPregnant(
         emitter: RemoteErrorEmitter,
         register: Register
@@ -36,19 +36,22 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
         }
     }
 
-    override suspend fun updateForm2(
+    override suspend fun updateFormSecond(
         emitter: RemoteErrorEmitter,
         form2: Form2,
         code: String
     ): Flow<RegisterResp> {
         return flow {
             safeApiCallNoContext(emitter) {
-                val resp = api.updateForm2(
-                    code = code,
-                    ch_visit_date_1 = form2.ch_visit_date_1,
-                    visit_date_1 = form2.visit_date_1.normalize(),
-                    ch_visit_date_2 = form2.ch_visit_date_2,
-                    visit_date_2 = form2.visit_date_2.normalize()
+                Log.v("tag", "retrofit start $form2 $code")
+                form2.visit_date_1=form2.visit_date_1.normalize()
+                form2.visit_date_2=form2.visit_date_2.normalize()
+                val resp = api.updateFormSecond(
+                    code,
+                    form2.ch_visit_date_1,
+                    form2.visit_date_1,
+                    form2.ch_visit_date_2,
+                    form2.visit_date_2
                 )
                 Log.v("tag", "$resp")
                 emit(resp)
@@ -56,14 +59,14 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
         }
     }
 
-    override suspend fun updateForm3(
+    override suspend fun updateFormThird(
         emitter: RemoteErrorEmitter,
         form2: Form3,
         code: String
     ): Flow<RegisterResp> {
         return flow {
             safeApiCallNoContext(emitter) {
-                val resp = api.updateForm3(
+                val resp = api.updateFormThird(
                     code = code,
                     egcy_init_hospital_type = form2.egcy_init_hospital_type,
                     egcy_init_date = form2.egcy_init_date.normalize(),
@@ -82,14 +85,14 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
         }
     }
 
-    override suspend fun updateForm4(
+    override suspend fun updateFormFourth(
         emitter: RemoteErrorEmitter,
         form2: Form4,
         code: String
     ): Flow<RegisterResp> {
         return flow {
             safeApiCallNoContext(emitter) {
-                val resp = api.updateForm4(
+                val resp = api.updateFormFourth(
                     code = code,
                     rtn_accept_referral = form2.rtn_accept_referral,
                     ch_rtn_accept_newborn_1 = form2.ch_rtn_accept_newborn_1,
@@ -101,14 +104,14 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
         }
     }
 
-    override suspend fun updateForm5(
+    override suspend fun updateFormFifth(
         emitter: RemoteErrorEmitter,
         form2: Form5,
         code: String
     ): Flow<RegisterResp> {
         return flow {
             safeApiCallNoContext(emitter) {
-                val resp = api.updateForm5(
+                val resp = api.updateFormFifth(
                     code = code,
                     mlty_maternal = form2.mlty_maternal,
                     mlty_maternal_hospital_id = form2.mlty_maternal_hospital_id,
@@ -124,13 +127,13 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
         }
     }
 
-    override suspend fun updateForm1(
+    override suspend fun updateFormFirst(
         emitter: RemoteErrorEmitter,
         register: Register, code: String
     ): Flow<RegisterResp> {
         return flow {
             safeApiCallNoContext(emitter) {
-                val resp = api.updateForm1(
+                val resp = api.updateFormFirst(
                     code = code,
                     fio = register.fio,
                     publishDate = register.publishDate,

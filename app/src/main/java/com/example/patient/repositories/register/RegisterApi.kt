@@ -3,6 +3,7 @@ package com.example.patient.repositories.register
 import retrofit2.http.*
 
 interface RegisterApi {
+
     @POST("/api/createPregnant")
     suspend fun register(@Query("fio") fio:String,
                       @Query("publish_date") publishDate:String,
@@ -20,7 +21,7 @@ interface RegisterApi {
 
     @Multipart
     @POST("/api/saveFormPregnantByCode/{code}/form/1")
-    suspend fun updateForm1(
+    suspend fun updateFormFirst(
         @Path("code" ) code:String,
         @Part("fio") fio:String,
         @Part("publish_date") publishDate:String,
@@ -38,7 +39,7 @@ interface RegisterApi {
 
     @Multipart
     @POST("/api/saveFormPregnantByCode/{code}/form/2")
-    suspend fun updateForm2(
+    suspend fun updateFormSecond(
         @Path("code" ) code:String,
         @Part("ch_visit_date_1") ch_visit_date_1:Int,
         @Part("visit_date_1") visit_date_1:String,
@@ -48,7 +49,7 @@ interface RegisterApi {
 
     @Multipart
     @POST("/api/saveFormPregnantByCode/{code}/form/3")
-    suspend fun updateForm3(
+    suspend fun updateFormThird(
         @Path("code" ) code:String,
         @Part("egcy_init_hospital_type") egcy_init_hospital_type:Int,
         @Part("egcy_init_date") egcy_init_date:String,
@@ -65,7 +66,7 @@ interface RegisterApi {
 
     @Multipart
     @POST("/api/saveFormPregnantByCode/{code}/form/4")
-    suspend fun updateForm4(
+    suspend fun updateFormFourth(
         @Path("code" ) code:String,
         @Part("rtn_accept_referral") rtn_accept_referral:Int,
         @Part("ch_rtn_accept_newborn_1") ch_rtn_accept_newborn_1:Int,
@@ -74,7 +75,7 @@ interface RegisterApi {
 
     @Multipart
     @POST("/api/saveFormPregnantByCode/{code}/form/5")
-    suspend fun updateForm5(
+    suspend fun updateFormFifth(
         @Path("code" ) code:String,
         @Part("mlty_maternal") mlty_maternal:Int,
         @Part("mlty_maternal_hospital_id") mlty_maternal_hospital_id:Int,

@@ -1,6 +1,7 @@
 package com.example.patient.screens.beforebirth
 
 
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.patient.R
@@ -46,8 +47,11 @@ class BeforeBirthRegisterFragment :
 
         binding.next.setOnClickListener {
             if (viewModel.buttonEnabled.value!!) {
-                viewModel.updateRequest(code)
-                Navigation.findNavController(it).navigateUp()
+                viewModel.updateRequest(code).observe(viewLifecycleOwner) {
+                    if (it.code == 200 || it.code == 201)
+                        Navigation.findNavController(requireView()).navigateUp()
+                    else Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
             } else {
                 viewModel.validateDate()
                 viewModel.validateSecondDate()

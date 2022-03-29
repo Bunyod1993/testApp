@@ -6,6 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import com.example.patient.R
 import com.example.patient.databinding.DetailFragmentBinding
+import com.example.patient.repositories.register.Detail
 import com.example.patient.repositories.register.Form2
 import com.example.patient.repositories.register.RegisterModel
 import com.example.patient.screens.MainActivity
@@ -23,12 +24,12 @@ class DetailFragment : BaseFragment<DetailFragmentBinding, DetailViewModel>() {
         binding.toolbar.title = ""
         val arg = arguments?.get("reg")
         arg?.let {
-            val register = arg as RegisterModel
+            val register = arg as Detail
             binding.addressText.text = register.address
             binding.passportText.text = register.passport
             binding.fioText.text = register.fio
             binding.phoneText.text = register.phone
-            binding.dateText.text = register.birthdate.deNormalize()
+            binding.dateText.text = register.birthday.deNormalize()
             binding.idText.text = register.code
             val bundle = bundleOf()
             bundle.putString("code", register.code)

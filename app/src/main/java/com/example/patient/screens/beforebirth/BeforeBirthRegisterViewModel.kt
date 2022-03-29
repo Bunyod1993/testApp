@@ -1,23 +1,24 @@
 package com.example.patient.screens.beforebirth
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.example.patient.repositories.register.Form2
+import com.example.patient.repositories.register.RegisterModel
 import com.example.patient.repositories.register.RegisterRepository
+import com.example.patient.repositories.register.RegisterResp
 import com.example.patient.utils.Constants
 import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.base.ScreenState
 import com.example.patient.utils.enums.InputErrorType
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @FlowPreview
@@ -89,8 +90,8 @@ class BeforeBirthRegisterViewModel @Inject constructor(
         }
     }
 
-    fun updateRequest(code: String) {
-        Log.v("tag","$code")
+    fun updateRequest(code: String): LiveData<RegisterResp> {
+        val resp = MutableLiveData<RegisterResp>()
         viewModelScope.launch {
             val form = Form2()
             form.ch_visit_date_1 = if (firstAnalysis.value!!) 1 else 0
@@ -98,11 +99,12 @@ class BeforeBirthRegisterViewModel @Inject constructor(
             form.ch_visit_date_2 = if (secondAnalysis.value!!) 1 else 0
             form.visit_date_2 = secondDate.value!!
             mutableScreenState.postValue(ScreenState.LOADING)
-            registerRepository.updateForm2(this@BeforeBirthRegisterViewModel, form, code)
+            registerRepository.updateFormSecond(this@BeforeBirthRegisterViewModel, form, code)
                 .collect {
                     mutableScreenState.postValue(ScreenState.RENDER)
-                    Log.v("tag","$it")
+                    resp.postValue(it)
                 }
         }
+        return  resp
     }
 }

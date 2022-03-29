@@ -142,7 +142,7 @@ class EmergencyViewModel @Inject constructor(
             form.egcy_init_transport_provided=if (transportSupported.value!!) 1 else 0
             form.egcy_init_projects=if (hasBeenDirected.value!!) 1 else 0
             mutableScreenState.postValue(ScreenState.LOADING)
-            registerRepository.updateForm3(this@EmergencyViewModel, form, code)
+            registerRepository.updateFormThird(this@EmergencyViewModel, form, code)
                 .collect {
                     mutableScreenState.postValue(ScreenState.RENDER)
                     Log.v("tag","$it")

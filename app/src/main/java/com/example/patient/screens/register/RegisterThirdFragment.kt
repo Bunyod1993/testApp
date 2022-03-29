@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.patient.R
 import com.example.patient.databinding.RegisterThirdFragmentBinding
+import com.example.patient.repositories.register.Detail
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
 import com.example.patient.utils.ui.toDate
@@ -39,7 +40,10 @@ class RegisterThirdFragment : BaseFragment<RegisterThirdFragmentBinding, Registe
                 viewModel.register(mainViewModel.register).observe(viewLifecycleOwner) { model->
                     model?.let {
                         val bundle = bundleOf()
-                        bundle.putParcelable("reg",it)
+                        val details= Detail(it.code,it.address,it.fio?:"",it.birthdate,
+                        it.phone?:"",it.passport?:"")
+                        bundle.putParcelable("reg",details)
+
                         Navigation.findNavController(requireView())
                             .navigate(R.id.action_toDetailsFragment, bundle)
                     }
@@ -80,6 +84,7 @@ class RegisterThirdFragment : BaseFragment<RegisterThirdFragmentBinding, Registe
                 binding.firstDateField.setText(it.toDate())
                 val estimatedTime = it + TimeUnit.DAYS.toMillis(280)
                 binding.secondDateField.setText(estimatedTime.toDate())
+                viewModel.validateMenstruation()
             }
         }
 

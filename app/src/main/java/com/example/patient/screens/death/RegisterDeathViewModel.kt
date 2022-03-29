@@ -113,7 +113,7 @@ class RegisterDeathViewModel @Inject constructor(
 //            form.ch_visit_date_2 = if (secondAnalysis.value!!) 1 else 0
 //            form.visit_date_2 = secondDate.value!!
             mutableScreenState.postValue(ScreenState.LOADING)
-            registerRepository.updateForm5(this@RegisterDeathViewModel, form, code)
+            registerRepository.updateFormFifth(this@RegisterDeathViewModel, form, code)
                 .collect {
                     mutableScreenState.postValue(ScreenState.RENDER)
                     Log.v("tag","$it")

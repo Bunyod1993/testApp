@@ -1,5 +1,6 @@
 package com.example.patient.utils.base
 
+import android.util.Log
 import com.example.patient.networking.interceptors.InternetUnavailableException
 
 import okhttp3.ResponseBody
@@ -89,6 +90,7 @@ abstract class BaseRemoteRepository {
             val myObject = callFunction.invoke()
             myObject
         }catch (e: Exception){
+            Log.v("tag","exception $e")
             e.printStackTrace()
             when(e){
                 is HttpException -> {

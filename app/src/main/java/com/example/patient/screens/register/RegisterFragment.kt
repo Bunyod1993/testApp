@@ -54,6 +54,7 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
             datePicker.show(parentFragmentManager, "date")
             datePicker.addOnPositiveButtonClickListener {
                 binding.dateField.setText(it.toDate())
+                viewModel.validateDate()
             }
         }
 
