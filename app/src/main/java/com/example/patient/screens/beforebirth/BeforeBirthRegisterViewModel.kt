@@ -11,6 +11,7 @@ import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.base.ScreenState
 import com.example.patient.utils.enums.InputErrorType
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collect

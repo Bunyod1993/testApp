@@ -40,9 +40,9 @@ interface RegisterApi {
     @POST("/api/saveFormPregnantByCode/{code}/form/2")
     suspend fun updateForm2(
         @Path("code" ) code:String,
-        @Part("ch_visit_date_1") ch_visit_date_1:Boolean,
+        @Part("ch_visit_date_1") ch_visit_date_1:Int,
         @Part("visit_date_1") visit_date_1:String,
-        @Part("ch_visit_date_2") ch_visit_date_2:Boolean,
+        @Part("ch_visit_date_2") ch_visit_date_2:Int,
         @Part("visit_date_2") visit_date_2:String
     ):RegisterResp
 

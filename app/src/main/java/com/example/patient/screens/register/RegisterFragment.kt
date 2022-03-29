@@ -61,7 +61,7 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
             binding.typeField.setOnFocusChangeListener { _, b ->
                 if (b) {
                     val adapter = ArrayAdapter(requireContext(), R.layout.list_item,
-                        it.map { pair -> pair.name })
+                        it.map { pair -> pair.title })
                     binding.typeField.setAdapter(adapter)
                     viewModel.validateType()
                 }

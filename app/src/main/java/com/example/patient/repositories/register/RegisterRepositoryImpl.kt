@@ -8,8 +8,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
+
 class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
-    BaseRemoteRepository(), RegisterRepository {
+     RegisterRepository, BaseRemoteRepository() {
     override suspend fun registerPregnant(
         emitter: RemoteErrorEmitter,
         register: Register
@@ -39,17 +40,18 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
         emitter: RemoteErrorEmitter,
         form2: Form2,
         code: String
-    ): Flow<Any> {
+    ): Flow<RegisterResp> {
         return flow {
             safeApiCallNoContext(emitter) {
                 val resp = api.updateForm2(
-                    code=code,
+                    code = code,
                     ch_visit_date_1 = form2.ch_visit_date_1,
                     visit_date_1 = form2.visit_date_1.normalize(),
                     ch_visit_date_2 = form2.ch_visit_date_2,
                     visit_date_2 = form2.visit_date_2.normalize()
                 )
-                Log.v("tag","$resp")
+                Log.v("tag", "$resp")
+                emit(resp)
             }
         }
     }
@@ -58,11 +60,11 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
         emitter: RemoteErrorEmitter,
         form2: Form3,
         code: String
-    ): Flow<Any> {
+    ): Flow<RegisterResp> {
         return flow {
             safeApiCallNoContext(emitter) {
                 val resp = api.updateForm3(
-                    code=code,
+                    code = code,
                     egcy_init_hospital_type = form2.egcy_init_hospital_type,
                     egcy_init_date = form2.egcy_init_date.normalize(),
                     egcy_init_diagnosis = form2.egcy_init_diagnosis,
@@ -74,7 +76,8 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
                     egcy_init_transport_provided = form2.egcy_init_transport_provided,
                     egcy_init_accompanying_gender = form2.egcy_init_accompanying_gender
                 )
-                Log.v("tag","$resp")
+                Log.v("tag", "$resp")
+                emit(resp)
             }
         }
     }
@@ -83,16 +86,17 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
         emitter: RemoteErrorEmitter,
         form2: Form4,
         code: String
-    ): Flow<Any> {
+    ): Flow<RegisterResp> {
         return flow {
             safeApiCallNoContext(emitter) {
                 val resp = api.updateForm4(
-                    code=code,
+                    code = code,
                     rtn_accept_referral = form2.rtn_accept_referral,
                     ch_rtn_accept_newborn_1 = form2.ch_rtn_accept_newborn_1,
                     rtn_accept_newborn_1 = form2.rtn_accept_newborn_1.normalize()
                 )
-                Log.v("tag","$resp")
+                Log.v("tag", "$resp")
+                emit(resp)
             }
         }
     }
@@ -101,7 +105,7 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
         emitter: RemoteErrorEmitter,
         form2: Form5,
         code: String
-    ): Flow<Any> {
+    ): Flow<RegisterResp> {
         return flow {
             safeApiCallNoContext(emitter) {
                 val resp = api.updateForm5(
@@ -115,6 +119,7 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
                     mlty_child_hospital_id = form2.mlty_child_hospital_id
                 )
                 Log.v("tag", "$resp")
+                emit(resp)
             }
         }
     }
@@ -141,6 +146,7 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
                     infoParity = register.infoParity
                 )
                 Log.v("tag", "$resp")
+                emit(resp)
             }
         }
     }

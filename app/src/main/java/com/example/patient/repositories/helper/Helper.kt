@@ -48,6 +48,6 @@ data class HospitalType(
     @SerializedName("id")
     @PrimaryKey
     val id:Int,
-    @SerializedName("name")
-    val name:String,
+    @SerializedName("title")
+    val title:String,
 )
