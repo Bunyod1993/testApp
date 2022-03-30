@@ -69,7 +69,7 @@ class RegisterViewModel @Inject constructor(
 
     fun validateDate() {
         viewModelScope.launch {
-            date.asFlow().debounce(400).distinctUntilChanged().collect {
+            date.asFlow().debounce(300).distinctUntilChanged().collect {
                 val err = if (it.matches(dateRegex.toRegex())) Pair("date", InputErrorType.VALID)
                 else Pair("date", InputErrorType.INVALID)
                 addField(err)
@@ -81,7 +81,7 @@ class RegisterViewModel @Inject constructor(
 
     fun validateType() {
         viewModelScope.launch {
-            type.asFlow().debounce(400).distinctUntilChanged().collect {
+            type.asFlow().debounce(300).distinctUntilChanged().collect {
                 val validator = if (it >= 0) Pair("type", InputErrorType.VALID)
                 else Pair("type", InputErrorType.INVALID)
                 addField(validator)

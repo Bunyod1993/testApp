@@ -71,7 +71,7 @@
                         android:id="@+id/firstDeathReasonWrapper"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         app:layout_constraintTop_toBottomOf="@+id/checkbox1">
                     <TextView
                             android:id="@+id/labelDate"
@@ -84,23 +84,23 @@
                             app:layout_constraintTop_toTopOf="parent" />
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/deathRegionLayout"
-                            style="@style/outlinedTextField"
+                            style="@style/outlinedTextFieldDropdown"
                             app:hintEnabled="false"
-                            app:endIconMode="clear_text"
+                            app:endIconMode="dropdown_menu"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
+                            android:layout_height="wrap_content"
                             app:layout_constraintTop_toBottomOf="@+id/labelDate"
                             >
-                        <com.google.android.material.textfield.TextInputEditText
+                        <AutoCompleteTextView
                                 android:id="@+id/deathRegionField"
                                 style="@style/digitRegular18"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/input"
-                                android:paddingBottom="15dp"
                                 android:maxLength="30"
-                                android:text="@={viewModel.deathRegionOne}" />
+                                android:background="@drawable/input"
+                                android:backgroundTintMode="screen"
+                                android:inputType="none" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView
@@ -149,7 +149,7 @@
                         android:id="@+id/secondDeathReasonWrapper"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         app:layout_constraintTop_toBottomOf="@+id/checkbox2">
                     <TextView
                             android:id="@+id/labelDeathHours"
@@ -190,25 +190,25 @@
                             style="@style/label13"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/deathHoursLayout" />
-
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/deathRegionLayout2"
-                            style="@style/outlinedTextField"
+                            style="@style/outlinedTextFieldDropdown"
                             app:hintEnabled="false"
-                            app:endIconMode="clear_text"
+                            app:endIconMode="dropdown_menu"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            app:layout_constraintTop_toBottomOf="@+id/labelDeathRegion2">
-                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@+id/labelDeathRegion2"
+                            >
+                        <AutoCompleteTextView
                                 android:id="@+id/deathRegion2"
                                 style="@style/digitRegular18"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/input"
-                                android:paddingBottom="15dp"
                                 android:maxLength="30"
-                                android:text="@={viewModel.deathRegionTwo}" />
+                                android:background="@drawable/input"
+                                android:backgroundTintMode="screen"
+                                android:inputType="none" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView

@@ -1,11 +1,12 @@
 package com.example.patient.screens.death
 
-import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.example.patient.repositories.register.Form5
 import com.example.patient.repositories.register.RegisterRepository
+import com.example.patient.repositories.register.RegisterResp
 import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.base.ScreenState
 import com.example.patient.utils.enums.InputErrorType
@@ -25,14 +26,16 @@ class RegisterDeathViewModel @Inject constructor(
     private val registerRepository: RegisterRepository
 ) : BaseViewModel() {
 
-    val deathRegionOne = MutableLiveData("")
+    val deathRegionOne = MutableLiveData(-1)
     val deathReasonOne = MutableLiveData("")
     val deathHours = MutableLiveData("")
-    val deathRegionTwo = MutableLiveData("")
+    val deathRegionTwo = MutableLiveData(-1)
     val deathReasonTwo = MutableLiveData("")
+    val maternalDeath = MutableLiveData(0)
+    val childDeath = MutableLiveData(0)
 
     val buttonEnabled = MutableLiveData(false)
-    private val numberOfValidFields = MutableLiveData(2)
+    private val numberOfValidFields = MutableLiveData(5)
     val fieldError = MutableSharedFlow<Pair<String, InputErrorType>>()
     private val listOfFields = mutableListOf<Pair<String, InputErrorType>>()
 
@@ -44,10 +47,6 @@ class RegisterDeathViewModel @Inject constructor(
 
     private fun exists(field: Pair<String, InputErrorType>) {
         listOfFields.remove(field)
-    }
-
-    fun setNumberOfFields(number: Int) {
-        numberOfValidFields.postValue(number)
     }
 
     private fun enableButton() {
@@ -67,17 +66,18 @@ class RegisterDeathViewModel @Inject constructor(
 
     fun validateDeathRegionOne() {
         viewModelScope.launch {
-            deathReasonOne.asFlow().debounce(300).distinctUntilChanged().collect {
-                val err = validateTextFields("region1", it)
-                addField(err)
-                fieldError.emit(err)
+            deathRegionOne.asFlow().debounce(300).distinctUntilChanged().collect {
+                val validator = if (it >= 0) Pair("type", InputErrorType.VALID)
+                else Pair("type", InputErrorType.INVALID)
+                addField(validator)
+                fieldError.emit(validator)
             }
         }
     }
 
     fun validateDeathHours() {
         viewModelScope.launch {
-            deathReasonOne.asFlow().debounce(300).distinctUntilChanged().collect {
+            deathHours.asFlow().debounce(300).distinctUntilChanged().collect {
                 val err = validateTextFields("deathHours", it)
                 addField(err)
                 fieldError.emit(err)
@@ -87,7 +87,7 @@ class RegisterDeathViewModel @Inject constructor(
 
     fun validateDeathReasonTwo() {
         viewModelScope.launch {
-            deathReasonOne.asFlow().debounce(300).distinctUntilChanged().collect {
+            deathReasonTwo.asFlow().debounce(300).distinctUntilChanged().collect {
                 val err = validateTextFields("reason2", it)
                 addField(err)
                 fieldError.emit(err)
@@ -97,27 +97,40 @@ class RegisterDeathViewModel @Inject constructor(
 
     fun validateDeathRegionTwo() {
         viewModelScope.launch {
-            deathReasonOne.asFlow().debounce(300).distinctUntilChanged().collect {
-                val err = validateTextFields("region2", it)
-                addField(err)
-                fieldError.emit(err)
+            deathRegionTwo.asFlow().debounce(300).distinctUntilChanged().collect {
+                val validator = if (it >= 0) Pair("type", InputErrorType.VALID)
+                else Pair("type", InputErrorType.INVALID)
+                addField(validator)
+                fieldError.emit(validator)
             }
         }
     }
 
-    fun updateRequest(code: String) {
+    fun validateFields() {
+        validateDeathHours()
+        validateDeathReasonTwo()
+        validateDeathReasonOne()
+        validateDeathRegionOne()
+        validateDeathRegionTwo()
+    }
+
+    fun updateRequest(code: String): LiveData<RegisterResp> {
+        val resp = MutableLiveData<RegisterResp>()
         viewModelScope.launch {
             val form = Form5()
-//            form.ch_visit_date_1 = if (firstAnalysis.value!!) 1 else 0
-//            form.visit_date_1 = date.value!!
-//            form.ch_visit_date_2 = if (secondAnalysis.value!!) 1 else 0
-//            form.visit_date_2 = secondDate.value!!
+            form.mlty_maternal = maternalDeath.value!!
+            form.mlty_maternal_hospital_id = deathRegionOne.value!!
+            form.mlty_maternal_cause = deathReasonOne.value!!
+            form.mlty_child = childDeath.value!!
+            form.mlty_child_cause = deathReasonTwo.value!!
+            form.mlty_child_hospital_id = deathRegionTwo.value!!
             mutableScreenState.postValue(ScreenState.LOADING)
             registerRepository.updateFormFifth(this@RegisterDeathViewModel, form, code)
                 .collect {
                     mutableScreenState.postValue(ScreenState.RENDER)
-                    Log.v("tag","$it")
+                    resp.postValue(it)
                 }
         }
+        return resp
     }
 }

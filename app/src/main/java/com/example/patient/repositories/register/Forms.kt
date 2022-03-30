@@ -51,14 +51,14 @@ data class Form5(
     var mlty_maternal: Int,
     var mlty_maternal_hospital_id: Int,
     var mlty_maternal_cause: String,
-    var mlty_child: Boolean,
+    var mlty_child: Int,
     var mlty_child_recorded_days: String,
-    var mlty_child_hospital_id: String,
+    var mlty_child_hospital_id: Int,
     var mlty_child_cause: String
 ) : Parcelable  {
     constructor() : this(
-        0, 0, "", false,
-        "", "", ""
+        0, 0, "", 0,
+        "", -1, ""
     )
 }
 
