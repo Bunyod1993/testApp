@@ -80,9 +80,9 @@ interface RegisterApi {
         @Part("mlty_maternal") mlty_maternal:Int,
         @Part("mlty_maternal_hospital_id") mlty_maternal_hospital_id:Int,
         @Part("mlty_maternal_cause") mlty_maternal_cause:String,
-        @Part("mlty_child") mlty_child:Boolean,
+        @Part("mlty_child") mlty_child:Int,
         @Part("mlty_child_recorded_days") mlty_child_recorded_days:String,
-        @Part("mlty_child_hospital_id") mlty_child_hospital_id:String,
+        @Part("mlty_child_hospital_id") mlty_child_hospital_id:Int,
         @Part("mlty_child_cause") mlty_child_cause:String
     ):RegisterResp
 }

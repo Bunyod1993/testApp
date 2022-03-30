@@ -7,13 +7,14 @@ import com.example.patient.R
 import com.example.patient.databinding.EmergencyFragmentBinding
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
-import com.example.patient.utils.ui.Utils.getTypes
 import com.example.patient.utils.ui.reset
 import com.example.patient.utils.ui.validate
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+@FlowPreview
 @AndroidEntryPoint
 class EmergencyFragment : BaseFragment<EmergencyFragmentBinding, EmergencyViewModel>() {
     override fun getViewModelClass() = EmergencyViewModel::class.java

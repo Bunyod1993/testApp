@@ -8,7 +8,6 @@ import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.example.patient.repositories.helper.HelperRepository
 import com.example.patient.repositories.helper.Hospital
-import com.example.patient.repositories.register.Form2
 import com.example.patient.repositories.register.Form3
 import com.example.patient.repositories.register.RegisterRepository
 import com.example.patient.utils.base.BaseViewModel
@@ -17,6 +16,7 @@ import com.example.patient.utils.enums.InputErrorType
 import com.example.patient.utils.ui.Validator.validateTextFields
 import com.example.patient.utils.ui.normalize
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
@@ -24,6 +24,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@FlowPreview
 @HiltViewModel
 class EmergencyViewModel @Inject constructor(
     private val helperRepository: HelperRepository,
@@ -128,7 +129,7 @@ class EmergencyViewModel @Inject constructor(
         return resp
     }
     fun updateRequest(code: String) {
-        Log.v("tag","$code")
+        Log.v("tag", code)
         viewModelScope.launch {
             val form = Form3()
             form.egcy_init_date=date.value!!.normalize()

@@ -1,6 +1,5 @@
 package com.example.patient.repositories.register
 
-import android.util.Log
 import com.example.patient.utils.base.BaseRemoteRepository
 import com.example.patient.utils.base.RemoteErrorEmitter
 import com.example.patient.utils.ui.normalize
@@ -43,7 +42,6 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
     ): Flow<RegisterResp> {
         return flow {
             safeApiCallNoContext(emitter) {
-                Log.v("tag", "retrofit start $form2 $code")
                 form2.visit_date_1=form2.visit_date_1.normalize()
                 form2.visit_date_2=form2.visit_date_2.normalize()
                 val resp = api.updateFormSecond(
@@ -53,7 +51,6 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
                     form2.ch_visit_date_2,
                     form2.visit_date_2
                 )
-                Log.v("tag", "$resp")
                 emit(resp)
             }
         }
@@ -79,7 +76,6 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
                     egcy_init_transport_provided = form2.egcy_init_transport_provided,
                     egcy_init_accompanying_gender = form2.egcy_init_accompanying_gender
                 )
-                Log.v("tag", "$resp")
                 emit(resp)
             }
         }
@@ -98,7 +94,6 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
                     ch_rtn_accept_newborn_1 = form2.ch_rtn_accept_newborn_1,
                     rtn_accept_newborn_1 = form2.rtn_accept_newborn_1.normalize()
                 )
-                Log.v("tag", "$resp")
                 emit(resp)
             }
         }
@@ -121,7 +116,6 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
                     mlty_child_recorded_days = form2.mlty_child_recorded_days,
                     mlty_child_hospital_id = form2.mlty_child_hospital_id
                 )
-                Log.v("tag", "$resp")
                 emit(resp)
             }
         }
@@ -148,7 +142,6 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
                     infoBirthPermit = register.infoBirthPermit,
                     infoParity = register.infoParity
                 )
-                Log.v("tag", "$resp")
                 emit(resp)
             }
         }

@@ -1,10 +1,12 @@
 package com.example.patient.screens.death
 
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.patient.R
 import com.example.patient.databinding.RegisterDeathFragmentBinding
+import com.example.patient.repositories.register.Register
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
 import com.example.patient.utils.ui.reset
@@ -48,16 +50,7 @@ class RegisterDeathFragment : BaseFragment<RegisterDeathFragmentBinding, Registe
             else viewModel.childDeath.postValue(0)
 
         }
-        binding.deathRegionField.setOnFocusChangeListener { _, b ->
-            if (b) {
-                viewModel.validateDeathRegionOne()
-            }
-        }
-        binding.deathRegion2.setOnFocusChangeListener { _, b ->
-            if (b) {
-                viewModel.validateDeathRegionTwo()
-            }
-        }
+
         binding.deathReason.setOnFocusChangeListener { _, b ->
             if (b) {
                 viewModel.validateDeathReasonOne()
@@ -71,6 +64,46 @@ class RegisterDeathFragment : BaseFragment<RegisterDeathFragmentBinding, Registe
         binding.deathHours.setOnFocusChangeListener { _, b ->
             if (b) {
                 viewModel.validateDeathHours()
+            }
+        }
+        viewModel.getHospitals().observe(viewLifecycleOwner) { list ->
+            //for saving
+//            if (code.isNotEmpty()) {
+//                val arg = arguments?.get("reg")
+//                arg?.let {
+//                    val register = it as Register
+//                    val text = list.findLast { p -> p.id == register.type }
+//                    viewModel.type.postValue(text?.id)
+//                    binding.typeField.setText(text?.title)
+//                    viewModel.validateFields()
+//                }
+//            }
+
+            // default behavior
+            binding.deathRegionField.setOnFocusChangeListener { _, b ->
+                if (b) {
+                    val adapter = ArrayAdapter(requireContext(), R.layout.list_item,
+                        list.map { pair -> pair.title })
+                    binding.deathRegionField.setAdapter(adapter)
+                    viewModel.validateDeathRegionOne()
+                }
+            }
+            binding.deathRegionField.setOnItemClickListener { _, _, i, _ ->
+                val itemId = list[i].id
+                viewModel.deathRegionOne.postValue(itemId)
+            }
+            // default behavior
+            binding.deathRegion2.setOnFocusChangeListener { _, b ->
+                if (b) {
+                    val adapter = ArrayAdapter(requireContext(), R.layout.list_item,
+                        list.map { pair -> pair.title })
+                    binding.deathRegion2.setAdapter(adapter)
+                    viewModel.validateDeathRegionTwo()
+                }
+            }
+            binding.deathRegionField.setOnItemClickListener { _, _, i, _ ->
+                val itemId = list[i].id
+                viewModel.deathRegionTwo.postValue(itemId)
             }
         }
     }

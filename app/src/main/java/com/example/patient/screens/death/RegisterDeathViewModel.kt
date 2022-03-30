@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
+import com.example.patient.repositories.helper.HelperRepository
+import com.example.patient.repositories.helper.HospitalType
 import com.example.patient.repositories.register.Form5
 import com.example.patient.repositories.register.RegisterRepository
 import com.example.patient.repositories.register.RegisterResp
@@ -23,7 +25,8 @@ import javax.inject.Inject
 @FlowPreview
 @HiltViewModel
 class RegisterDeathViewModel @Inject constructor(
-    private val registerRepository: RegisterRepository
+    private val registerRepository: RegisterRepository,
+    private val helperRepository: HelperRepository
 ) : BaseViewModel() {
 
     val deathRegionOne = MutableLiveData(-1)
@@ -130,6 +133,18 @@ class RegisterDeathViewModel @Inject constructor(
                     mutableScreenState.postValue(ScreenState.RENDER)
                     resp.postValue(it)
                 }
+        }
+        return resp
+    }
+
+    fun getHospitals(): LiveData<List<HospitalType>> {
+        val resp = MutableLiveData<List<HospitalType>>()
+        viewModelScope.launch {
+            mutableScreenState.postValue(ScreenState.LOADING)
+            helperRepository.getHospitalTypes(this@RegisterDeathViewModel).collect {
+                mutableScreenState.postValue(ScreenState.RENDER)
+                resp.postValue(it)
+            }
         }
         return resp
     }
