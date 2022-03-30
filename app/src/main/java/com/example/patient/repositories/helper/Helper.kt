@@ -21,16 +21,8 @@ data class Hospital(
     @SerializedName("id")
     @PrimaryKey
     val id:Int,
-    @SerializedName("sub_region_id")
-    val subRegionId:Int,
     @SerializedName("title")
-    val name:String,
-    @SerializedName("phone")
-    val phone:String,
-    @SerializedName("address")
-    val address:String,
-    @SerializedName("type")
-    val type:String,
+    val title:String
 )
 
 @Keep
@@ -49,5 +41,5 @@ data class HospitalType(
     @PrimaryKey
     val id:Int,
     @SerializedName("title")
-    val title:String,
+    val title:String
 )

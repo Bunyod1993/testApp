@@ -1,5 +1,6 @@
 package com.example.patient.screens.death
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
@@ -43,6 +44,7 @@ class RegisterDeathViewModel @Inject constructor(
     private val listOfFields = mutableListOf<Pair<String, InputErrorType>>()
 
     private fun addField(field: Pair<String, InputErrorType>) {
+        Log.v("tag","$field")
         exists(field)
         listOfFields.add(field)
         enableButton()
@@ -54,6 +56,7 @@ class RegisterDeathViewModel @Inject constructor(
 
     private fun enableButton() {
         val validFields = listOfFields.filter { pair -> pair.second == InputErrorType.VALID }
+        Log.v("tag","${validFields.size} ${numberOfValidFields.value}")
         buttonEnabled.postValue(validFields.size == numberOfValidFields.value)
     }
 
@@ -70,8 +73,8 @@ class RegisterDeathViewModel @Inject constructor(
     fun validateDeathRegionOne() {
         viewModelScope.launch {
             deathRegionOne.asFlow().debounce(300).distinctUntilChanged().collect {
-                val validator = if (it >= 0) Pair("type", InputErrorType.VALID)
-                else Pair("type", InputErrorType.INVALID)
+                val validator = if (it >= 0) Pair("region1", InputErrorType.VALID)
+                else Pair("region2", InputErrorType.INVALID)
                 addField(validator)
                 fieldError.emit(validator)
             }
@@ -101,8 +104,8 @@ class RegisterDeathViewModel @Inject constructor(
     fun validateDeathRegionTwo() {
         viewModelScope.launch {
             deathRegionTwo.asFlow().debounce(300).distinctUntilChanged().collect {
-                val validator = if (it >= 0) Pair("type", InputErrorType.VALID)
-                else Pair("type", InputErrorType.INVALID)
+                val validator = if (it >= 0) Pair("region2", InputErrorType.VALID)
+                else Pair("region2", InputErrorType.INVALID)
                 addField(validator)
                 fieldError.emit(validator)
             }
@@ -110,10 +113,10 @@ class RegisterDeathViewModel @Inject constructor(
     }
 
     fun validateFields() {
-        validateDeathHours()
-        validateDeathReasonTwo()
         validateDeathReasonOne()
         validateDeathRegionOne()
+        validateDeathHours()
+        validateDeathReasonTwo()
         validateDeathRegionTwo()
     }
 
@@ -125,6 +128,7 @@ class RegisterDeathViewModel @Inject constructor(
             form.mlty_maternal_hospital_id = deathRegionOne.value!!
             form.mlty_maternal_cause = deathReasonOne.value!!
             form.mlty_child = childDeath.value!!
+            form.mlty_child_recorded_days=deathHours.value!!
             form.mlty_child_cause = deathReasonTwo.value!!
             form.mlty_child_hospital_id = deathRegionTwo.value!!
             mutableScreenState.postValue(ScreenState.LOADING)

@@ -6,7 +6,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.patient.R
 import com.example.patient.databinding.RegisterDeathFragmentBinding
-import com.example.patient.repositories.register.Register
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
 import com.example.patient.utils.ui.reset
