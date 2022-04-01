@@ -1,7 +1,5 @@
 package com.example.patient.screens.emergency
 
-import android.util.Log
-import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
@@ -10,6 +8,7 @@ import com.example.patient.repositories.helper.HelperRepository
 import com.example.patient.repositories.helper.Hospital
 import com.example.patient.repositories.register.Form3
 import com.example.patient.repositories.register.RegisterRepository
+import com.example.patient.repositories.register.RegisterResp
 import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.base.ScreenState
 import com.example.patient.utils.enums.InputErrorType
@@ -30,7 +29,7 @@ class EmergencyViewModel @Inject constructor(
     private val helperRepository: HelperRepository,
     private val registerRepository: RegisterRepository
 ) : BaseViewModel() {
-    val type = MutableLiveData("")
+    val type = MutableLiveData(-1)
     val date = MutableLiveData("")
     val diagnose = MutableLiveData("")
     val process = MutableLiveData("")
@@ -62,10 +61,10 @@ class EmergencyViewModel @Inject constructor(
     fun validateType() {
         viewModelScope.launch {
             type.asFlow().debounce(300).distinctUntilChanged().collect {
-                val err = if (it == "-1") Pair("type", InputErrorType.INVALID)
-                else Pair("type", InputErrorType.VALID)
-                addField(err)
-                fieldError.emit(err)
+                val validator = if (it >= 0) Pair("type", InputErrorType.VALID)
+                else Pair("type", InputErrorType.INVALID)
+                addField(validator)
+                fieldError.emit(validator)
             }
         }
     }
@@ -128,16 +127,15 @@ class EmergencyViewModel @Inject constructor(
         }
         return resp
     }
-    fun updateRequest(code: String) {
-        Log.v("tag", code)
+    fun updateRequest(code: String):  LiveData<RegisterResp>  {
+        val resp = MutableLiveData<RegisterResp>()
         viewModelScope.launch {
             val form = Form3()
             form.egcy_init_date=date.value!!.normalize()
+            form.egcy_init_treatment=process.value!!
             form.egcy_init_diagnosis=diagnose.value!!
             form.egcy_init_accompanying_gender=nurse.value!!
-            type.value?.let {
-                form.egcy_init_hospital_type=if (it.isDigitsOnly()) it.toInt() else 0
-            }
+            form.egcy_init_hospital_type=type.value!!
             form.egcy_init_accompanying=if (hasHelperNurse.value!!) 1 else 0
             form.egcy_init_relatives=if (beenInformed.value!!) 1 else 0
             form.egcy_init_transport_provided=if (transportSupported.value!!) 1 else 0
@@ -146,8 +144,10 @@ class EmergencyViewModel @Inject constructor(
             registerRepository.updateFormThird(this@EmergencyViewModel, form, code)
                 .collect {
                     mutableScreenState.postValue(ScreenState.RENDER)
-                    Log.v("tag","$it")
+                    if (it.code == 200 || it.code == 201)
+                        resp.postValue(it)
                 }
         }
+        return  resp
     }
 }

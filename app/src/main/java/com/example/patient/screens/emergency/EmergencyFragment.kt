@@ -1,6 +1,7 @@
 package com.example.patient.screens.emergency
 
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.patient.R
@@ -8,7 +9,9 @@ import com.example.patient.databinding.EmergencyFragmentBinding
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
 import com.example.patient.utils.ui.reset
+import com.example.patient.utils.ui.toDate
 import com.example.patient.utils.ui.validate
+import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
@@ -28,28 +31,44 @@ class EmergencyFragment : BaseFragment<EmergencyFragmentBinding, EmergencyViewMo
 
         binding.next.setOnClickListener {
             if (viewModel.buttonEnabled.value!!) {
-                viewModel.updateRequest(code)
-                Navigation.findNavController(it).navigateUp()
+                viewModel.updateRequest(code).observe(viewLifecycleOwner) {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    Navigation.findNavController(requireView()).navigateUp()
+                }
             } else viewModel.validateAll()
         }
-
-        viewModel.getHospitals().observe(viewLifecycleOwner) {
+        binding.typeField.setBackgroundResource(R.drawable.input)
+        viewModel.getHospitals().observe(viewLifecycleOwner) { list ->
             binding.typeField.setOnFocusChangeListener { _, b ->
                 if (b) {
                     val adapter = ArrayAdapter(requireContext(), R.layout.list_item,
-                        it.map { pair -> pair.title })
+                        list.map { pair -> pair.title })
                     binding.typeField.setAdapter(adapter)
                     viewModel.validateType()
                 }
             }
             binding.typeField.setOnItemClickListener { _, _, i, _ ->
-                val itemId = it[i]
-                viewModel.type.postValue(itemId.id.toString())
+                val itemId = list[i]
+                viewModel.type.postValue(itemId.id)
+                binding.typeField.setText(itemId.title)
+            }
+        }
+
+        binding.date.setEndIconOnClickListener {
+            val datePicker =
+                MaterialDatePicker.Builder
+                    .datePicker()
+                    .setTitleText(getString(R.string.date_of_pastonavka))
+                    .build()
+            datePicker.show(parentFragmentManager, "date")
+            datePicker.addOnPositiveButtonClickListener {
+                binding.dateField.setText(it.toDate())
+                viewModel.validateDate()
             }
         }
 
 
-        binding.typeField.setBackgroundResource(R.drawable.input)
+
         binding.nurseField.setOnFocusChangeListener { _, b ->
             if (b) viewModel.validateNurse()
         }
@@ -78,21 +97,27 @@ class EmergencyFragment : BaseFragment<EmergencyFragmentBinding, EmergencyViewMo
 
     override fun observeData() {
         super.observeData()
+
         viewModel.type.observe(viewLifecycleOwner) {
             binding.typeLayout.reset()
         }
+
         viewModel.date.observe(viewLifecycleOwner) {
             binding.dateField.reset()
         }
+
         viewModel.diagnose.observe(viewLifecycleOwner) {
             binding.reasonField.reset()
         }
+
         viewModel.process.observe(viewLifecycleOwner) {
             binding.processField.reset()
         }
+
         viewModel.nurse.observe(viewLifecycleOwner) {
             binding.nurseField.reset()
         }
+
         lifecycleScope.launch {
             viewModel.fieldError.collect {
                 when (it.first) {

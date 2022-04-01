@@ -75,8 +75,7 @@
                         android:id="@+id/typeLayout"
                         style="@style/outlinedTextFieldDropdown"
                         app:hintEnabled="false"
-                        app:endIconMode="custom"
-                        app:endIconDrawable="@drawable/ic_chevron_down"
+                        app:endIconMode="dropdown_menu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -87,9 +86,8 @@
                             style="@style/digitRegular18"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/choose"
-                            android:inputType="none"
-                            android:text="@={viewModel.type}" />
+                            android:backgroundTintMode="screen"
+                            android:inputType="none" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <TextView
                         android:id="@+id/labelDate"

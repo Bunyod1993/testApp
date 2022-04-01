@@ -201,7 +201,6 @@
                                android:layout_width="match_parent"
                                android:layout_height="wrap_content"
                                android:maxLength="30"
-                               android:background="@drawable/input"
                                android:backgroundTintMode="screen"
                                android:inputType="none" />
                    </com.google.android.material.textfield.TextInputLayout>
