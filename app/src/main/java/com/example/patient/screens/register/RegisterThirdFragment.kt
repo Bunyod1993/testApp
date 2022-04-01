@@ -6,7 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.patient.R
 import com.example.patient.databinding.RegisterThirdFragmentBinding
-import com.example.patient.repositories.register.Register
+import com.example.patient.repositories.register.*
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
 import com.example.patient.utils.ui.invisible
@@ -61,6 +61,10 @@ class RegisterThirdFragment : BaseFragment<RegisterThirdFragmentBinding, Registe
                 viewModel.register(mainViewModel.register).observe(viewLifecycleOwner) { model ->
                     model?.let {
                         val details = mainViewModel.register
+//                        val form2 = Form2()
+//                        val form3 = Form3()
+//                        val form4 = Form4()
+//                        val form5 = Form5()
                         bundle.putParcelable("reg", details)
                         bundle.putString("code", it.code)
                         Navigation.findNavController(requireView())

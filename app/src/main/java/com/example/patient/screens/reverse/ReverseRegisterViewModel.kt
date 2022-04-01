@@ -1,13 +1,11 @@
 package com.example.patient.screens.reverse
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
-import com.example.patient.repositories.register.Form2
-import com.example.patient.repositories.register.Form4
-import com.example.patient.repositories.register.Form5
-import com.example.patient.repositories.register.RegisterRepository
+import com.example.patient.repositories.register.*
 import com.example.patient.utils.Constants
 import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.base.ScreenState
@@ -25,6 +23,10 @@ class ReverseRegisterViewModel @Inject constructor(
     private val registerRepository: RegisterRepository
 ) : BaseViewModel() {
     val date = MutableLiveData("")
+
+    val firstReverse = MutableLiveData(false)
+
+    val firstDiagnoseDate = MutableLiveData(false)
 
     val fieldError = MutableSharedFlow<Pair<String, InputErrorType>>()
 
@@ -50,7 +52,10 @@ class ReverseRegisterViewModel @Inject constructor(
     fun validateDate() {
         viewModelScope.launch {
             date.asFlow().debounce(400).distinctUntilChanged().collect {
-                val err = if (it.matches(Constants.dateRegex.toRegex())) Pair("date", InputErrorType.VALID)
+                val err = if (it.matches(Constants.dateRegex.toRegex())) Pair(
+                    "date",
+                    InputErrorType.VALID
+                )
                 else Pair("date", InputErrorType.INVALID)
                 addField(err)
                 fieldError.emit(err)
@@ -58,19 +63,21 @@ class ReverseRegisterViewModel @Inject constructor(
             }
         }
     }
-    fun updateRequest(code: String) {
+
+    fun updateRequest(code: String): LiveData<RegisterResp> {
+        val resp = MutableLiveData<RegisterResp>()
         viewModelScope.launch {
             val form = Form4()
-//            form.ch_visit_date_1 = if (firstAnalysis.value!!) 1 else 0
-//            form.visit_date_1 = date.value!!
-//            form.ch_visit_date_2 = if (secondAnalysis.value!!) 1 else 0
-//            form.visit_date_2 = secondDate.value!!
+            form.rtn_accept_newborn_1 = date.value!!
+            form.rtn_accept_referral = if (firstDiagnoseDate.value!!) 1 else 0
+            form.ch_rtn_accept_newborn_1 = if (firstReverse.value!!) 1 else 0
             mutableScreenState.postValue(ScreenState.LOADING)
             registerRepository.updateFormFourth(this@ReverseRegisterViewModel, form, code)
                 .collect {
                     mutableScreenState.postValue(ScreenState.RENDER)
-                    Log.v("tag","$it")
+                    resp.postValue(it)
                 }
         }
+        return resp
     }
 }

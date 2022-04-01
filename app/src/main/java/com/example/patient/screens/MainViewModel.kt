@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.patient.repositories.register.Register
+import com.example.patient.repositories.register.RegisterModel
 import com.example.patient.utils.Constants
 import com.example.patient.utils.Constants.AUTH_TOKEN
 import com.example.patient.utils.Constants.LANGUAGE
@@ -23,7 +24,6 @@ class MainViewModel @Inject constructor(val prefs: SharedPreferences) : ViewMode
     }
 
     val register = Register()
-    val updateRegister=Register()
 
     val lang = prefs.getString(LANGUAGE, "ru")
     fun persistLanguage(lang: String) {
