@@ -1,6 +1,5 @@
 package com.example.patient.screens.death
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
@@ -44,7 +43,6 @@ class RegisterDeathViewModel @Inject constructor(
     private val listOfFields = mutableListOf<Pair<String, InputErrorType>>()
 
     private fun addField(field: Pair<String, InputErrorType>) {
-        Log.v("tag","$field")
         exists(field)
         listOfFields.add(field)
         enableButton()
@@ -56,7 +54,6 @@ class RegisterDeathViewModel @Inject constructor(
 
     private fun enableButton() {
         val validFields = listOfFields.filter { pair -> pair.second == InputErrorType.VALID }
-        Log.v("tag","${validFields.size} ${numberOfValidFields.value}")
         buttonEnabled.postValue(validFields.size == numberOfValidFields.value)
     }
 

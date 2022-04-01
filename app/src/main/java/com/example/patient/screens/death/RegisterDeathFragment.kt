@@ -100,7 +100,7 @@ class RegisterDeathFragment : BaseFragment<RegisterDeathFragmentBinding, Registe
                     viewModel.validateDeathRegionTwo()
                 }
             }
-            binding.deathRegionField.setOnItemClickListener { _, _, i, _ ->
+            binding.deathRegion2.setOnItemClickListener { _, _, i, _ ->
                 val itemId = list[i].id
                 viewModel.deathRegionTwo.postValue(itemId)
             }
