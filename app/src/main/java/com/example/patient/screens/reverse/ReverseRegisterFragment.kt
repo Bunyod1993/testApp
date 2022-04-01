@@ -11,9 +11,11 @@ import com.example.patient.utils.ui.toDate
 import com.example.patient.utils.ui.validate
 import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+@FlowPreview
 @AndroidEntryPoint
 class ReverseRegisterFragment :
     BaseFragment<ReverseRegisterFragmentBinding, ReverseRegisterViewModel>() {

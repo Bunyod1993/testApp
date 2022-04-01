@@ -11,6 +11,7 @@ import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.base.ScreenState
 import com.example.patient.utils.enums.InputErrorType
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
@@ -18,6 +19,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@FlowPreview
 @HiltViewModel
 class ReverseRegisterViewModel @Inject constructor(
     private val registerRepository: RegisterRepository
@@ -51,7 +53,7 @@ class ReverseRegisterViewModel @Inject constructor(
 
     fun validateDate() {
         viewModelScope.launch {
-            date.asFlow().debounce(400).distinctUntilChanged().collect {
+            date.asFlow().debounce(100).distinctUntilChanged().collect {
                 val err = if (it.matches(Constants.dateRegex.toRegex())) Pair(
                     "date",
                     InputErrorType.VALID

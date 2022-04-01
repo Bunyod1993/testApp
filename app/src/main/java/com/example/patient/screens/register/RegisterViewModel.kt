@@ -74,7 +74,6 @@ class RegisterViewModel @Inject constructor(
                 else Pair("date", InputErrorType.INVALID)
                 addField(err)
                 fieldError.emit(err)
-
             }
         }
     }

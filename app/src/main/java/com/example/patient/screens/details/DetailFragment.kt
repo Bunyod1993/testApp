@@ -6,10 +6,8 @@ import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import com.example.patient.R
 import com.example.patient.databinding.DetailFragmentBinding
-import com.example.patient.repositories.register.Detail
 import com.example.patient.repositories.register.Form2
 import com.example.patient.repositories.register.Register
-import com.example.patient.repositories.register.RegisterModel
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
 import com.example.patient.utils.ui.deNormalize
