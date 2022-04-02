@@ -11,6 +11,7 @@ import com.example.patient.repositories.register.Register
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
 import com.example.patient.utils.ui.deNormalize
+import com.example.patient.utils.ui.invisible
 
 class DetailFragment : BaseFragment<DetailFragmentBinding, DetailViewModel>() {
     override fun getViewModelClass() = DetailViewModel::class.java
@@ -30,6 +31,10 @@ class DetailFragment : BaseFragment<DetailFragmentBinding, DetailViewModel>() {
             binding.fioText.text = register.fio
             binding.phoneText.text = register.phone
             binding.dateText.text = register.birthday.deNormalize()
+            if (code.isEmpty()){
+                binding.idText.invisible()
+                binding.idLabel.invisible()
+            }
             binding.idText.text = code
             val bundle = bundleOf()
             bundle.putString("code", code)

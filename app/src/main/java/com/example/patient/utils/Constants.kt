@@ -3,13 +3,11 @@ package com.example.patient.utils
 import androidx.annotation.StringDef
 import java.lang.annotation.RetentionPolicy
 import java.lang.annotation.RetentionPolicy.*
-
-
 object Constants {
     const val BASE_URL = "https://pregnant.imruz.com"
     const val AUTH_TOKEN = "authToken"
     const val FIRST_ACCESS = "first_access"
-    const val DB_VERSION = 8
+    const val DB_VERSION = 9
     const val DB_VERSION_NEXT = DB_VERSION+1
     const val DB_NAME = "patient"
     const val PREF_NAME = "prefs"

@@ -96,6 +96,8 @@
     <string name="death_mother_reason">Причина материнской смертности</string>
     <string name="mismatch">fields don\'t match</string>
     <string name="patient">Пациент</string>
+    <string name="patients">Пациенты</string>
+    <string name="sync_succeeded">Данные успешно синхронизированы</string>
     <string name="language">Язык</string>
     <string name="russian">Русский</string>
     <string name="tajik">Таджикиский</string>

@@ -30,7 +30,7 @@ class RegisterThirdViewModel @Inject constructor(
 
 
     val fieldError = MutableSharedFlow<Pair<String, InputErrorType>>()
-    val numberOfFieldsRequired = MutableLiveData(2)
+    private val numberOfFieldsRequired = MutableLiveData(2)
     private val listOfFields = mutableListOf<Pair<String, InputErrorType>>()
 
     val buttonEnabled = MutableLiveData(false)
@@ -87,9 +87,7 @@ class RegisterThirdViewModel @Inject constructor(
             registerRepository.registerPregnant(this@RegisterThirdViewModel, register)
                 .collect {
                     mutableScreenState.postValue(ScreenState.RENDER)
-                    if (it.code == 200 || it.code == 201)
-                        resp.postValue(it.payload)
-                    else resp.postValue(null)
+                    resp.postValue(it.payload)
                 }
         }
         return resp
@@ -100,11 +98,12 @@ class RegisterThirdViewModel @Inject constructor(
         estimatedBirthDate.value = register.infoEstimatedDate
         parity.value = register.infoParity.toString()
     }
-    fun update(register: Register,code:String): LiveData<RegisterModel?> {
+
+    fun update(register: Register, code: String): LiveData<RegisterModel?> {
         val resp = MutableLiveData<RegisterModel?>()
         viewModelScope.launch {
             mutableScreenState.postValue(ScreenState.LOADING)
-            registerRepository.updateFormFirst(this@RegisterThirdViewModel, register,code)
+            registerRepository.updateFormFirst(this@RegisterThirdViewModel, register, code)
                 .collect {
                     mutableScreenState.postValue(ScreenState.RENDER)
                     if (it.code == 200 || it.code == 201)

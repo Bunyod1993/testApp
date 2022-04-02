@@ -2,6 +2,7 @@ package com.example.patient.repositories.register
 
 import android.os.Parcelable
 import androidx.annotation.Keep
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.patient.utils.ui.normalize
@@ -17,35 +18,39 @@ data class Register(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
     @SerializedName("fio")
-    var fio:String,
+    var fio: String,
     @SerializedName("publish_date")
-    var publishDate:String,
+    var publishDate: String,
     @SerializedName("hospital_type")
-    var type:Int,
+    var type: Int,
     @SerializedName("birthdate")
-    var birthday:String,
+    var birthday: String,
     @SerializedName("phone")
-    var phone:String,
+    var phone: String,
     @SerializedName("phone_ex")
-    var phoneEx:String,
+    var phoneEx: String,
     @SerializedName("passport")
-    var passport:String,
+    var passport: String,
     @SerializedName("address")
-    var address:String,
+    var address: String,
     @SerializedName("info_menstruation")
-    var infoMenstruation:String,
+    var infoMenstruation: String,
     @SerializedName("info_estimated_date")
-    var infoEstimatedDate:String,
+    var infoEstimatedDate: String,
     @SerializedName("info_parity")
-    var infoParity:Int,
+    var infoParity: Int,
     @SerializedName("info_birthpermit")
-    var infoBirthPermit:Int
-):Parcelable{
-    constructor():this(-1,"","",-1,"","",
-        "","","","","",
-        -1,-1)
-    fun toJson():String{
-        val gson= Gson()
+    var infoBirthPermit: Int,
+    var synced: Boolean = false
+) : Parcelable {
+    constructor() : this(
+        -1, "", "", -1, "", "",
+        "", "", "", "", "",
+        -1, -1,false
+    )
+
+    fun toJson(): String {
+        val gson = Gson()
         this.birthday.normalize()
         this.infoEstimatedDate.normalize()
         this.infoMenstruation.normalize()
@@ -56,11 +61,11 @@ data class Register(
 @Keep
 data class RegisterResp(
     @SerializedName("code")
-    val code:Int,
+    val code: Int,
     @SerializedName("message")
-    val message:String,
+    val message: String,
     @SerializedName("payload")
-    val payload:RegisterModel
+    val payload: RegisterModel?
 )
 
 @Parcelize
@@ -84,7 +89,7 @@ data class RegisterModel(
     val childbirth_gender: String,
     val childbirth_height: Double?,
     val childbirth_hospital_id: Int?,
-    val childbirth_hospital_type:  String?,
+    val childbirth_hospital_type: String?,
     val childbirth_operation_ks: String?,
     val childbirth_referral: String?,
     val childbirth_viviparity: Int?,
@@ -144,7 +149,7 @@ data class RegisterModel(
     val phone: String?,
     val phone_ex: String?,
     val publish_date: String?,
-    val region_id: Int=0
+    val region_id: Int = 0
 //    val route_agree: Int
 //    val route_blank: Int,
 //    val route_blank_date: String?,
@@ -189,11 +194,11 @@ data class RegisterModel(
 @Parcelize
 @Keep
 data class Detail(
-    val code:String,
-    val address:String,
-    val fio:String,
-    val birthday:String,
+    val code: String,
+    val address: String,
+    val fio: String,
+    val birthday: String,
     val phone: String,
     val passport: String
-):Parcelable
+) : Parcelable
 

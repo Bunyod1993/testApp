@@ -4,6 +4,12 @@
         xmlns:tools="http://schemas.android.com/tools"
         tools:context=".screens.localPatients.LocalPatientsFragment">
 
+    <data>
+        <variable
+                name="viewModel"
+                type="com.example.patient.screens.localPatients.LocalPatientsViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -54,6 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
+                    android:gravity="center"
                     android:text="@string/sync.info"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -65,7 +72,6 @@
                     android:layout_height="wrap_content"
                     style="@style/blueRegular24"
                     android:layout_marginTop="10dp"
-                    android:text="84 пациента"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/syncInfo" />
@@ -80,7 +86,6 @@
                     android:enabled="true"
                     android:text="@string/sync.title"
                     app:layout_constraintTop_toBottomOf="@+id/syncNumber" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

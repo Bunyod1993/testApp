@@ -99,4 +99,7 @@
     <string name="death_mother_reason">Сабаби марги модар</string>
     <string name="mismatch">Майдонҳо мувофиқат намекунанд</string>
     <string name="patient">Бемор</string>
+    <string name="patients">Беморон</string>
+    <string name="sync_succeeded">Данные успешно синхронизированы</string>
+
 </resources>

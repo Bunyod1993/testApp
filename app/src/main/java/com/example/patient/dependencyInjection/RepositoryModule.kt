@@ -1,5 +1,7 @@
 package com.example.patient.dependencyInjection
 
+import com.example.patient.networking.interceptors.LiveNetworkMonitor
+import com.example.patient.networking.interceptors.NetworkMonitor
 import com.example.patient.repositories.auth.AuthRepository
 import com.example.patient.repositories.auth.AuthRepositoryImpl
 import com.example.patient.repositories.helper.HelperRepository
@@ -21,4 +23,7 @@ interface RepositoryModule {
 
     @Binds
     fun provideHelperRepository(repoImpl: HelperRepositoryImpl): HelperRepository
+
+    @Binds
+    fun provideNetworkMonitor(repoImpl: LiveNetworkMonitor):NetworkMonitor
 }

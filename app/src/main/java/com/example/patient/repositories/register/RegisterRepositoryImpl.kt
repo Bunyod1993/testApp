@@ -1,36 +1,55 @@
 package com.example.patient.repositories.register
 
+import android.content.Context
+import com.example.patient.database.PatientDao
+import com.example.patient.networking.interceptors.LiveNetworkMonitor
+import com.example.patient.networking.interceptors.NetworkMonitor
 import com.example.patient.utils.base.BaseRemoteRepository
 import com.example.patient.utils.base.RemoteErrorEmitter
 import com.example.patient.utils.ui.normalize
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 
-class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
+class RegisterRepositoryImpl @Inject constructor(
+    private val api: RegisterApi,
+    private val patientDao: PatientDao, private val networkMonitor: NetworkMonitor
+) :
     RegisterRepository, BaseRemoteRepository() {
     override suspend fun registerPregnant(
         emitter: RemoteErrorEmitter,
         register: Register
     ): Flow<RegisterResp> {
         return flow {
-            safeApiCallNoContext(emitter) {
-                val resp = api.register(
-                    register.fio,
-                    register.publishDate.normalize(),
-                    register.type,
-                    register.birthday.normalize(),
-                    register.passport,
-                    register.address,
-                    register.phone,
-                    register.phoneEx,
-                    register.infoMenstruation.normalize(),
-                    register.infoEstimatedDate.normalize(),
-                    register.infoParity,
-                    register.infoBirthPermit
+            if (!networkMonitor.isConnected()){
+                patientDao.insertPatient(register)
+                emit(
+                    RegisterResp(
+                    code = 100,
+                    message = "Locally inserted",
+                    payload = null
                 )
-                emit(resp)
+                )
+            } else {
+                safeApiCallNoContext(emitter) {
+                    val resp = api.register(
+                        register.fio,
+                        register.publishDate.normalize(),
+                        register.type,
+                        register.birthday.normalize(),
+                        register.passport,
+                        register.address,
+                        register.phone,
+                        register.phoneEx,
+                        register.infoMenstruation.normalize(),
+                        register.infoEstimatedDate.normalize(),
+                        register.infoParity,
+                        register.infoBirthPermit
+                    )
+                    emit(resp)
+             }
             }
         }
     }
@@ -42,8 +61,8 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
     ): Flow<RegisterResp> {
         return flow {
             safeApiCallNoContext(emitter) {
-                form2.visit_date_1=form2.visit_date_1.normalize()
-                form2.visit_date_2=form2.visit_date_2.normalize()
+                form2.visit_date_1 = form2.visit_date_1.normalize()
+                form2.visit_date_2 = form2.visit_date_2.normalize()
                 val resp = api.updateFormSecond(
                     code,
                     form2.ch_visit_date_1,
@@ -146,4 +165,24 @@ class RegisterRepositoryImpl @Inject constructor(private val api: RegisterApi) :
             }
         }
     }
+
+    override suspend fun getLocalPatients(emitter: RemoteErrorEmitter): Flow<List<Register>> {
+        return patientDao.getPatients()
+    }
+
+    override suspend fun syncLocalPatients(emitter: RemoteErrorEmitter): Flow<Boolean> {
+        return flow {
+            patientDao.getPatients().collect { list ->
+                for (patient in list) {
+                    registerPregnant(emitter, patient).collect {
+                        if (it.code == 200 || it.code == 201)
+                            patientDao.deletePatient(patient)
+                    }
+                }
+                emit(true)
+            }
+            emit(false)
+        }
+    }
+
 }
