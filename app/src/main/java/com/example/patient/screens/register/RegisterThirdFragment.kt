@@ -59,11 +59,12 @@ class RegisterThirdFragment : BaseFragment<RegisterThirdFragmentBinding, Registe
                 val parity = viewModel.parity.value ?: "-1"
                 mainViewModel.register.infoParity = if (parity.isEmpty()) -1 else parity.toInt()
                 viewModel.register(mainViewModel.register).observe(viewLifecycleOwner) { model ->
-                        val details = mainViewModel.register
-                        bundle.putParcelable("reg", details)
-                        bundle.putString("code", model?.code)
-                        Navigation.findNavController(requireView())
-                            .navigate(R.id.action_toDetailsFragment, bundle)
+                    val details = mainViewModel.register
+                    bundle.putParcelable("reg", details)
+                    bundle.putString("code", model?.code)
+//                    model?.let { bundle.putParcelable("model", it) }
+                    Navigation.findNavController(requireView())
+                        .navigate(R.id.action_toDetailsFragment, bundle)
 
                 }
             } else {

@@ -7,7 +7,9 @@ import androidx.navigation.Navigation
 import com.example.patient.R
 import com.example.patient.databinding.DetailFragmentBinding
 import com.example.patient.repositories.register.Form2
+import com.example.patient.repositories.register.Form4
 import com.example.patient.repositories.register.Register
+import com.example.patient.repositories.register.RegisterModel
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
 import com.example.patient.utils.ui.deNormalize
@@ -24,6 +26,7 @@ class DetailFragment : BaseFragment<DetailFragmentBinding, DetailViewModel>() {
         binding.toolbar.title = ""
         val arg = arguments?.get("reg")
         val code = arguments?.getString("code","")?:""
+//        val model = arguments?.getParcelable<RegisterModel?>("model")
         arg?.let {
             val register = arg as Register
             binding.addressText.text = register.address
@@ -47,11 +50,18 @@ class DetailFragment : BaseFragment<DetailFragmentBinding, DetailViewModel>() {
             }
 
             binding.reversePLace.setOnClickListener {
+                val form= Form4()
+//                model?.let {
+//                    form.ch_rtn_accept_newborn_1=it.rtn
+//                }
                 navigate(R.id.action_toReverseRegisterFragment, bundle)
             }
 
             binding.registeredBeforeBirthPLace.setOnClickListener {
                 val form = Form2()
+//                model?.let {
+//                    form.ch_visit_date_1=
+//                }
                 bundle.putParcelable("form", form)
                 navigate(R.id.action_toBeforeBirthRegisterFragment, bundle)
             }
