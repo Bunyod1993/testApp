@@ -11,6 +11,7 @@ import com.example.patient.networking.UrlProvider
 import com.example.patient.repositories.auth.AuthApi
 import com.example.patient.repositories.helper.HelperApi
 import com.example.patient.repositories.register.RegisterApi
+import com.example.patient.repositories.search.SearchApi
 import com.example.patient.utils.Constants.PREF_NAME
 import dagger.Module
 import dagger.Provides
@@ -100,6 +101,9 @@ object AppModule {
     @Provides
     fun registerApi(retrofit: Retrofit): RegisterApi = retrofit.create(RegisterApi::class.java)
 
+    @AppScope
+    @Provides
+    fun searchApi(retrofit: Retrofit): SearchApi = retrofit.create(SearchApi::class.java)
 
     @AppScope
     @Provides

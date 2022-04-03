@@ -11,6 +11,7 @@ import com.example.patient.repositories.helper.HospitalType
 import com.example.patient.repositories.register.Register
 import com.example.patient.utils.Constants.dateRegex
 import com.example.patient.utils.base.BaseViewModel
+import com.example.patient.utils.base.ErrorType
 import com.example.patient.utils.base.ScreenState
 import com.example.patient.utils.enums.InputErrorType
 import dagger.hilt.android.lifecycle.HiltViewModel

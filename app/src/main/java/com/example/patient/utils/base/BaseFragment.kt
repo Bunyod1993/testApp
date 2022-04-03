@@ -1,6 +1,7 @@
 package com.example.patient.utils.base
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,6 +74,7 @@ abstract class BaseFragment<VBinding : ViewBinding, VM : BaseViewModel> : Fragme
         InfoAlert.hideProgressDialog()
         viewModel.mutableErrorType.observe(viewLifecycleOwner) {
             InfoAlert.hideProgressDialog()
+            Log.v("tag","$it")
             when (it) {
                 ErrorType.UNKNOWN, ErrorType.NETWORK,
                 ErrorType.TIMEOUT, ErrorType.HOST_EXCEPTION -> {
@@ -80,6 +82,7 @@ abstract class BaseFragment<VBinding : ViewBinding, VM : BaseViewModel> : Fragme
                 }
 
                 ErrorType.SESSION_EXPIRED->{
+
                     Navigation.findNavController(binding.root).navigate(R.id.action_global_toLogin)
                 }
 

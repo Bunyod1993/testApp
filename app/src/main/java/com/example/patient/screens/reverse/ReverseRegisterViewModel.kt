@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.patient.repositories.register.*
 import com.example.patient.utils.Constants
 import com.example.patient.utils.base.BaseViewModel
+import com.example.patient.utils.base.ErrorType
 import com.example.patient.utils.base.ScreenState
 import com.example.patient.utils.enums.InputErrorType
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -78,6 +79,9 @@ class ReverseRegisterViewModel @Inject constructor(
                 .collect {
                     mutableScreenState.postValue(ScreenState.RENDER)
                     resp.postValue(it)
+                    if (it.code == 401) {
+                        mutableErrorType.postValue(ErrorType.SESSION_EXPIRED)
+                    }
                 }
         }
         return resp

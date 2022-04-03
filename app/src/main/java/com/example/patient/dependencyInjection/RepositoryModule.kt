@@ -8,6 +8,8 @@ import com.example.patient.repositories.helper.HelperRepository
 import com.example.patient.repositories.helper.HelperRepositoryImpl
 import com.example.patient.repositories.register.RegisterRepository
 import com.example.patient.repositories.register.RegisterRepositoryImpl
+import com.example.patient.repositories.search.SearchRepository
+import com.example.patient.repositories.search.SearchRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -26,4 +28,7 @@ interface RepositoryModule {
 
     @Binds
     fun provideNetworkMonitor(repoImpl: LiveNetworkMonitor):NetworkMonitor
+
+    @Binds
+    fun provideSearchRepository(repoImpl:SearchRepositoryImpl):SearchRepository
 }

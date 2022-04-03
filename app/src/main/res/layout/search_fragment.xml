@@ -4,6 +4,12 @@
         xmlns:tools="http://schemas.android.com/tools"
         tools:context=".screens.search.SearchFragment">
 
+    <data>
+        <variable
+                name="viewModel"
+                type="com.example.patient.screens.search.SearchViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -48,6 +54,8 @@
                     android:id="@+id/searchInputLayout"
                     style="@style/outlinedTextField"
                     app:hintEnabled="false"
+                    app:endIconMode="custom"
+                    app:endIconDrawable="@drawable/ic_search"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <com.google.android.material.textfield.TextInputEditText
@@ -59,7 +67,7 @@
                         android:background="@drawable/input"
                         android:paddingBottom="12dp"
                         android:maxLength="30"
-                        android:text="" />
+                        android:text="@={viewModel.searchInput}" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -171,7 +179,7 @@
                                 android:background="@drawable/input"
                                 android:paddingBottom="15dp"
                                 android:maxLength="30"
-                                android:text="" />
+                                android:text="@={viewModel.fio}" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView
@@ -201,7 +209,7 @@
                                 android:background="@drawable/input"
                                 android:paddingBottom="15dp"
                                 android:maxLength="30"
-                                android:text="" />
+                                android:text="@={viewModel.identNumber}" />
                     </com.google.android.material.textfield.TextInputLayout>
                     <TextView
                             android:id="@+id/labelPassport"
@@ -231,7 +239,7 @@
                                 android:background="@drawable/input"
                                 android:paddingBottom="15dp"
                                 android:maxLength="30"
-                                android:text="" />
+                                android:text="@={viewModel.passport}" />
                     </com.google.android.material.textfield.TextInputLayout>
                     <TextView
                             android:id="@+id/labelDate"
@@ -263,7 +271,7 @@
                                 android:background="@drawable/input"
                                 android:paddingBottom="15dp"
                                 android:maxLength="30"
-                                android:text="" />
+                                android:text="@={viewModel.birthday}" />
                     </com.google.android.material.textfield.TextInputLayout>
                     <TextView
                             android:id="@+id/labelPhone"
@@ -293,7 +301,7 @@
                                 android:background="@drawable/input"
                                 android:paddingBottom="15dp"
                                 android:maxLength="30"
-                                android:text="" />
+                                android:text="@={viewModel.phone}"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <Button

@@ -2,6 +2,7 @@ package com.example.patient.repositories.helper
 
 import com.example.patient.database.HelperDao
 import com.example.patient.utils.base.BaseRemoteRepository
+import com.example.patient.utils.base.ErrorType
 import com.example.patient.utils.base.RemoteErrorEmitter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -18,9 +19,12 @@ class HelperRepositoryImpl @Inject constructor(
                  helperDao.getHospitals().collect {
                      if (it.isNotEmpty()) emit(it)
                      else {
-                        val api= helperApi.getHospitals().payload
-                         emit(api)
-                         helperDao.insertHospitals(api)
+                        val api= helperApi.getHospitals()
+                         if (api.code == 401) {
+                             emitter.onError(ErrorType.SESSION_EXPIRED)
+                         }
+                         emit(api.payload)
+                         helperDao.insertHospitals(api.payload)
                      }
                  }
             }
@@ -33,9 +37,12 @@ class HelperRepositoryImpl @Inject constructor(
                 helperDao.getHospitalTypes().collect {
                     if (it.isNotEmpty()) emit(it)
                     else {
-                        val api= helperApi.getHospitalType().payload
-                        emit(api)
-                        helperDao.insertHospitalTypes(api)
+                        val api= helperApi.getHospitalType()
+                        if (api.code == 401) {
+                            emitter.onError(ErrorType.SESSION_EXPIRED)
+                        }
+                        emit(api.payload)
+                        helperDao.insertHospitalTypes(api.payload)
                     }
                 }
             }

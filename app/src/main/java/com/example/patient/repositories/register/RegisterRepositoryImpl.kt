@@ -1,10 +1,9 @@
 package com.example.patient.repositories.register
 
-import android.content.Context
 import com.example.patient.database.PatientDao
-import com.example.patient.networking.interceptors.LiveNetworkMonitor
 import com.example.patient.networking.interceptors.NetworkMonitor
 import com.example.patient.utils.base.BaseRemoteRepository
+import com.example.patient.utils.base.ErrorType
 import com.example.patient.utils.base.RemoteErrorEmitter
 import com.example.patient.utils.ui.normalize
 import kotlinx.coroutines.flow.Flow
@@ -48,6 +47,9 @@ class RegisterRepositoryImpl @Inject constructor(
                         register.infoParity,
                         register.infoBirthPermit
                     )
+                    if (resp.code == 401) {
+                        emitter.onError(ErrorType.SESSION_EXPIRED)
+                    }
                     emit(resp)
              }
             }
@@ -70,6 +72,9 @@ class RegisterRepositoryImpl @Inject constructor(
                     form2.ch_visit_date_2,
                     form2.visit_date_2
                 )
+                if (resp.code == 401) {
+                    emitter.onError(ErrorType.SESSION_EXPIRED)
+                }
                 emit(resp)
             }
         }
@@ -95,6 +100,9 @@ class RegisterRepositoryImpl @Inject constructor(
                     egcy_init_transport_provided = form2.egcy_init_transport_provided,
                     egcy_init_accompanying_gender = form2.egcy_init_accompanying_gender
                 )
+                if (resp.code == 401) {
+                    emitter.onError(ErrorType.SESSION_EXPIRED)
+                }
                 emit(resp)
             }
         }
@@ -113,6 +121,9 @@ class RegisterRepositoryImpl @Inject constructor(
                     ch_rtn_accept_newborn_1 = form2.ch_rtn_accept_newborn_1,
                     rtn_accept_newborn_1 = form2.rtn_accept_newborn_1.normalize()
                 )
+                if (resp.code == 401) {
+                    emitter.onError(ErrorType.SESSION_EXPIRED)
+                }
                 emit(resp)
             }
         }
@@ -135,7 +146,11 @@ class RegisterRepositoryImpl @Inject constructor(
                     mlty_child_recorded_days = form2.mlty_child_recorded_days,
                     mlty_child_hospital_id = form2.mlty_child_hospital_id
                 )
+                if (resp.code == 401) {
+                    emitter.onError(ErrorType.SESSION_EXPIRED)
+                }
                 emit(resp)
+
             }
         }
     }
@@ -161,6 +176,9 @@ class RegisterRepositoryImpl @Inject constructor(
                     infoBirthPermit = register.infoBirthPermit,
                     infoParity = register.infoParity
                 )
+                if (resp.code == 401) {
+                    emitter.onError(ErrorType.SESSION_EXPIRED)
+                }
                 emit(resp)
             }
         }
@@ -177,6 +195,9 @@ class RegisterRepositoryImpl @Inject constructor(
                     registerPregnant(emitter, patient).collect {
                         if (it.code == 200 || it.code == 201)
                             patientDao.deletePatient(patient)
+                        if (it.code == 401) {
+                            emitter.onError(ErrorType.SESSION_EXPIRED)
+                        }
                     }
                 }
                 emit(true)

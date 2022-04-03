@@ -21,7 +21,7 @@ class SearchFragment:  BaseFragment<SearchFragmentBinding, SearchViewModel>() {
     override fun setUpViews() {
         super.setUpViews()
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
-
+        binding.viewModel=viewModel
         val adapter=FilterAdapter(listOf("","",""))
         binding.recycleView.adapter=adapter
         adapter.notifyItemRangeChanged(0,0)
@@ -30,6 +30,7 @@ class SearchFragment:  BaseFragment<SearchFragmentBinding, SearchViewModel>() {
             else openFilter()
         }
         binding.accept.setOnClickListener {
+            viewModel.getPatients(0,15)
             closeFilter()
         }
     }
