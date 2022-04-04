@@ -1,5 +1,9 @@
 package com.example.patient.repositories.search
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.example.patient.repositories.register.RegisterModel
 import com.example.patient.utils.base.BaseRemoteRepository
 import com.example.patient.utils.base.ErrorType
 import com.example.patient.utils.base.RemoteErrorEmitter
@@ -24,6 +28,28 @@ class SearchRepositoryImpl @Inject constructor(
                 emit(resp)
             }
         }
+    }
+
+    override suspend fun getPatientsByIDPhonePager(
+        emitter: RemoteErrorEmitter,
+        value: String
+    ): Flow<PagingData<RegisterModel>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getPatientsPager(
+        emitter: RemoteErrorEmitter,
+        offset: Int,
+        limit: Int,
+        jsonBody: String
+    ): Flow<PagingData<RegisterModel>> {
+       return Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { PatientsPagingSource(searchApi,offset,limit,jsonBody) }
+        ).flow
     }
 
     override suspend fun getPatients(

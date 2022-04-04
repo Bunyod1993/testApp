@@ -101,5 +101,6 @@
     <string name="patient">Бемор</string>
     <string name="patients">Беморон</string>
     <string name="sync_succeeded">Данные успешно синхронизированы</string>
+    <string name="search_hint">Поиск по ФИО, ID и номеру ...</string>
 
 </resources>

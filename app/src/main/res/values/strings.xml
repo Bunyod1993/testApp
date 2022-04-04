@@ -101,4 +101,5 @@
     <string name="language">Язык</string>
     <string name="russian">Русский</string>
     <string name="tajik">Таджикиский</string>
+    <string name="search_hint">Поиск по ФИО, ID и номеру ...</string>
 </resources>

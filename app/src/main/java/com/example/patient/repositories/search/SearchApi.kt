@@ -15,7 +15,7 @@ interface SearchApi {
 
     @POST("/api/paginationPregnant/offset/{offset}/limit/{limit}")
     suspend fun getPatients(
-        @Path("offset") value:Int,
+        @Path("offset") offset:Int,
         @Path("limit") limit:Int,
         @Body body: RequestBody
     ):SearchResp

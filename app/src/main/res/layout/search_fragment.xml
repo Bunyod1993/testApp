@@ -55,7 +55,7 @@
                     style="@style/outlinedTextField"
                     app:hintEnabled="false"
                     app:endIconMode="custom"
-                    app:endIconDrawable="@drawable/ic_search"
+                    app:endIconDrawable="@drawable/ic_search_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <com.google.android.material.textfield.TextInputEditText
@@ -63,7 +63,7 @@
                         style="@style/digitRegular18"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/app_name"
+                        android:hint="@string/search_hint"
                         android:background="@drawable/input"
                         android:paddingBottom="12dp"
                         android:maxLength="30"
@@ -127,7 +127,6 @@
                     android:id="@+id/recycleView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toTopOf="parent"
                     android:orientation="vertical"
                     tools:listitem="@layout/patient_list_item" />

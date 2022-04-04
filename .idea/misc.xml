@@ -61,6 +61,7 @@
         <entry key="app/src/main/res/layout/login_fragment.xml" value="0.241259765625" />
         <entry key="app/src/main/res/layout/patient_empty.xml" value="0.2164855072463768" />
         <entry key="app/src/main/res/layout/patient_list_item.xml" value="0.251582247969033" />
+        <entry key="app/src/main/res/layout/patient_loading_item.xml" value="0.23541666666666666" />
         <entry key="app/src/main/res/layout/register_death_fragment.xml" value="0.375" />
         <entry key="app/src/main/res/layout/register_fragment.xml" value="0.3461471557617188" />
         <entry key="app/src/main/res/layout/register_second_fragment.xml" value="0.26490936279296873" />
