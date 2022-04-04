@@ -86,7 +86,7 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>() {
         bundle.putParcelable("reg", details)
         bundle.putString("code", model.code)
         Navigation.findNavController(requireView())
-            .navigate(R.id.action_toDetailsFragment, bundle)
+            .navigate(R.id.action_searchToDetailsFragment, bundle)
     }
 
     private fun loadNextPage() {
