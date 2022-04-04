@@ -10,7 +10,7 @@ import com.example.patient.databinding.PatientLoadingItemBinding
 import com.example.patient.repositories.register.RegisterModel
 
 
-class FilterAdapter(private val list: MutableList<RegisterModel?> = arrayListOf(),
+class FilterAdapter(private var list: MutableList<RegisterModel?> = arrayListOf(),
    private val clicked:(model: RegisterModel)->Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     companion object {
@@ -87,6 +87,13 @@ class FilterAdapter(private val list: MutableList<RegisterModel?> = arrayListOf(
     fun add(movie: RegisterModel?) {
         list.add(movie)
         notifyItemInserted(list.size - 1)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun resetAll(addList: List<RegisterModel>){
+        list= arrayListOf()
+        list.addAll(addList)
+        notifyDataSetChanged()
     }
 
     @SuppressLint("NotifyDataSetChanged")

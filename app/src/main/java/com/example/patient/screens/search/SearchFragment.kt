@@ -1,6 +1,5 @@
 package com.example.patient.screens.search
 
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -63,6 +62,12 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>() {
             closeFilter()
         }
 
+        binding.searchInputLayout.setEndIconOnClickListener{
+            viewModel.getByIdPhone().observe(viewLifecycleOwner) {
+                adapter.resetAll(it.payload)
+            }
+        }
+
     }
     private fun clicked(model:RegisterModel){
         val details = Register()
@@ -85,7 +90,6 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>() {
     }
 
     private fun loadNextPage() {
-        Log.v("tag","loading")
         viewModel.getPatients(offset, 10).observe(viewLifecycleOwner) {
             adapter.removeLoadingFooter()
             loading = false
@@ -96,10 +100,9 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>() {
     }
 
     private fun loadFirstPage() {
-
         viewModel.getPatientsInit(offset, 10).observe(viewLifecycleOwner) {
             if (it.code == 200 || it.code == 201)
-                adapter.addAll(it.payload)
+                adapter.resetAll(it.payload)
         }
     }
 

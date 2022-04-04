@@ -29,15 +29,17 @@ class SearchViewModel @Inject constructor(
     val passport = MutableLiveData("")
     val birthday = MutableLiveData("")
 
-    fun getByIdPhone() {
+    fun getByIdPhone():LiveData<SearchResp> {
+        val resp=MutableLiveData<SearchResp>()
         viewModelScope.launch {
             mutableScreenState.postValue(ScreenState.LOADING)
             val value = searchInput.value ?: ""
             searchRepository.getPatientsByIDPhone(this@SearchViewModel, value).collect {
                 mutableScreenState.postValue(ScreenState.RENDER)
-                Log.v("tag", "by id  ${it.payload}")
+                resp.postValue(it)
             }
         }
+        return  resp
     }
 
     fun getPatients(offset: Int, limit: Int):LiveData<SearchResp> {
