@@ -3,6 +3,7 @@ package com.example.patient.screens.search
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.patient.R
@@ -14,8 +15,13 @@ import com.example.patient.repositories.register.RegisterModel
 import com.example.patient.screens.MainActivity
 import com.example.patient.utils.base.BaseFragment
 import com.example.patient.utils.ui.invisible
+import com.example.patient.utils.ui.toDate
+import com.example.patient.utils.ui.validate
 import com.example.patient.utils.ui.visible
+import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>() {
@@ -66,6 +72,37 @@ class SearchFragment : BaseFragment<SearchFragmentBinding, SearchViewModel>() {
             viewModel.getByIdPhone().observe(viewLifecycleOwner) {
                 adapter.resetAll(it.payload)
             }
+        }
+
+        binding.date.setEndIconOnClickListener {
+            val datePicker =
+                MaterialDatePicker.Builder
+                    .datePicker()
+                    .setTitleText(getString(R.string.date_of_pastonavka))
+                    .build()
+            datePicker.show(parentFragmentManager, "date")
+            datePicker.addOnPositiveButtonClickListener {
+                binding.dateField.setText(it.toDate())
+                viewModel.validateDate()
+            }
+        }
+
+    }
+
+    override fun observeData() {
+        super.observeData()
+        lifecycleScope.launch {
+            viewModel.fieldError.collect {
+                when (it.first) {
+                    "date" -> {
+                        binding.dateField.validate(requireContext(), it.second)
+                    }
+                    else -> {}
+                }
+            }
+        }
+        viewModel.birthday.observe(viewLifecycleOwner) {
+            binding.dateField.setBackgroundResource(R.drawable.input)
         }
 
     }
