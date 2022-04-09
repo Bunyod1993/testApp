@@ -12,6 +12,7 @@ import com.example.patient.adapters.WelcomePagerAdapter
 import com.example.patient.databinding.ActivityMainBinding
 import com.example.patient.databinding.ActivityWelcomeBinding
 import com.example.patient.utils.Constants
+import com.example.patient.utils.LocaleManager
 import com.google.android.material.tabs.TabLayoutMediator
 
 class WelcomeActivity : AppCompatActivity() {
@@ -22,5 +23,8 @@ class WelcomeActivity : AppCompatActivity() {
         setContentView(binding.root)
         val prefs=getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
         prefs.edit().putBoolean(Constants.FIRST_ACCESS, false).apply()
+    }
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleManager.setLocale(it) })
     }
 }
