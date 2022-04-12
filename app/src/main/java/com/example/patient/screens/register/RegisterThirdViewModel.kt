@@ -80,14 +80,14 @@ class RegisterThirdViewModel @Inject constructor(
         job?.start()
     }
 
-    fun register(register: Register): LiveData<RegisterModel?> {
-        val resp = MutableLiveData<RegisterModel?>()
+    fun register(register: Register): LiveData<RegisterResp> {
+        val resp = MutableLiveData<RegisterResp>()
         viewModelScope.launch {
             mutableScreenState.postValue(ScreenState.LOADING)
             registerRepository.registerPregnant(this@RegisterThirdViewModel, register)
                 .collect {
                     mutableScreenState.postValue(ScreenState.RENDER)
-                    resp.postValue(it.payload)
+                    resp.postValue(it)
                 }
         }
         return resp

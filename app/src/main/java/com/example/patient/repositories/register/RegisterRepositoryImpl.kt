@@ -9,6 +9,7 @@ import com.example.patient.utils.ui.normalize
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
+import java.util.*
 import javax.inject.Inject
 
 
@@ -23,35 +24,45 @@ class RegisterRepositoryImpl @Inject constructor(
     ): Flow<RegisterResp> {
         return flow {
             if (!networkMonitor.isConnected()){
+                register.id= UUID.randomUUID().toString()
                 patientDao.insertPatient(register)
                 emit(
                     RegisterResp(
-                    code = 100,
-                    message = "Locally inserted",
-                    payload = null
-                )
+                        code = 100,
+                        message = register.id,
+                        payload = null
+                    )
                 )
             } else {
-                safeApiCallNoContext(emitter) {
-                    val resp = api.register(
-                        register.fio,
-                        register.publishDate.normalize(),
-                        register.type,
-                        register.birthday.normalize(),
-                        register.passport,
-                        register.address,
-                        register.phone,
-                        register.phoneEx,
-                        register.infoMenstruation.normalize(),
-                        register.infoEstimatedDate.normalize(),
-                        register.infoParity,
-                        register.infoBirthPermit
-                    )
-                    if (resp.code == 401) {
-                        emitter.onError(ErrorType.SESSION_EXPIRED)
+                    try {
+                        val resp = api.register(
+                            register.fio,
+                            register.publishDate.normalize(),
+                            register.type,
+                            register.birthday.normalize(),
+                            register.passport,
+                            register.address,
+                            register.phone,
+                            register.phoneEx,
+                            register.infoMenstruation.normalize(),
+                            register.infoEstimatedDate.normalize(),
+                            register.infoParity,
+                            register.infoBirthPermit
+                        )
+                        if (resp.code == 401) {
+                            emitter.onError(ErrorType.SESSION_EXPIRED)
+                        }
+                        emit(resp)
+                    }catch (e:Exception){
+                        patientDao.insertPatient(register)
+                        emit(
+                            RegisterResp(
+                                code = 100,
+                                message = register.id,
+                                payload = null
+                            )
+                        )
                     }
-                    emit(resp)
-             }
             }
         }
     }

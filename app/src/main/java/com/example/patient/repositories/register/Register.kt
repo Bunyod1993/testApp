@@ -15,8 +15,8 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Register(
     @SerializedName("id")
-    @PrimaryKey(autoGenerate = true)
-    var id: Int,
+    @PrimaryKey
+    var id: String,
     @SerializedName("fio")
     var fio: String,
     @SerializedName("publish_date")
@@ -44,7 +44,7 @@ data class Register(
     var synced: Boolean = false
 ) : Parcelable {
     constructor() : this(
-        -1, "", "", -1, "", "",
+        "", "", "", -1, "", "",
         "", "", "", "", "",
         -1, -1,false
     )
