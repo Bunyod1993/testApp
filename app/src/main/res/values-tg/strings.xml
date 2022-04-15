@@ -47,6 +47,7 @@
     <string name="bottom.info">Тамос</string>
     <string name="sync.title">Ҳамоҳангсозӣ</string>
     <string name="sync.info">Барои ҳамоҳангсозӣ дастрас аст:</string>
+    <string name="sync.failed">Что-то пошло не так. Пожалуйста, синхронизируйте вашего пациента, когда у вас есть стабильное подключение к Интернету.</string>
     <string name="skip">Гузаштан</string>
     <string name="filter">Филтр</string>
     <string name="accept">Истифода бурдан </string>

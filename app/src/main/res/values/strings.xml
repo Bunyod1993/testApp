@@ -44,6 +44,7 @@
     <string name="bottom.info">Контакты</string>
     <string name="sync.title">Синхронизация</string>
     <string name="sync.info">Для синхронизации доступно:</string>
+    <string name="sync.failed">Что-то пошло не так. Пожалуйста, синхронизируйте вашего пациента, когда у вас есть стабильное подключение к Интернету.</string>
     <string name="skip">Пропустить</string>
     <string name="filter">Фильтр</string>
     <string name="accept">Применить</string>

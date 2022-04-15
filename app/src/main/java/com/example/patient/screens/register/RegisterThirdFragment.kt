@@ -64,13 +64,21 @@ class RegisterThirdFragment : BaseFragment<RegisterThirdFragmentBinding, Registe
                     val details = mainViewModel.register
                     bundle.putParcelable("reg", details)
                     bundle.putString("code", model?.payload?.code)
-                    val isLocal=model.code==100
-                    bundle.putBoolean("isLocal",isLocal)
+                    val isLocal = model.code == 100
+                    bundle.putBoolean("isLocal", isLocal)
                     if (isLocal)
-                     bundle.putString("id", model.message)
+                        bundle.putString("id", model.message)
                     Navigation.findNavController(requireView())
                         .navigate(R.id.action_toDetailsFragment, bundle)
-                    Toast.makeText(requireContext(),model?.message,Toast.LENGTH_LONG).show()
+                    if (!isLocal)
+                        Toast.makeText(requireContext(), model?.message, Toast.LENGTH_LONG).show()
+                    else
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.sync_failed),
+                            Toast.LENGTH_LONG
+                        ).show()
+
 
                 }
             } else {
