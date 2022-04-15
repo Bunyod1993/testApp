@@ -38,6 +38,14 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun forgot(emitter: RemoteErrorEmitter): Flow<SupportModel> {
+        return flow {
+            safeApiCallNoContext(emitter){
+                emit( api.forgot())
+            }
+        }
+    }
+
     override fun getFields(): MutableList<Pair<InputType, InputErrorType>> =
         mutableListOf(
             Pair(InputType.EMAIL, InputErrorType.EMPTY),

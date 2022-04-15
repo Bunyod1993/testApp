@@ -6,6 +6,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class AuthModel(
     @SerializedName("access_token")
     val token:String,
@@ -15,10 +16,25 @@ data class AuthModel(
     val message:String,
     @SerializedName("payload")
     val user:User?
-) {
-
-}
-
+)
+@Keep
+data class SupportModel(
+    @SerializedName("code")
+    val code:Int,
+    @SerializedName("message")
+    val message:String,
+    @SerializedName("payload")
+    val user:List<Support>
+)
+@Keep
+data class Support(
+    @SerializedName("fullname")
+    val fullname:String,
+    @SerializedName("phone")
+    val phone:String,
+    @SerializedName("email")
+    val email:String
+)
 
 @Keep
 @Entity(tableName = "profile")

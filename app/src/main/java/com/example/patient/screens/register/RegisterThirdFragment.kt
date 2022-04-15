@@ -1,6 +1,7 @@
 package com.example.patient.screens.register
 
 
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
@@ -69,6 +70,7 @@ class RegisterThirdFragment : BaseFragment<RegisterThirdFragmentBinding, Registe
                      bundle.putString("id", model.message)
                     Navigation.findNavController(requireView())
                         .navigate(R.id.action_toDetailsFragment, bundle)
+                    Toast.makeText(requireContext(),model?.message,Toast.LENGTH_LONG).show()
 
                 }
             } else {

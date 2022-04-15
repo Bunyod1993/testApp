@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.patient.repositories.Resource
 import com.example.patient.repositories.auth.AuthRepository
+import com.example.patient.repositories.auth.SupportModel
 import com.example.patient.utils.base.BaseViewModel
 import com.example.patient.utils.base.ScreenState
 import com.example.patient.utils.enums.InputErrorType
@@ -36,7 +37,18 @@ class LoginViewModel @Inject constructor(private val authRepository: AuthReposit
         }
         return resp
     }
-
+    fun forgot(): LiveData<SupportModel> {
+        val resp = MutableLiveData<SupportModel>()
+        viewModelScope.launch(Dispatchers.IO) {
+            mutableScreenState.postValue(ScreenState.LOADING)
+            authRepository.forgot(this@LoginViewModel)
+                .collect {
+                    mutableScreenState.postValue(ScreenState.RENDER)
+                    resp.postValue(it)
+                }
+        }
+        return resp
+    }
     fun validateLoginFields(inputType: InputType) {
         val str: String
         val pair: Pair<InputType, InputErrorType>

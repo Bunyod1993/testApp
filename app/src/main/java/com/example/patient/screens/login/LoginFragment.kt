@@ -17,6 +17,7 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.lang.StringBuilder
 
 @ExperimentalCoroutinesApi
 @FlowPreview
@@ -96,6 +97,26 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
                 else {
                     InfoAlert.showWarningAlert(requireContext(), "Error", it.message ?: "") {}
                 }
+            }
+        }
+
+        binding.forgotPassword.setOnClickListener {
+            viewModel.forgot().observe(viewLifecycleOwner) {
+                if (it.code == 200) {
+
+                    val txt = StringBuilder()
+
+                    for (item in it.user) {
+                        txt.appendLine(item.fullname + ": " + item.phone+", ")
+                    }
+
+                    InfoAlert.showConfirmAlert(
+                        requireContext(), "Центр поддержки", txt.toString(),
+                        positiveBtnText = getString(R.string.ok), negativeBtnText = ""
+                    ) {}
+
+                }
+
             }
         }
     }
